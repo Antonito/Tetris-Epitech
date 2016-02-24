@@ -4,56 +4,22 @@
 ** Made by Arthur ARNAUD
 ** Login   <arnaud_e@epitech.net>
 **
-** Started on  Tue Feb 23 13:43:38 2016 Arthur ARNAUD
-** Last update Tue Feb 23 14:05:42 2016 Arthur ARNAUD
+** Started on  Tue Feb 23 14:53:09 2016 Arthur ARNAUD
+** Last update Wed Feb 24 14:22:48 2016 Arthur ARNAUD
 */
 
-#include "score.h"
+#include "tetris.h"
 
-WINDOW		*create_new_win(int height, int width, int start_y, int start_x)
+void	display_score(WINDOW *score, t_game *game)
 {
-  WINDOW	*win;
-
-  win = newwin(height, width, start_y, start_x);
-  wborder(win, '|', '|', '-', '-', '/', '\\', '\\', '/');
-  wrefresh(win);
-  return (win);
-}
-
-int		refresh_win(WINDOW *score,
-			    WINDOW *board,
-			    WINDOW *title,
-			    WINDOW *tetrinimo)
-{
-  wrefresh(board);
-  wrefresh(title);
-  wrefresh(score);
-  wrefresh(tetrinimo);
-}
-
-void		init_pair_color()
-{
-  init_pair(1, COLOR_RED, COLOR_BLACK);
-  init_pair(2, COLOR_GREEN, COLOR_BLACK);
-  init_pair(3, COLOR_YELLOW, COLOR_BLACK);
-  init_pair(4, COLOR_BLUE, COLOR_BLACK);
-  init_pair(5, COLOR_MAGENTA, COLOR_BLACK);
-  init_pair(6, COLOR_CYAN, COLOR_BLACK);
-  init_pair(7, COLOR_WHITE, COLOR_BLACK);
-}
-
-int		display_interface()
-{
-  WINDOW	*title;
-  WINDOW	*score;
-  int		row;
-  int		col;
-
-  start_color();
-  init_pair_color();
-  title = newwin(6, 30, 0, 0);
-  score = create_new_win(10, 25, 8, 4);
-  display_score(score);
-  display_title(title);
-  refresh_win(score, board, title, tetrinimo);
+  mvwprintw(score, 2, 2, "High Score");
+  mvwprintw(score, 2, 22, "%d", game->highscore);
+  mvwprintw(score, 3, 2, "Score");
+  mvwprintw(score, 3, 22, "%d", game->score);
+  mvwprintw(score, 5, 2, "Lines");
+  mvwprintw(score, 5, 22, "%d", game->lines);
+  mvwprintw(score, 6, 2, "Level");
+  mvwprintw(score, 6, 22, "%d", game->level);
+  mvwprintw(score, 8, 2, "Timer:");
+  mvwprintw(score, 6, 22, "%d : %d", game->time_min, game->time_sec);
 }

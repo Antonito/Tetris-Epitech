@@ -5,7 +5,7 @@
 ## Login   <bache_a@epitech.net>
 ##
 ## Started on  Tue Feb 23 14:08:31 2016 Antoine Baché
-## Last update Wed Feb 24 12:38:34 2016 Arthur ARNAUD
+## Last update Wed Feb 24 20:45:37 2016 Arthur ARNAUD
 ##
 
 DEBUG=			yes
@@ -14,6 +14,9 @@ SRC_PREFIX=		src/
 
 SRC_FILES=		main.c		\
 			score.c		\
+			board.c		\
+			my_memset.c	\
+			init_game.c	\
 			display.c	\
 			interface.c	\
 

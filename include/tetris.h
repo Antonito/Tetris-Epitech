@@ -5,13 +5,15 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Wed Feb 24 14:22:45 2016 Arthur ARNAUD
+** Last update Wed Feb 24 21:33:21 2016 Arthur ARNAUD
 */
 
 #ifndef	TETRIS_H_
 # define TETRIS_H_
 
 # include <ncurses.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 typedef struct	s_window
 {
@@ -23,7 +25,7 @@ typedef struct	s_window
 
 typedef struct	s_tetri
 {
-  char		**tetri;
+  char		**tab;
   int		height;
   int		width;
   int		x;
@@ -44,15 +46,30 @@ typedef struct	s_game
   char		**tab;
 }		t_game;
 
-WINDOW	*create_new_win(int height, int width, int start_y, int start_x);
-WINDOW	*create_new_board(int height, int width, int start_y, int start_x);
+/*
+** ===================================================
+**                       INIT
+** ===================================================
+*/
+int	init_game(t_game *, t_tetri *);
+int	malloc_tab(char ***, int, int);
+void	my_memset(void *, char, int);
+
 void	init_pair_color();
-void	display();
-void	display_score(WINDOW *win);
-void	display_title(WINDOW *win);
-void	display_title_(WINDOW *win);
-void	display_interface();
-void	display_board();
-void	display_tetriminos(WINDOW *win, char **tab, int height, int width);
+WINDOW	*create_new_win(int, int, int, int);
+WINDOW	*create_new_board(int, int, int, int);
+void	create_all_win(t_window *, t_tetri *, t_game *);
+
+/*
+** ===================================================
+**                      DISPLAY
+** ===================================================
+*/
+void	display(t_window *, t_tetri *, t_game *);
+void	display_score(WINDOW *, t_game *);
+void	display_title(WINDOW *);
+void	display_interface(t_window *, t_game *);
+void	display_board(t_window *, t_tetri *, t_game *);
+void	display_tetriminos(WINDOW *, char **, int, int);
 
 #endif /* TETRIS_H_ */

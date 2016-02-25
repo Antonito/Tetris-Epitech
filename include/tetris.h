@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Wed Feb 24 21:33:21 2016 Arthur ARNAUD
+** Last update Thu Feb 25 12:58:24 2016 Antoine Baché
 */
 
 #ifndef	TETRIS_H_
@@ -52,7 +52,7 @@ typedef struct	s_game
 ** ===================================================
 */
 int	init_game(t_game *, t_tetri *);
-int	malloc_tab(char ***, int, int);
+char	**malloc_tab(char **, int, int);
 void	my_memset(void *, char, int);
 
 void	init_pair_color();

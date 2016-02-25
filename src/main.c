@@ -5,19 +5,27 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Tue Feb 23 19:12:02 2016 Arthur ARNAUD
-** Last update Wed Feb 24 20:24:44 2016 Arthur ARNAUD
+** Last update Thu Feb 25 13:11:53 2016 Antoine Baché
 */
 
 #include "tetris.h"
 
-int		main()
+int		tetris(void)
 {
   t_game	game;
   t_tetri	tetri;
   t_window	win;
 
-  init_game(&game, &tetri);
+  if (init_game(&game, &tetri))
+    return (1);
   create_all_win(&win, &tetri, &game);
   display(&win, &tetri, &game);
+  return (0);
+}
+
+int		main(int ac, char **av, char **env)
+{
+  if (!env || tetris())
+    return (1);
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Tue Feb 23 14:52:36 2016 Arthur ARNAUD
-** Last update Wed Feb 24 20:26:19 2016 Arthur ARNAUD
+** Last update Thu Feb 25 17:26:40 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -15,6 +15,8 @@ WINDOW		*create_new_win(int height, int width, int start_y, int start_x)
   WINDOW	*win;
 
   win = newwin(height, width, start_y, start_x);
+  if (!win)
+    return (NULL);
   wborder(win, '|', '|', '-', '-', '/', '\\', '\\', '/');
   return (win);
 }

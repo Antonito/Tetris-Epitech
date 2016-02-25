@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Wed Feb 24 19:28:55 2016 Arthur ARNAUD
-** Last update Thu Feb 25 13:19:48 2016 Antoine Baché
+** Last update Thu Feb 25 17:26:05 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -16,6 +16,7 @@ int	init_game(t_game *game, t_tetri *tetri)
   game->next = 0;
   game->lines = 0;
   game->highscore = 0;
+  game->score = 0;
   game->time_sec = 0;
   game->time_min = 0;
   game->height = 20;
@@ -47,12 +48,13 @@ char	**malloc_tab(char **tab, int height, int width)
   return (tab);
 }
 
-void            create_all_win(t_window *win, t_tetri *tetri, t_game *game)
+int            create_all_win(t_window *win, t_tetri *tetri, t_game *game)
 {
-  win->title = newwin(6, 30, 0, 0);
-  win->score = create_new_win(10, 25, 8, 4);
-  win->board =
-    create_new_board(game->height, game->width, 15, 2);
-  win->next =
-    create_new_win(tetri->height + 2, tetri->width + 2, game->width + 20, 2);
+  if (!(win->title = newwin(6, 30, 0, 0)) ||
+      !(win->score = create_new_win(10, 25, 8, 4)) ||
+      !(win->board = create_new_board(game->height, game->width, 1, 32)) ||
+      !(win->next = create_new_win
+  	(tetri->height + 2, tetri->width + 6, 1, game->width + 34)))
+    return (1);
+  return (0);
 }

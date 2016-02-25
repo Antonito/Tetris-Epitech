@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Tue Feb 23 23:37:45 2016 Arthur ARNAUD
-** Last update Thu Feb 25 13:10:39 2016 Antoine Baché
+** Last update Thu Feb 25 17:27:35 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -15,13 +15,13 @@ WINDOW		*create_new_board(int height, int width, int start_y,
 {
   WINDOW	*win;
 
-  win = newwin(height, width, start_y, start_x);
+  if (!(win = newwin(height, width, start_y, start_x)))
+    return (NULL);
   wborder(win, '|', '|', '-', '-', '-', '-', '-', '-');
   return (win);
 }
 
-void		display_tetriminos(WINDOW *win, char **tab, int height,
-				   int width)
+void		display_tetriminos(WINDOW *win, char **tab, int width)
 {
   int	i;
   int	j;
@@ -41,10 +41,10 @@ void		display_tetriminos(WINDOW *win, char **tab, int height,
 
 void		display_board(t_window *win, t_tetri *tetri, t_game *game)
 {
-  display_tetriminos(win->board, game->tab, game->height, game->width);
-  mvwprintw(win->next, 2, 0, "Next");
+  display_tetriminos(win->board, game->tab, game->width);
+  mvwprintw(win->next, 0, 1, "Next");
   if (!game->next)
-    display_tetriminos(win->next, tetri->tab, tetri->height, tetri->width);
+    display_tetriminos(win->next, tetri->tab, tetri->width);
   wrefresh(win->board);
   wrefresh(win->next);
 }

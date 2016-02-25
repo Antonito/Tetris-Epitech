@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Tue Feb 23 19:12:02 2016 Arthur ARNAUD
-** Last update Thu Feb 25 13:11:53 2016 Antoine Baché
+** Last update Thu Feb 25 17:29:21 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -17,9 +17,9 @@ int		tetris(void)
   t_window	win;
 
   if (init_game(&game, &tetri))
+      return (1);
+  if (display(&win, &tetri, &game))
     return (1);
-  create_all_win(&win, &tetri, &game);
-  display(&win, &tetri, &game);
   return (0);
 }
 

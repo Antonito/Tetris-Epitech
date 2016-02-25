@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Thu Feb 25 12:58:24 2016 Antoine Baché
+** Last update Thu Feb 25 17:30:52 2016 Arthur ARNAUD
 */
 
 #ifndef	TETRIS_H_
@@ -51,25 +51,25 @@ typedef struct	s_game
 **                       INIT
 ** ===================================================
 */
+int	tetris(void);
 int	init_game(t_game *, t_tetri *);
 char	**malloc_tab(char **, int, int);
 void	my_memset(void *, char, int);
-
 void	init_pair_color();
 WINDOW	*create_new_win(int, int, int, int);
 WINDOW	*create_new_board(int, int, int, int);
-void	create_all_win(t_window *, t_tetri *, t_game *);
+int	create_all_win(t_window *, t_tetri *, t_game *);
 
 /*
 ** ===================================================
 **                      DISPLAY
 ** ===================================================
 */
-void	display(t_window *, t_tetri *, t_game *);
+int	display(t_window *, t_tetri *, t_game *);
 void	display_score(WINDOW *, t_game *);
 void	display_title(WINDOW *);
 void	display_interface(t_window *, t_game *);
 void	display_board(t_window *, t_tetri *, t_game *);
-void	display_tetriminos(WINDOW *, char **, int, int);
+void	display_tetriminos(WINDOW *, char **, int);
 
 #endif /* TETRIS_H_ */

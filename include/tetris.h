@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Thu Feb 25 17:30:52 2016 Arthur ARNAUD
+** Last update Thu Feb 25 20:25:55 2016 Arthur ARNAUD
 */
 
 #ifndef	TETRIS_H_
@@ -46,6 +46,12 @@ typedef struct	s_game
   char		**tab;
 }		t_game;
 
+/*
+** ===================================================
+**                       INIT
+** ===================================================
+*/
+int	load_tetri(t_tetri *);
 /*
 ** ===================================================
 **                       INIT

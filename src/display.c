@@ -5,12 +5,12 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Mon Feb 22 21:01:23 2016 Arthur ARNAUD
-** Last update Thu Feb 25 17:31:22 2016 Arthur ARNAUD
+** Last update Thu Feb 25 17:34:20 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
 
-void		display(t_window *win, t_tetri *tetri, t_game *game)
+int		display(t_window *win, t_tetri *tetri, t_game *game)
 {
   initscr();
   noecho();
@@ -26,4 +26,5 @@ void		display(t_window *win, t_tetri *tetri, t_game *game)
     }
   while (42);
   endwin();
+  return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Wed Feb 24 19:28:55 2016 Arthur ARNAUD
-** Last update Thu Feb 25 17:26:05 2016 Arthur ARNAUD
+** Last update Thu Feb 25 18:00:48 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -19,9 +19,9 @@ int	init_game(t_game *game, t_tetri *tetri)
   game->score = 0;
   game->time_sec = 0;
   game->time_min = 0;
-  game->height = 20;
-  game->width = 10;
-  tetri->height = 2;
+  game->height = 40;
+  game->width = 30;
+  tetri->height = 14;
   tetri->width = 2;
   tetri->x = 0;
   tetri->y = 0;

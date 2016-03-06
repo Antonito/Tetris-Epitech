@@ -1,11 +1,11 @@
 /*
-** check_args.c for Tetris in /PSU_2015_tetris/src
+1;4204;0c** check_args.c for Tetris in /PSU_2015_tetris/src
 **
 ** Made by Antoine Baché
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 16:35:50 2016 Antoine Baché
-** Last update Sun Mar  6 19:40:16 2016 Antoine Baché
+** Last update Sun Mar  6 20:29:36 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -46,15 +46,30 @@ char		**args_list(void)
   return (tab);
 }
 
-int		parse_args(int ac, char **av)
+int		parse_args(int ac, char **av, t_game *game)
 {
   ptrtab	array;
   char		**args;
+  int		i;
+  bool		mode;
 
   if (!(array = selector()) || !(args = args_list()))
     return (1);
-  while (--ac > 0)
+  while (--ac > 0 && !(i = 0) && (mode = LONG))
     {
+      while (++i < NB_ARGS)
+	if ((i && !(i & 1) && i < 16) || i == 15)
+	  {
+	    if (!my_strncmp(av[0], args[i],
+			    MIN(my_strlen(args[i]), my_strlen(av[0]))))
+	      break;
+	  }
+	else if (!(mode = SHORT) &&
+		 !my_strncmp(av[0], args[i], MIN(my_strlen(args[i]),
+						 my_strlen(av[0]) + 1)))
+	  break;
+      if (array[i](game, av, mode))
+	return (1);
     }
   return (free(array), 0);
 }
@@ -66,7 +81,7 @@ int		check_args(int ac, char **av)
   init_game_default(&game);
   if (ac > 1)
     {
-      if (parse_args(ac, av))
+      if (parse_args(ac, av, &game))
 	return (1);
     }
   if (tetris(&game))

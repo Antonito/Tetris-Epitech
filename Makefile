@@ -5,7 +5,7 @@
 ## Login   <bache_a@epitech.net>
 ##
 ## Started on  Tue Feb 23 14:08:31 2016 Antoine Baché
-## Last update Sun Mar  6 19:31:13 2016 Antoine Baché
+## Last update Sun Mar  6 20:08:41 2016 Antoine Baché
 ##
 
 DEBUG=			yes
@@ -26,6 +26,14 @@ SRC_FILES=		main.c		\
 			my_strncmp.c	\
 			my_strndupc	\
 			interface.c	\
+			args/debug.c	\
+			args/help.c	\
+			args/keysLR.c	\
+			args/keysQP.c	\
+			args/keysTD.c	\
+			args/level.c	\
+			args/next.c	\
+			args/size.c
 
 SRC=			$(addprefix $(SRC_PREFIX),$(SRC_FILES))
 

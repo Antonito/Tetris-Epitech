@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Tue Feb 23 19:12:02 2016 Arthur ARNAUD
-** Last update Sun Mar  6 15:59:17 2016 Antoine Baché
+** Last update Sun Mar  6 16:01:29 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -19,7 +19,8 @@ int		tetris(void)
   int		cur;
 
 
-  if (load_tetri(tetri) || init_game(&game, &next))
+  tetri = NULL;
+  if (load_tetri(tetri, &game) || init_game(&game, &next))
       return (1);
   while ((cur = add_tetri(tetri)) != -1)
     {

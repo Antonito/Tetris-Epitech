@@ -5,7 +5,7 @@
 ## Login   <bache_a@epitech.net>
 ##
 ## Started on  Tue Feb 23 14:08:31 2016 Antoine Baché
-## Last update Wed Feb 24 20:45:37 2016 Arthur ARNAUD
+## Last update Sun Mar  6 16:13:57 2016 Antoine Baché
 ##
 
 DEBUG=			yes
@@ -13,11 +13,16 @@ DEBUG=			yes
 SRC_PREFIX=		src/
 
 SRC_FILES=		main.c		\
+			get_next_line.c	\
+			load.c		\
+			add_tetri.c	\
 			score.c		\
 			board.c		\
 			my_memset.c	\
 			init_game.c	\
 			display.c	\
+			my_getnbr.c	\
+			my_strlen.c	\
 			interface.c	\
 
 SRC=			$(addprefix $(SRC_PREFIX),$(SRC_FILES))

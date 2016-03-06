@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Fri Feb 26 17:01:16 2016 Arthur ARNAUD
+** Last update Sun Mar  6 15:59:14 2016 Antoine Baché
 */
 
 #ifndef	TETRIS_H_
@@ -53,36 +53,36 @@ typedef struct	s_game
 **                       LOAD
 ** ===================================================
 */
-int	load_tetri(t_tetri *, t_game *);
-int	get_tetri(int fd, t_tetri *, char *, t_game *);
-int	get_info(char *, t_tetri *, int, t_game *);
-int	fill_tetri(char *, t_tetri *, int, int);
-t_tetri	*my_realloc_tab(t_tetri *tetri);
+int		load_tetri(t_tetri *, t_game *);
+int		get_tetri(int, t_tetri *, char *, t_game *);
+int		get_info(char *, t_tetri *, int, t_game *);
+int		fill_tetri(char *, t_tetri *, int, int);
+t_tetri		*my_realloc_tab(t_tetri *);
 
 /*
 ** ===================================================
 **                       INIT
 ** ===================================================
 */
-int	tetris(void);
-int	init_game(t_game *, t_tetri *);
-char	**malloc_tab(char **, int, int);
-void	my_memset(void *, char, int);
-void	init_pair_color();
-WINDOW	*create_new_win(int, int, int, int);
-WINDOW	*create_new_board(int, int, int, int);
-int	create_all_win(t_window *, t_tetri *, t_game *);
+int		tetris(void);
+int		init_game(t_game *, t_tetri *);
+char		**malloc_tab(char **, int, int);
+void		my_memset(void *, char, int);
+void		init_pair_color();
+WINDOW		*create_new_win(int, int, int, int);
+WINDOW		*create_new_board(int, int, int, int);
+int		create_all_win(t_window *, t_tetri *, t_game *);
 
 /*
 ** ===================================================
 **                      DISPLAY
 ** ===================================================
 */
-int	display(t_window *, t_tetri *, t_game *);
-void	display_score(WINDOW *, t_game *);
-void	display_title(WINDOW *);
-void	display_interface(t_window *, t_game *);
-void	display_board(t_window *, t_tetri *, t_game *);
-void	display_tetriminos(WINDOW *, char **, int);
+int		display(t_window *, t_tetri *, t_game *);
+void		display_score(WINDOW *, t_game *);
+void		display_title(WINDOW *);
+void		display_interface(t_window *, t_game *);
+void		display_board(t_window *, t_tetri *, t_game *);
+void		display_tetriminos(WINDOW *, char **, int);
 
 #endif /* TETRIS_H_ */

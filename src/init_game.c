@@ -5,22 +5,13 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Wed Feb 24 19:28:55 2016 Arthur ARNAUD
-** Last update Thu Feb 25 18:00:48 2016 Arthur ARNAUD
+** Last update Sun Mar  6 16:40:43 2016 Antoine Baché
 */
 
 #include "tetris.h"
 
 int	init_game(t_game *game, t_tetri *tetri)
 {
-  game->level = 1;
-  game->next = 0;
-  game->lines = 0;
-  game->highscore = 0;
-  game->score = 0;
-  game->time_sec = 0;
-  game->time_min = 0;
-  game->height = 40;
-  game->width = 30;
   tetri->height = 14;
   tetri->width = 2;
   tetri->x = 0;

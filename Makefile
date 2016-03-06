@@ -5,7 +5,7 @@
 ## Login   <bache_a@epitech.net>
 ##
 ## Started on  Tue Feb 23 14:08:31 2016 Antoine Baché
-## Last update Sun Mar  6 16:21:50 2016 Antoine Baché
+## Last update Sun Mar  6 19:31:13 2016 Antoine Baché
 ##
 
 DEBUG=			yes
@@ -24,6 +24,7 @@ SRC_FILES=		main.c		\
 			my_getnbr.c	\
 			my_strlen.c	\
 			my_strncmp.c	\
+			my_strndupc	\
 			interface.c	\
 
 SRC=			$(addprefix $(SRC_PREFIX),$(SRC_FILES))

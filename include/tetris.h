@@ -5,13 +5,15 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Sun Mar  6 16:23:34 2016 Antoine Baché
+** Last update Sun Mar  6 19:54:06 2016 Antoine Baché
 */
 
 #ifndef	TETRIS_H_
 # define TETRIS_H_
+# define NB_ARGS	20
 
 # include <ncurses.h>
+# include <stdbool.h>
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -34,6 +36,16 @@ typedef struct	s_tetri
   int		y;
 }		t_tetri;
 
+typedef	struct	s_key
+{
+  int		left;
+  int		right;
+  int		turn;
+  int		drop;
+  int		quit;
+  int		pause;
+}		t_key;
+
 typedef struct	s_game
 {
   char		level;
@@ -45,8 +57,12 @@ typedef struct	s_game
   int		time_min;
   int		height;
   int		width;
+  bool		showNext;
+  bool		debug;
   char		**tab;
 }		t_game;
+
+typedef		int (**ptrtab)(t_game *, char **, bool);
 
 /*
 ** ===================================================
@@ -54,6 +70,32 @@ typedef struct	s_game
 ** ===================================================
 */
 int		check_file(char *);
+
+/*
+** ===================================================
+**                     CHECK ARGS
+** ===================================================
+*/
+ptrtab		selector(void);
+int		check_args(int, char **);
+
+/*
+** ===================================================
+**                       ARGS
+** ===================================================
+*/
+int		helpArg(t_game *, char **, bool);
+int		levelArg(t_game *, char **, bool);
+int		keyLeftArg(t_game *, char **, bool);
+int		keyRightArg(t_game *, char **, bool);
+int		keyTurnArg(t_game *, char **, bool);
+int		keyDropArg(t_game *, char **, bool);
+int		keyQuitArg(t_game *, char **, bool);
+int		keyPauseArg(t_game *, char **, bool);
+int		sizeArg(t_game *, char **, bool);
+int		nextArg(t_game *, char **, bool);
+int		debugArg(t_game *, char **, bool);
+int		errorArg(t_game *, char **, bool);
 
 /*
 ** ===================================================
@@ -71,7 +113,7 @@ t_tetri		*my_realloc_tab(t_tetri *);
 **                       INIT
 ** ===================================================
 */
-int		tetris(void);
+int		tetris(t_game *);
 int		init_game(t_game *, t_tetri *);
 char		**malloc_tab(char **, int, int);
 void		my_memset(void *, char, int);

@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 16:15:27 2016 Antoine Baché
-** Last update Sun Mar  6 16:22:21 2016 Antoine Baché
+** Last update Sun Mar  6 19:32:02 2016 Antoine Baché
 */
 
 #ifndef	TOOLS_H_
@@ -15,6 +15,8 @@
 # include "get_next_line.h"
 
 int	my_getnbr(char *);
+char	*my_strdup(char *);
+char	*my_strndup(char *, int);
 int	my_strlen(const char *);
 int	my_strncmp(const char *, const char *, int);
 

@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Thu Feb 25 19:55:00 2016 Arthur ARNAUD
-** Last update Sun Mar  6 16:16:46 2016 Antoine Baché
+** Last update Sun Mar  6 16:24:12 2016 Antoine Baché
 */
 
 #include <sys/types.h>
@@ -40,9 +40,9 @@ int		load_tetri(t_tetri *tetri, t_game *game)
   if (!(tetri = malloc_tetri_tab(tetri)) ||
       !(dir = opendir("tetriminos")))
     return (1);
-  tetri[0] = NULL;
+  my_memset(&tetri[0], 0, sizeof(t_tetri));
   while (!(file = readdir(dir)))
-    if (file->d_name[0] != '.' || check_file_name(file->d_name))
+    if (file->d_name[0] != '.' || check_file(file->d_name))
       if ((fd = open(file->d_name, O_RDONLY)) == -1 ||
 	  !get_tetri(fd, tetri, file->d_name, game))
 	return (1);

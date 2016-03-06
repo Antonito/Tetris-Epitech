@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Sun Mar  6 15:59:14 2016 Antoine Baché
+** Last update Sun Mar  6 16:23:34 2016 Antoine Baché
 */
 
 #ifndef	TETRIS_H_
@@ -47,6 +47,13 @@ typedef struct	s_game
   int		width;
   char		**tab;
 }		t_game;
+
+/*
+** ===================================================
+**                      TO ORDER
+** ===================================================
+*/
+int		check_file(char *);
 
 /*
 ** ===================================================

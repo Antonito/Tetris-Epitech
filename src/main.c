@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Tue Feb 23 19:12:02 2016 Arthur ARNAUD
-** Last update Thu Feb 25 19:41:23 2016 Arthur ARNAUD
+** Last update Mon Feb 29 16:14:44 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -14,14 +14,23 @@ int		tetris(void)
 {
   t_game	game;
   t_tetri	*tetri;
-  t_tetri	next;
   t_window	win;
+  int		next;
+  int		cur;
 
 
   if (load_tetri(tetri) || init_game(&game, &next))
       return (1);
-  if (display(&win, &next, &game))
-    return (1);
+  while ((cur = add_tetri(tetri)) != -1)
+    {
+      while (is_moving(tetri, cur))
+	{
+	  cur = add_tetri(tetri);
+	  fall(tetri, cur);
+	  if (display(&win, &next, &game))
+	    return (1);
+	}
+    }
   return (0);
 }
 

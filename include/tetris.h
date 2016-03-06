@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Thu Feb 25 20:25:55 2016 Arthur ARNAUD
+** Last update Fri Feb 26 17:01:16 2016 Arthur ARNAUD
 */
 
 #ifndef	TETRIS_H_
@@ -26,8 +26,10 @@ typedef struct	s_window
 typedef struct	s_tetri
 {
   char		**tab;
+  char		*name;
   int		height;
   int		width;
+  int		color;
   int		x;
   int		y;
 }		t_tetri;
@@ -48,10 +50,15 @@ typedef struct	s_game
 
 /*
 ** ===================================================
-**                       INIT
+**                       LOAD
 ** ===================================================
 */
-int	load_tetri(t_tetri *);
+int	load_tetri(t_tetri *, t_game *);
+int	get_tetri(int fd, t_tetri *, char *, t_game *);
+int	get_info(char *, t_tetri *, int, t_game *);
+int	fill_tetri(char *, t_tetri *, int, int);
+t_tetri	*my_realloc_tab(t_tetri *tetri);
+
 /*
 ** ===================================================
 **                       INIT

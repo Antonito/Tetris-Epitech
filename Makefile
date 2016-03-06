@@ -5,7 +5,7 @@
 ## Login   <bache_a@epitech.net>
 ##
 ## Started on  Tue Feb 23 14:08:31 2016 Antoine Baché
-## Last update Sun Mar  6 20:08:41 2016 Antoine Baché
+## Last update Sun Mar  6 20:13:59 2016 Antoine Baché
 ##
 
 DEBUG=			yes
@@ -24,8 +24,11 @@ SRC_FILES=		main.c		\
 			my_getnbr.c	\
 			my_strlen.c	\
 			my_strncmp.c	\
-			my_strndupc	\
+			my_strndup.c	\
 			interface.c	\
+			check_file.c	\
+			check_args.c	\
+			select.c	\
 			args/debug.c	\
 			args/help.c	\
 			args/keysLR.c	\

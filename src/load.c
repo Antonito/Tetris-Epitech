@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Thu Feb 25 19:55:00 2016 Arthur ARNAUD
-** Last update Sun Mar  6 16:24:12 2016 Antoine Baché
+** Last update Sun Mar  6 16:31:22 2016 Antoine Baché
 */
 
 #include <sys/types.h>
@@ -74,6 +74,7 @@ int		get_tetri(int fd, t_tetri *tetri, char *name, t_game *game)
   if (j > tetri[i].height)
     return (1);
   nb++;
+  return (0);
 }
 
 int	get_info(char *str, t_tetri *tetri, int nb, t_game *game)
@@ -92,6 +93,7 @@ int	get_info(char *str, t_tetri *tetri, int nb, t_game *game)
   if ((tetri[nb].color = my_getnbr(str + i)) > 1 ||
       tetri[nb].color > 7)
     return (1);
+  return (0);
 }
 
 int	fill_tetri(char *str, t_tetri *tetri, int i, int nb)

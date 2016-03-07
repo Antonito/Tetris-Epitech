@@ -5,15 +5,14 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 19:56:14 2016 Antoine Baché
-** Last update Mon Mar  7 07:37:16 2016 Antoine Baché
+** Last update Mon Mar  7 14:34:07 2016 Antoine Baché
 */
 
 #include "tetris.h"
+#include "tools.h"
 
-int	helpArg(t_game *game, char **av, bool mode)
+void	displayHelp(void)
 {
-  write(1, "Usage: ./tetris [options]\n", 26);
-  write(1, "Options\n", 8);
   write(1, "  --help\t\t", 10);
   write(1, "Display this help\n", 18);
   write(1, "  -l --level={num}\t", 19);
@@ -34,5 +33,15 @@ int	helpArg(t_game *game, char **av, bool mode)
   write(1, "Hide next tetrimino\n", 20);
   write(1, "  -d --debug\t\t", 14);
   write(1, "Debug mode\n", 11);
-  return ((void)game, (void)av, (void)mode, 1);
+}
+
+int	helpArg(t_game *game, char **av, bool mode)
+{
+  --av;
+  write(1, "Usage: ", 7);
+  write(1, av[0], my_strlen(av[0]));
+  write(1, " [options]\n", 11);
+  write(1, "Options\n", 8);
+  displayHelp();
+  return ((void)game, (void)mode, 1);
 }

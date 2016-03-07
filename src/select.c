@@ -5,17 +5,20 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 17:01:11 2016 Antoine Baché
-** Last update Sun Mar  6 19:54:31 2016 Antoine Baché
+** Last update Mon Mar  7 14:35:45 2016 Antoine Baché
 */
 
 #include "tetris.h"
+#include "tools.h"
 
 int		errorArg(t_game *game, char **av, bool mode)
 {
   (void)game;
   (void)mode;
-  (void)av;
-  write(1, "Usage: ./tetris [options]\n", 26);
+  --av;
+  write(1, "Usage: ", 7);
+  write(1, av[0], my_strlen(av[0]));
+  write(1, " [options]\n", 11);
   return (1);
 }
 

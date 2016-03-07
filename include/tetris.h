@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Mon Mar  7 21:18:39 2016 Antoine Baché
+** Last update Tue Mar  8 00:47:57 2016 Antoine Baché
 */
 
 #ifndef	TETRIS_H_
@@ -21,6 +21,8 @@
 # include <stdbool.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <termios.h>
+# include <sys/ioctl.h>
 
 typedef	enum	e_mode
   {
@@ -75,6 +77,7 @@ typedef struct	s_game
 }		t_game;
 
 typedef		int (**ptrtab)(t_game *, char **, bool);
+typedef		int (**event)(t_game *, t_tetri *);
 
 /*
 ** ===================================================
@@ -89,8 +92,10 @@ int		check_file(char *);
 **                     CHECK ARGS
 ** ===================================================
 */
+int		initTerm(const char *, bool);
+char		*getTerm(const char **);
 ptrtab		selector(void);
-int		check_args(int, char **);
+int		check_args(int, char **, char **);
 
 /*
 ** ===================================================

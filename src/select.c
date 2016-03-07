@@ -5,11 +5,27 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 17:01:11 2016 Antoine Baché
-** Last update Mon Mar  7 14:35:45 2016 Antoine Baché
+** Last update Mon Mar  7 21:31:43 2016 Antoine Baché
 */
 
 #include "tetris.h"
 #include "tools.h"
+
+event		selectorEvent(void)
+{
+  event		array;
+
+  if ((array = malloc(sizeof(int *) * (6))) == NULL)
+    return (NULL);
+  array[0] = &keyLeftEvent;
+  array[1] = &keyRightEvent;
+  array[2] = &keyDropEvent;
+  array[3] = &keyTurnEvent;
+  array[4] = &keyPauseEvent;
+  array[5] = &keyQuitEvent;
+  array[7] = &keyOtherEvent;
+  return (array);
+}
 
 int		errorArg(t_game *game, char **av, bool mode)
 {

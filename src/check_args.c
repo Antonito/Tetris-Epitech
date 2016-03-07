@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 16:35:50 2016 Antoine Baché
-** Last update Mon Mar  7 09:28:05 2016 Arthur ARNAUD
+** Last update Tue Mar  8 00:48:20 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -86,9 +86,10 @@ int		parse_args(int ac, char **av, t_game *game)
   return (free(array), 0);
 }
 
-int		check_args(int ac, char **av)
+int		check_args(int ac, char **av, char **env)
 {
   t_game	game;
+  char		*term;
 
   init_game_default(&game);
   if (ac > 1)
@@ -96,7 +97,7 @@ int		check_args(int ac, char **av)
       if (parse_args(ac, av + 1, &game))
 	return (1);
     }
-  if (tetris(&game))
-    return (1);
-  return (0);
+  if (initTerm((term = getTerm((const char **)env)), false) || tetris(&game))
+    return (initTerm(term, true), 1);
+  return (initTerm(term, true), 0);
 }

@@ -5,12 +5,20 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 20:02:32 2016 Antoine Baché
-** Last update Sun Mar  6 20:04:50 2016 Antoine Baché
+** Last update Mon Mar  7 07:51:07 2016 Antoine Baché
 */
 
 #include "tetris.h"
+#include "tools.h"
+
+int	parseSize(const char *str)
+{
+  str += 11;
+  return (0);
+}
 
 int	sizeArg(t_game *game, char **av, bool mode)
 {
+  parseSize(av[0]);
   return (0);
 }

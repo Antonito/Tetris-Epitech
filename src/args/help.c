@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 19:56:14 2016 Antoine Baché
-** Last update Mon Mar  7 07:14:25 2016 Antoine Baché
+** Last update Mon Mar  7 07:37:16 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -34,5 +34,5 @@ int	helpArg(t_game *game, char **av, bool mode)
   write(1, "Hide next tetrimino\n", 20);
   write(1, "  -d --debug\t\t", 14);
   write(1, "Debug mode\n", 11);
-  return (1);
+  return ((void)game, (void)av, (void)mode, 1);
 }

@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Mon Mar  7 20:08:31 2016 Antoine Baché
+** Last update Mon Mar  7 21:18:39 2016 Antoine Baché
 */
 
 #ifndef	TETRIS_H_
@@ -81,6 +81,7 @@ typedef		int (**ptrtab)(t_game *, char **, bool);
 **                      TO ORDER
 ** ===================================================
 */
+int		error(const char *);
 int		check_file(char *);
 
 /*

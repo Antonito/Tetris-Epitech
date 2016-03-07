@@ -5,7 +5,7 @@
 ## Login   <bache_a@epitech.net>
 ##
 ## Started on  Tue Feb 23 14:08:31 2016 Antoine Baché
-## Last update Mon Mar  7 09:58:15 2016 Antoine Baché
+## Last update Mon Mar  7 21:18:53 2016 Antoine Baché
 ##
 
 DEBUG=			yes
@@ -29,6 +29,7 @@ SRC_FILES=		main.c		\
 			check_file.c	\
 			check_args.c	\
 			select.c	\
+			errors.c	\
 			args/key.c	\
 			args/debug.c	\
 			args/help.c	\

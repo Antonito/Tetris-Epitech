@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Mon Mar  7 10:09:18 2016 Antoine Baché
+** Last update Mon Mar  7 10:23:45 2016 Antoine Baché
 */
 
 #ifndef	TETRIS_H_
@@ -96,7 +96,7 @@ int		check_args(int, char **);
 **                       ARGS
 ** ===================================================
 */
-int		getKey(int *, char *);
+int		getKey(int *, const char *);
 int		helpArg(t_game *, char **, bool);
 int		levelArg(t_game *, char **, bool);
 int		keyLeftArg(t_game *, char **, bool);

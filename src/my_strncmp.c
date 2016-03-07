@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 16:22:02 2016 Antoine Baché
-** Last update Mon Mar  7 08:04:26 2016 Antoine Baché
+** Last update Mon Mar  7 08:05:35 2016 Antoine Baché
 */
 
 #include "tools.h"
@@ -21,7 +21,7 @@ int	my_strncmp(const char *s1, const char *s2, int n)
 	return (s1[i] - s2[i]);
       else if (s1[i] == '\0')
 	return (0);
-      i = i + 1;
+      ++i;
     }
   return (-1);
 }

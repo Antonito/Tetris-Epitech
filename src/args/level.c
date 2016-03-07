@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 20:02:32 2016 Antoine Baché
-** Last update Mon Mar  7 07:51:55 2016 Antoine Baché
+** Last update Mon Mar  7 08:11:18 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -13,7 +13,7 @@
 
 int	parseLevel(const char *str)
 {
-  str += 7;
+  str += 8;
   return (my_getnbr(str));
 }
 
@@ -22,9 +22,15 @@ int	levelArg(t_game *game, char **av, bool mode)
   int	value;
 
   if (mode == SHORT)
-    value = ((av[1]) ? my_getnbr(av[1]) : -1);
+    value = ((av[1]) ? my_getnbr(av[1]) : 0);
   else if (mode == LONG)
     value = parseLevel(av[0]);
-  printf("Size = %d\n", value);
+  if (value)
+    game->level = value;
+  else
+    {
+      write(2, "Incorrect level\n", 16);
+      return (1);
+    }
   return (0);
 }

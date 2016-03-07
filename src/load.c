@@ -1,11 +1,11 @@
 /*
-1;4204;0c** load.c for load in /home/arnaud_e/rendu/psu/PSU_2015_tetris/src
+** load.c for load in /home/arnaud_e/rendu/psu/PSU_2015_tetris/src
 **
 ** Made by Arthur ARNAUD
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Thu Feb 25 19:55:00 2016 Arthur ARNAUD
-** Last update Mon Mar  7 09:03:27 2016 Antoine Baché
+** Last update Mon Mar  7 10:07:19 2016 Arthur ARNAUD
 */
 
 #include <sys/types.h>
@@ -15,17 +15,20 @@
 #include "tetris.h"
 #include "tools.h"
 
-t_tetri	*malloc_tetri_tab(t_tetri *tetri)
+t_tetri		*malloc_tetri_tab(t_tetri *tetri)
 {
-  DIR	*dir;
-  int	i;
+  DIR		*dir;
+  int		i;
+  struct dirent	*dent;
 
   i = 0;
   dir = NULL;
   if (!(opendir("tetriminos")))
     return (NULL);
-  while (!(readdir(dir)))
+  printf("lol\n");
+  while ((dent = readdir(dir)) != NULL)
     i++;
+  printf("lil\n");
   if (!(tetri = malloc(sizeof(t_tetri) * (i + 1))) || closedir(dir) == -1)
     return (NULL);
   return (tetri);

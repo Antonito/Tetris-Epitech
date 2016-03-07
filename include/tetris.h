@@ -1,11 +1,11 @@
 /*
-** tetris.h for Tetris in /home/bache_a/work/Prog_Elem/PSU_2015_tetris/include
+** tetris.h for Tetris in /PSU_2015_tetris/include
 **
 ** Made by Antoine Baché
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Mon Mar  7 08:35:31 2016 Antoine Baché
+** Last update Mon Mar  7 08:54:53 2016 Antoine Baché
 */
 
 #ifndef	TETRIS_H_
@@ -71,6 +71,7 @@ typedef struct	s_game
   bool		showNext;
   bool		debug;
   char		**tab;
+  t_key		keys;
 }		t_game;
 
 typedef		int (**ptrtab)(t_game *, char **, bool);

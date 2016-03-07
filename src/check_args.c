@@ -5,14 +5,25 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 16:35:50 2016 Antoine Baché
-** Last update Mon Mar  7 08:08:11 2016 Antoine Baché
+** Last update Mon Mar  7 09:01:53 2016 Antoine Baché
 */
 
 #include "tetris.h"
 #include "tools.h"
 
+void		set_keys_default(t_key *keys)
+{
+  keys->left = KEY_LEFT;
+  keys->right = KEY_RIGHT;
+  keys->turn = KEY_UP;
+  keys->drop = KEY_DOWN;
+  keys->quit = 'q';
+  keys->pause = ' ';
+}
+
 void		init_game_default(t_game *game)
 {
+  set_keys_default(&game->keys);
   game->level = 1;
   game->next = 0;
   game->lines = 0;

@@ -1,11 +1,11 @@
 /*
-1;4204;0c** check_args.c for Tetris in /PSU_2015_tetris/src
+** check_args.c for Tetris in /PSU_2015_tetris/src
 **
 ** Made by Antoine Baché
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 16:35:50 2016 Antoine Baché
-** Last update Mon Mar  7 09:01:53 2016 Antoine Baché
+** Last update Mon Mar  7 09:02:59 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -79,7 +79,6 @@ int		parse_args(int ac, char **av, t_game *game)
 	    mode = SHORT;
 	    break;
 	  }
-      printf("i = %d\n", i);
       if (array[i](game, av, mode))
 	return (1);
       av += ((i && i < 15 && mode == SHORT) ? 2 : 1);

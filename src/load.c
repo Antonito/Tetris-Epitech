@@ -1,11 +1,11 @@
 /*
-** load.c for load in /home/arnaud_e/rendu/psu/PSU_2015_tetris/src
+1;4204;0c** load.c for load in /home/arnaud_e/rendu/psu/PSU_2015_tetris/src
 **
 ** Made by Arthur ARNAUD
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Thu Feb 25 19:55:00 2016 Arthur ARNAUD
-** Last update Sun Mar  6 16:31:22 2016 Antoine Baché
+** Last update Mon Mar  7 09:03:27 2016 Antoine Baché
 */
 
 #include <sys/types.h>
@@ -58,7 +58,6 @@ int		get_tetri(int fd, t_tetri *tetri, char *name, t_game *game)
   int		j;
   char		*info;
   char		*tmp;
-
 
   if (!(info = get_next_line(fd)) ||
       !get_info(info, tetri, nb, game))

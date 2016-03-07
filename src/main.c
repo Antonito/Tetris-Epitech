@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Tue Feb 23 19:12:02 2016 Arthur ARNAUD
-** Last update Mon Mar  7 09:07:10 2016 Antoine Baché
+** Last update Mon Mar  7 09:41:08 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -35,7 +35,15 @@
 
 int		tetris(t_game *game)
 {
-  printf("THIS IS THE GAME !\n");
+  t_tetri	*tetri;
+  t_window	win;
+  int		next;
+
+  if (load_tetri(tetri, game) || init_game(game, tetri))
+    return (1);
+  next = 0;
+  if (display(&win, &tetri[next], game))
+    return (1);
   return (0);
 }
 

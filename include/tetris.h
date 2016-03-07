@@ -5,12 +5,17 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Sun Mar  6 20:57:11 2016 Antoine Baché
+** Last update Mon Mar  7 08:35:31 2016 Antoine Baché
 */
 
 #ifndef	TETRIS_H_
 # define TETRIS_H_
-# define NB_ARGS	20
+# define NB_ARGS		20
+# define MIN_ROW		20
+# define MAX_ROW		80
+# define MIN_COL		10
+# define MAX_COL		80
+# define BETWEEN(A, MIN, MAX)	(((A) >= (MIN)) ? (((A) <= (MAX)) ? 1 : 0) : 0)
 
 # include <ncurses.h>
 # include <stdbool.h>

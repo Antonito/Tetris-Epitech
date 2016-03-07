@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 20:02:32 2016 Antoine Baché
-** Last update Mon Mar  7 08:25:10 2016 Antoine Baché
+** Last update Mon Mar  7 08:32:16 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -28,7 +28,8 @@ int	parseSize(const char *str, t_game *game)
   while (j < i && (tmp[j] = str[j]) && ++j);
   tmp[i] = '\0';
   str += ++i;
-  if ((row = my_getnbr(tmp)) < 20 || (col = my_getnbr(str)) < 10)
+  if (!BETWEEN((row = my_getnbr(tmp)), MIN_ROW, MAX_ROW) ||
+      !BETWEEN((col = my_getnbr(str)), MIN_COL, MAX_COL))
     return (free(tmp), write(2, "Incorrect size\n", 15), 1);
   game->height = row;
   game->width = col;

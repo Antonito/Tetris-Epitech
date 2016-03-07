@@ -5,25 +5,34 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 19:56:14 2016 Antoine Baché
-** Last update Sun Mar  6 20:02:02 2016 Antoine Baché
+** Last update Mon Mar  7 07:14:25 2016 Antoine Baché
 */
 
 #include "tetris.h"
 
 int	helpArg(t_game *game, char **av, bool mode)
 {
-  if (write(1, "Usage: ./tetris [options]\n", 26) < 0 ||
-      write(1, "Options\n", 8) < 0 ||
-      write(1, "--help\n", 7) < 0 ||
-      write(1, "-l --level={num}\n", 17) < 0 ||
-      write(1, "-kl --key-left={k}\n", 19) < 0 ||
-      write(1, "-kr --key-right={k}\n", 20) < 0 ||
-      write(1, "-kt --key-turn={k}\n", 19) < 0 ||
-      write(1, "-kd --key-drop={k}\n", 19) < 0 ||
-      write(1, "-kq --key-pause={k}\n", 20) < 0 ||
-      write(1, "--map-size={row,col}\n", 21) < 0 ||
-      write(1, "-w --without-next\n", 18) < 0 ||
-      write(1, "-d --debug\n", 11) < 0)
-    return (1);
-  return (0);
+  write(1, "Usage: ./tetris [options]\n", 26);
+  write(1, "Options\n", 8);
+  write(1, "  --help\t\t", 10);
+  write(1, "Display this help\n", 18);
+  write(1, "  -l --level={num}\t", 19);
+  write(1, "Start Tetris at level num\n", 26);
+  write(1, "  -kl --key-left={k}\t", 21);
+  write(1, "Move tetrimino on LEFT with key K\n", 34);
+  write(1, "  -kr --key-right={k}\t", 24);
+  write(1, "Move tetrimino on RIGHT with key K\n", 35);
+  write(1, "  -kt --key-turn={k}\t", 21);
+  write(1, "Turn tetrimino with key K\n", 26);
+  write(1, "  -kd --key-drop={k}\t", 21);
+  write(1, "Set default DROP on key K\n", 26);
+  write(1, "  -kq --key-pause={k}\t", 22);
+  write(1, "Quit program when press key K\n", 30);
+  write(1, "  --map-size={row,col}\t", 23);
+  write(1, "Set game size at row, col\n", 26);
+  write(1, "  -w --without-next\t", 20);
+  write(1, "Hide next tetrimino\n", 20);
+  write(1, "  -d --debug\t\t", 14);
+  write(1, "Debug mode\n", 11);
+  return (1);
 }

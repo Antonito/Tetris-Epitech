@@ -5,8 +5,10 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 16:22:02 2016 Antoine Baché
-** Last update Sun Mar  6 16:22:07 2016 Antoine Baché
+** Last update Sun Mar  6 21:04:58 2016 Antoine Baché
 */
+
+#include "tools.h"
 
 int	my_strncmp(const char *s1, const char *s2, int n)
 {

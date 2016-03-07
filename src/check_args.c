@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 16:35:50 2016 Antoine Baché
-** Last update Sun Mar  6 20:29:36 2016 Antoine Baché
+** Last update Sun Mar  6 21:01:34 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -55,19 +55,21 @@ int		parse_args(int ac, char **av, t_game *game)
 
   if (!(array = selector()) || !(args = args_list()))
     return (1);
-  while (--ac > 0 && !(i = 0) && (mode = LONG))
+  while (--ac > 0 && (i = -1) && (mode = LONG))
     {
       while (++i < NB_ARGS)
 	if ((i && !(i & 1) && i < 16) || i == 15)
 	  {
-	    if (!my_strncmp(av[0], args[i],
-			    MIN(my_strlen(args[i]), my_strlen(av[0]))))
+	    if (!my_strncmp(av[0], args[i], my_strlen(args[i])))
 	      break;
 	  }
-	else if (!(mode = SHORT) &&
-		 !my_strncmp(av[0], args[i], MIN(my_strlen(args[i]),
-						 my_strlen(av[0]) + 1)))
-	  break;
+	else if (my_strncmp(args[i], av[0], my_strlen(args[i]) + 1) == 0)
+	  {
+	    mode = SHORT;
+	    printf("i = %d\n", i);
+	    printf("Strcmp = %d\n", my_strncmp(args[i], av[0], my_strlen(args[i]) + 1));
+	    break;
+	  }
       if (array[i](game, av, mode))
 	return (1);
     }
@@ -81,7 +83,7 @@ int		check_args(int ac, char **av)
   init_game_default(&game);
   if (ac > 1)
     {
-      if (parse_args(ac, av, &game))
+      if (parse_args(ac, av + 1, &game))
 	return (1);
     }
   if (tetris(&game))

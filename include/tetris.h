@@ -5,13 +5,12 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Sun Mar  6 20:27:18 2016 Antoine Baché
+** Last update Sun Mar  6 20:57:11 2016 Antoine Baché
 */
 
 #ifndef	TETRIS_H_
 # define TETRIS_H_
 # define NB_ARGS	20
-# define MIN(A, B)	(((A) < (B)) ? (A) : (B))
 
 # include <ncurses.h>
 # include <stdbool.h>

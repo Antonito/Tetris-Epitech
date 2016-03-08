@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 16:35:50 2016 Antoine Baché
-** Last update Tue Mar  8 10:56:43 2016 Antoine Baché
+** Last update Tue Mar  8 23:57:03 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -14,11 +14,8 @@
 char		**set_keys_default(char **keys)
 {
   int		i;
-  char		*smkx;
 
   if (setupterm(NULL, 0, &i) < 0 ||
-      !(smkx = tigetstr("smkx")) ||
-      putp(smkx) == ERR ||
       !(keys = malloc(sizeof(char *) * (NB_KEYS + 1))))
     return (NULL);
   keys[NB_KEYS] = NULL;
@@ -105,6 +102,7 @@ int		check_args(int ac, char **av, char **env)
 {
   t_game	game;
   char		*term;
+  char		*smkx;
 
   if (init_game_default(&game))
     return (error("Cannot initialise game\n"));
@@ -113,6 +111,8 @@ int		check_args(int ac, char **av, char **env)
       if (parse_args(ac, av + 1, &game))
 	return (1);
     }
+  if (!(smkx = tigetstr("smkx")) || putp(smkx) == ERR)
+    return (1);
   if (initTerm((term = getTerm((const char **)env)), false))
     return (initTerm(term, true), error("Cannot find info about term\n"));
   if (tetris(&game))

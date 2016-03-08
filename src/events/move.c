@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Mar  8 02:06:28 2016 Antoine Baché
-** Last update Tue Mar  8 04:38:54 2016 Arthur ARNAUD
+** Last update Tue Mar  8 23:58:11 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -30,6 +30,6 @@ int	keyTurnEvent(t_game *game, t_tetri *tetri)
 
 int	keyDropEvent(t_game *game, t_tetri *tetri)
 {
-  printf("Turn tetrimino!\n");
+  printf("Drop tetrimino!\n");
   return (0);
 }

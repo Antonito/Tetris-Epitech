@@ -5,25 +5,38 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 16:35:50 2016 Antoine Baché
-** Last update Tue Mar  8 02:58:37 2016 Arthur ARNAUD
+** Last update Tue Mar  8 03:39:47 2016 Antoine Baché
 */
 
 #include "tetris.h"
 #include "tools.h"
 
-void		set_keys_default(t_key *keys)
+char		**set_keys_default(char **keys, char *term)
 {
-  keys->left = KEY_LEFT;
-  keys->right = KEY_RIGHT;
-  keys->turn = KEY_UP;
-  keys->drop = KEY_DOWN;
-  keys->quit = 'q';
-  keys->pause = ' ';
+  int		i;
+  char		*smkx;
+
+  if (setupterm(NULL, 0, &i) < 0 ||
+      !(smkx = tigetstr("smkx")) ||
+      putp(smkx) == ERR ||
+      !(keys = malloc(sizeof(char *) * (NB_KEYS + 1))))
+    return (NULL);
+  keys[NB_KEYS] = NULL;
+  if (!(keys[LEFT] = tigetstr("kcub1")) ||
+      !(keys[RIGHT] = tigetstr("kcuf1")) ||
+      !(keys[TURN] = tigetstr("kcuu1")) ||
+      !(keys[DROP] = tigetstr("kcud1")) ||
+      !(keys[QUIT] = my_strdup("q")) ||
+      !(keys[PAUSE] = my_strdup(" ")))
+    return (NULL);
+  return (keys);
 }
 
-void		init_game_default(t_game *game)
+int		init_game_default(t_game *game, char *term)
 {
-  set_keys_default(&game->keys);
+
+  if (!(game->keys = set_keys_default(game->keys, term)))
+    return (1);
   game->level = 1;
   game->next = 0;
   game->line = 0;
@@ -35,13 +48,14 @@ void		init_game_default(t_game *game)
   game->width = 10;
   game->debug = false;
   game->showNext = true;
+  return (0);
 }
 
 char		**args_list(void)
 {
   char		**arr;
 
-  if (!(arr = malloc(sizeof(char *) * NB_ARGS)) ||
+  if (!(arr = malloc(sizeof(char *) * (NB_ARGS + 1))) ||
       !(arr[0] = my_strdup("--help")) || !(arr[1] = my_strdup("-l")) ||
       !(arr[2] = my_strdup("--level=")) || !(arr[3] = my_strdup("-kl")) ||
       !(arr[4] = my_strdup("--key-left=")) || !(arr[5] = my_strdup("-kr")) ||
@@ -54,6 +68,7 @@ char		**args_list(void)
       !(arr[17] = my_strdup("--without-next")) ||
       !(arr[18] = my_strdup("-d")) || !(arr[19] = my_strdup("--debug")))
     return (NULL);
+  arr[20] = NULL;
   return (arr);
 }
 
@@ -80,23 +95,26 @@ int		parse_args(int ac, char **av, t_game *game)
 	    break;
 	  }
       if (array[i](game, av, mode))
-	return (1);
+	return (free(array), free2DArray(args), 1);
       av += ((i && i < 15 && mode == SHORT) ? 2 : 1);
     }
-  return (free(array), 0);
+  return (free(array), free2DArray(args), 0);
 }
 
-int		check_args(int ac, char **av)
+int		check_args(int ac, char **av, char **env)
 {
   t_game	game;
+  char		*term;
 
-  init_game_default(&game);
+  if (initTerm((term = getTerm((const char **)env)), false) ||
+      init_game_default(&game, term))
+    return (initTerm(term, true), 1);
   if (ac > 1)
     {
       if (parse_args(ac, av + 1, &game))
-	return (1);
+	return (initTerm(term, true), 1);
     }
   if (tetris(&game))
-    return (1);
-  return (0);
+    return (initTerm(term, true), 1);
+  return (initTerm(term, true), 0);
 }

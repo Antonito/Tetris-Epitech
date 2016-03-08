@@ -1,33 +1,49 @@
 /*
-1;4204;0c** tetris.h for Tetris in /PSU_2015_tetris/include
+** tetris.h for Tetris in /PSU_2015_tetris/include
 **
 ** Made by Antoine Baché
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Tue Mar  8 02:55:46 2016 Arthur ARNAUD
+** Last update Tue Mar  8 03:48:53 2016 Antoine Baché
 */
 
 #ifndef	TETRIS_H_
 # define TETRIS_H_
 # define NB_ARGS		20
+# define NB_KEYS		6
 # define MIN_ROW		20
 # define MAX_ROW		80
 # define MIN_COL		10
 # define MAX_COL		80
+# define BUFF_SIZE		4096
 # define BETWEEN(A, MIN, MAX)	(((A) >= (MIN)) ? (((A) <= (MAX)) ? 1 : 0) : 0)
 
 # include <ncurses.h>
+# include <curses.h>
+# include <term.h>
 # include <stdbool.h>
 # include <stdlib.h>
 # include <unistd.h>
-#include <term.h>
+# include <termios.h>
+# include <sys/ioctl.h>
 
 typedef	enum	e_mode
   {
     SHORT,
     LONG
   }		t_mode;
+
+typedef	enum	e_keys
+  {
+    LEFT,
+    RIGHT,
+    DROP,
+    TURN,
+    PAUSE,
+    QUIT,
+    UNKNOWN
+  }		t_keys;
 
 typedef struct	s_window
 {
@@ -48,16 +64,6 @@ typedef struct	s_tetri
   int		y;
 }		t_tetri;
 
-typedef	struct	s_key
-{
-  int		left;
-  int		right;
-  int		turn;
-  int		drop;
-  int		quit;
-  int		pause;
-}		t_key;
-
 typedef struct	s_game
 {
   char		level;
@@ -72,25 +78,55 @@ typedef struct	s_game
   bool		showNext;
   bool		debug;
   char		**arr;
-  t_key		keys;
+  char		**keys;
 }		t_game;
 
+typedef struct	s_loop
+{
+  t_tetri	*tetri;
+  t_window	win;
+  int		(**events)(t_game *, t_tetri *);
+  char		buff[BUFF_SIZE];
+  int		i;
+  int		next;
+  int		cur;
+  int		check;
+}		t_loop;
+
 typedef		int (**ptrtab)(t_game *, char **, bool);
+typedef		int (**event)(t_game *, t_tetri *);
 
 /*
 ** ===================================================
 **                      TO ORDER
 ** ===================================================
 */
+void		free2DArray(char **);
+int		error(const char *);
 int		check_file(char *);
+
+/*
+** ===================================================
+**                       EVENTS
+** ===================================================
+*/
+event		selectorEvent(void);
+int		keyLeftEvent(t_game *, t_tetri *);
+int		keyRightEvent(t_game *, t_tetri *);
+int		keyTurnEvent(t_game *, t_tetri *);
+int		keyDropEvent(t_game *, t_tetri *);
+int		keyQuitEvent(t_game *, t_tetri *);
+int		keyPauseEvent(t_game *, t_tetri *);
 
 /*
 ** ===================================================
 **                     CHECK ARGS
 ** ===================================================
 */
+int		initTerm(const char *, bool);
+char		*getTerm(const char **);
 ptrtab		selector(void);
-int		check_args(int, char **);
+int		check_args(int, char **, char **);
 
 /*
 ** ===================================================

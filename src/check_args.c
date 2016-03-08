@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 16:35:50 2016 Antoine Baché
-** Last update Tue Mar  8 02:51:48 2016 Arthur ARNAUD
+** Last update Tue Mar  8 02:58:37 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -39,22 +39,22 @@ void		init_game_default(t_game *game)
 
 char		**args_list(void)
 {
-  char		**tab;
+  char		**arr;
 
-  if (!(tab = malloc(sizeof(char *) * NB_ARGS)) ||
-      !(tab[0] = my_strdup("--help")) || !(tab[1] = my_strdup("-l")) ||
-      !(tab[2] = my_strdup("--level=")) || !(tab[3] = my_strdup("-kl")) ||
-      !(tab[4] = my_strdup("--key-left=")) || !(tab[5] = my_strdup("-kr")) ||
-      !(tab[6] = my_strdup("--key-right=")) || !(tab[7] = my_strdup("-kt")) ||
-      !(tab[8] = my_strdup("--key-turn=")) || !(tab[9] = my_strdup("-kd")) ||
-      !(tab[10] = my_strdup("--key-drop=")) || !(tab[11] = my_strdup("-kq")) ||
-      !(tab[12] = my_strdup("--key-quit=")) || !(tab[13] = my_strdup("-kp")) ||
-      !(tab[14] = my_strdup("--key-pause=")) ||
-      !(tab[15] = my_strdup("--map-size=")) || !(tab[16] = my_strdup("-w")) ||
-      !(tab[17] = my_strdup("--without-next")) ||
-      !(tab[18] = my_strdup("-d")) || !(tab[19] = my_strdup("--debug")))
+  if (!(arr = malloc(sizeof(char *) * NB_ARGS)) ||
+      !(arr[0] = my_strdup("--help")) || !(arr[1] = my_strdup("-l")) ||
+      !(arr[2] = my_strdup("--level=")) || !(arr[3] = my_strdup("-kl")) ||
+      !(arr[4] = my_strdup("--key-left=")) || !(arr[5] = my_strdup("-kr")) ||
+      !(arr[6] = my_strdup("--key-right=")) || !(arr[7] = my_strdup("-kt")) ||
+      !(arr[8] = my_strdup("--key-turn=")) || !(arr[9] = my_strdup("-kd")) ||
+      !(arr[10] = my_strdup("--key-drop=")) || !(arr[11] = my_strdup("-kq")) ||
+      !(arr[12] = my_strdup("--key-quit=")) || !(arr[13] = my_strdup("-kp")) ||
+      !(arr[14] = my_strdup("--key-pause=")) ||
+      !(arr[15] = my_strdup("--map-size=")) || !(arr[16] = my_strdup("-w")) ||
+      !(arr[17] = my_strdup("--without-next")) ||
+      !(arr[18] = my_strdup("-d")) || !(arr[19] = my_strdup("--debug")))
     return (NULL);
-  return (tab);
+  return (arr);
 }
 
 int		parse_args(int ac, char **av, t_game *game)

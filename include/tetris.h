@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Tue Mar  8 02:51:08 2016 Arthur ARNAUD
+** Last update Tue Mar  8 02:55:46 2016 Arthur ARNAUD
 */
 
 #ifndef	TETRIS_H_
@@ -21,6 +21,7 @@
 # include <stdbool.h>
 # include <stdlib.h>
 # include <unistd.h>
+#include <term.h>
 
 typedef	enum	e_mode
   {

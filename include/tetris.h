@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Mon Mar  7 20:08:31 2016 Antoine Baché
+** Last update Tue Mar  8 01:24:28 2016 Antoine Baché
 */
 
 #ifndef	TETRIS_H_
@@ -115,10 +115,9 @@ int		errorArg(t_game *, char **, bool);
 **                       LOAD
 ** ===================================================
 */
-int		load_tetri(t_tetri *, t_game *);
+t_tetri		*load_tetri(t_tetri *, t_game *);
 int		get_tetri(int, t_tetri *, char *, t_game *);
 int		get_info(char *, t_tetri *, int, t_game *);
-int		fill_tetri(char *, t_tetri *, int, int);
 t_tetri		*my_realloc_tab(t_tetri *);
 
 /*

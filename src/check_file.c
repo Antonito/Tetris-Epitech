@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Mon Feb 29 14:23:19 2016 Arthur ARNAUD
-** Last update Sun Mar  6 16:21:08 2016 Antoine Baché
+** Last update Tue Mar  8 16:42:01 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -17,8 +17,7 @@ int	check_file(char *name)
 
   i = -1;
   while (name[++i] != 0 && name[i] != '.');
-  name = name + i;
-  if (my_strncmp(name, "tetrimino", 10))
+  if (my_strncmp(name + i, ".tetrimino", 10))
     return (0);
   return (1);
 }

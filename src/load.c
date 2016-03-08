@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Thu Feb 25 19:55:00 2016 Arthur ARNAUD
-** Last update Tue Mar  8 03:40:05 2016 Antoine Baché
+** Last update Tue Mar  8 19:07:46 2016 Arthur ARNAUD
 */
 
 #include <sys/types.h>
@@ -26,7 +26,8 @@ t_tetri		*malloc_tetri_arr(t_tetri *tetri)
   if (!(dir = opendir("tetriminos")))
     return (NULL);
   while ((dent = readdir(dir)))
-    i++;
+    if (dent->d_name[0] != '.' && check_file(dent->d_name))
+      i++;
   if (!(tetri = malloc(sizeof(t_tetri) * (i + 1))) || closedir(dir) == -1)
     return (NULL);
   tetri[i].color = -1;
@@ -43,10 +44,13 @@ t_tetri		*load_tetri(t_tetri *tetri, t_game *game)
       !(dir = opendir("tetriminos")))
     return (free(tetri), NULL);
   i = -1;
-  while (!(file = readdir(dir)) && ++i >= 0)
-    if (file->d_name[0] != '.' || check_file(file->d_name))
-      if (get_tetri(i, tetri, file->d_name, game))
-	return (free(tetri), NULL);
+  while ((file = readdir(dir)) && ++i >= 0)
+    if (file->d_name[0] != '.' && check_file(file->d_name))
+      {
+	if (get_tetri(i, tetri, file->d_name, game))
+	  return (free(tetri), NULL);
+      }
+  printf("lil\n");
   if (closedir(dir) == -1)
     return (free(tetri), NULL);
   return (tetri);
@@ -60,26 +64,24 @@ int		get_tetri(int i, t_tetri *tetri, char *name, t_game *game)
   char		*str;
   char		*info;
 
-  if ((fd = open(name, O_RDONLY)) == -1 ||
+  if (!(name = add_dir_name(name)) ||
+      (fd = open(name, O_RDONLY)) == -1 ||
       (!(info = get_next_line(fd)) ||
-       get_info(info, tetri, i, game) ||
-       (tetri[i].name = name)))
+       get_info(info, tetri, i, game)))
     return (1);
+  tetri[i].name = name;
+  printf("name = %s\n", tetri[i].name);
+  printf("height = %d\n", tetri[i].height);
+  printf("width = %d\n", tetri[i].width);
+  printf("color = %d\n", tetri[i].color);
   if (!(tetri[i].arr =
 	malloc(sizeof(char *) * (tetri[i].height + 1))))
     return (1);
   j = -1;
   k = -1;
   while (!(str = get_next_line(fd)) && ++j >= 0 && tetri[i].color >= 0)
-    while (str[++k] != 0 && k < tetri[i].width)
-      {
-	if (tetri[i].arr[j][k] == ' ')
-	  tetri[i].arr[j][k] = 0;
-	else if (tetri[i].arr[j][k] == '*')
-	  tetri[i].arr[j][k] = tetri[i].color;
-	else
-	  return (1);
-      }
+    if (fill_tetri(str, i, j, tetri))
+      return (1);
   free(str);
   free(info);
   return (0);
@@ -91,12 +93,18 @@ int	fill_tetri(char *str, int i, int j, t_tetri *tetri)
 
   k = -1;
   if (j > tetri[i].height)
-    return (1);
+    {
+      tetri[i].error = true;
+      return (0);
+    }
   while (str[++k] != 0)
     {
       if (k > tetri[i].width || (tetri[i].arr[j][k] == ' ' &&
 				 tetri[i].arr[j][k] != '*'))
-	return (1);
+	{
+	  tetri[i].error = true;
+	  return (0);
+	}
       tetri[i].arr[j][k] = ((tetri[i].arr[j][k] == ' ') ? 0 : tetri[i].color);
     }
   return (0);
@@ -105,18 +113,20 @@ int	fill_tetri(char *str, int i, int j, t_tetri *tetri)
 int	get_info(char *str, t_tetri *tetri, int nb, t_game *game)
 {
   int	i;
+  char	**stat;
 
   i = -1;
-  if ((tetri[nb].width = my_getnbr(str)) > 1 ||
-      tetri[nb].width > game->width)
+  if (!(stat = str_to_word_tab(str)) ||
+      (tetri[nb].width = my_getnbr(stat[0])) == -1 ||
+      (tetri[nb].height = my_getnbr(stat[1])) == -1 ||
+      (tetri[nb].color = my_getnbr(stat[2]))  == -1)
     return (1);
-  while (str[++i] != ' ' || str[i] != 0);
-  if ((tetri[nb].height = my_getnbr(str + i)) > 1 ||
-      tetri[nb].height > game->height)
-    return (1);
-  while (str[++i] != ' ' || str[i] != 0);
-  if ((tetri[nb].color = my_getnbr(str + i)) > 1 ||
-      tetri[nb].color > 7)
-    return (1);
+  else if (tetri[nb].width < 1 || tetri[nb].width > game->width ||
+	   tetri[nb].height < 1 || tetri[nb].height > game->height ||
+	   tetri[nb].color < 1 || tetri[nb].color > 7)
+    {
+      tetri[nb].error = true;
+      return (0);
+    }
   return (0);
 }

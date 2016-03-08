@@ -5,7 +5,7 @@
 ## Login   <bache_a@epitech.net>
 ##
 ## Started on  Tue Feb 23 14:08:31 2016 Antoine Baché
-## Last update Tue Mar  8 09:39:03 2016 Antoine Baché
+## Last update Tue Mar  8 17:15:42 2016 Arthur ARNAUD
 ##
 
 DEBUG=			yes
@@ -28,6 +28,7 @@ SRC_FILES=		main.c		\
 			interface.c	\
 			check_file.c	\
 			check_args.c	\
+			add_dir_name.c	\
 			getTerm.c	\
 			select.c	\
 			errors.c	\

@@ -5,11 +5,17 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Mar  8 00:25:42 2016 Antoine Baché
-** Last update Tue Mar  8 07:20:26 2016 Antoine Baché
+** Last update Tue Mar  8 07:35:42 2016 Antoine Baché
 */
 
 #include "tetris.h"
 #include "tools.h"
+
+void			getTermSize(int *cols, int *line)
+{
+  *cols = tigetnum("cols");
+  *line = tigetnum("lines");
+}
 
 int			initTerm(const char *term, bool mode)
 {

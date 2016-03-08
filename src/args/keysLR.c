@@ -5,39 +5,39 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 20:05:44 2016 Antoine Baché
-** Last update Mon Mar  7 10:07:02 2016 Antoine Baché
+** Last update Tue Mar  8 01:20:53 2016 Antoine Baché
 */
 
 #include "tetris.h"
 
-int	parseKeyLeft(const char *str, int *key)
-{
-  str += 11;
-  getKey(key, str);
-  return (0);
-}
-
 int	keyLeftArg(t_game *game, char **av, bool mode)
 {
+  free(game->keys[LEFT]);
   if (mode == SHORT)
-    getKey(&game->keys.left, av[1]);
+    {
+      if (!(game->keys[LEFT] = my_strdup(av[1])))
+	return (1);
+    }
   else if (mode == LONG)
-    parseKeyLeft(av[0], &game->keys.left);
-  return (0);
-}
-
-int	parseKeyRight(const char *str, int *key)
-{
-  str += 12;
-  getKey(key, str);
+    {
+      if (!(game->keys[LEFT] = my_strdup(av[0] + 11)))
+	return (1);
+    }
   return (0);
 }
 
 int	keyRightArg(t_game *game, char **av, bool mode)
 {
+  free(game->keys[RIGHT]);
   if (mode == SHORT)
-    getKey(&game->keys.right, av[1]);
+    {
+      if (!(game->keys[RIGHT] = my_strdup(av[1])))
+	return (1);
+    }
   else if (mode == LONG)
-    parseKeyRight(av[0], &game->keys.right);
+    {
+      if (!(game->keys[RIGHT] = my_strdup(av[0] + 12)))
+	return (1);
+    }
   return (0);
 }

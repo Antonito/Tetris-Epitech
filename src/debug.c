@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Mar  8 07:41:30 2016 Antoine Baché
-** Last update Tue Mar  8 10:44:56 2016 Antoine Baché
+** Last update Tue Mar  8 23:48:48 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -49,9 +49,7 @@ void	showMoreTetriminos(t_tetri *tetri, int nb)
 {
   int	i;
 
-  if ((!BETWEEN(tetri[nb].height, MIN_ROW, MAX_ROW) ||
-       !BETWEEN(tetri[nb].width, MIN_COL, MAX_COL)) &&
-      write(1, "Error\n", 6 >= -1))
+  if (tetri[nb].error && write(1, "Error\n", 6 >= -1))
     return ;
   if (write(1, "Size ", 5) < 0 || my_put_nbr(tetri[nb].height) < 0 ||
       write(1, "*", 1) < 0 || my_put_nbr(tetri[nb].width) < 0 ||
@@ -60,7 +58,8 @@ void	showMoreTetriminos(t_tetri *tetri, int nb)
     return ;
   i = -1;
   while (++i < tetri[nb].height)
-    if (write(1, tetri[nb].arr[i], my_strlen(tetri[nb].arr[i])) < 0)
+    if (write(1, tetri[nb].arr[i], my_strlen(tetri[nb].arr[i])) < 0 ||
+	write(1, "\n", 1) < 0)
       return ;
 }
 

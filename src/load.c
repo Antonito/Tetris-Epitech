@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Thu Feb 25 19:55:00 2016 Arthur ARNAUD
-** Last update Mon Mar  7 10:17:41 2016 Antoine Baché
+** Last update Tue Mar  8 02:48:02 2016 Antoine Baché
 */
 
 #include <sys/types.h>
@@ -15,7 +15,7 @@
 #include "tetris.h"
 #include "tools.h"
 
-t_tetri		*malloc_tetri_tab(t_tetri *tetri)
+t_tetri		*malloc_tetri_arr(t_tetri *tetri)
 {
   DIR		*dir;
   int		i;
@@ -40,7 +40,7 @@ int		load_tetri(t_tetri *tetri, t_game *game)
   struct dirent	*file;
   int		fd;
 
-  if (!(tetri = malloc_tetri_tab(tetri)) ||
+  if (!(tetri = malloc_tetri_arr(tetri)) ||
       !(dir = opendir("tetriminos")))
     return (1);
   my_memset(&tetri[0], 0, sizeof(t_tetri));
@@ -107,9 +107,9 @@ int	fill_tetri(char *str, t_tetri *tetri, int i, int nb)
   tetri[nb].y = 0;
   while (str[++j] != 0)
     if (str[j] == '*')
-      tetri[nb].tab[i][j] = tetri[nb].color;
+      tetri[nb].arr[i][j] = tetri[nb].color;
     else if (str[j] == ' ')
-      tetri[nb].tab[i][j] = 0;
+      tetri[nb].arr[i][j] = 0;
     else
       return (1);
   return (0);

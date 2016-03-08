@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 16:35:50 2016 Antoine Baché
-** Last update Tue Mar  8 01:51:11 2016 Antoine Baché
+** Last update Tue Mar  8 03:29:47 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -13,7 +13,13 @@
 
 char		**set_keys_default(char **keys, char *term)
 {
-  if (!(keys = malloc(sizeof(char *) * (NB_KEYS + 1))))
+  int		i;
+  char		*smkx;
+
+  if (setupterm(NULL, 0, &i) < 0 ||
+      !(smkx = tigetstr("smkx")) ||
+      putp(smkx) == ERR ||
+      !(keys = malloc(sizeof(char *) * (NB_KEYS + 1))))
     return (NULL);
   keys[NB_KEYS] = NULL;
   if (!(keys[LEFT] = tigetstr("kcub1")) ||
@@ -28,11 +34,12 @@ char		**set_keys_default(char **keys, char *term)
 
 int		init_game_default(t_game *game, char *term)
 {
+
   if (!(game->keys = set_keys_default(game->keys, term)))
     return (1);
   game->level = 1;
   game->next = 0;
-  game->lines = 0;
+  game->line = 0;
   game->highscore = 0;
   game->score = 0;
   game->time_sec = 0;
@@ -46,22 +53,23 @@ int		init_game_default(t_game *game, char *term)
 
 char		**args_list(void)
 {
-  char		**tab;
+  char		**arr;
 
-  if (!(tab = malloc(sizeof(char *) * NB_ARGS)) ||
-      !(tab[0] = my_strdup("--help")) || !(tab[1] = my_strdup("-l")) ||
-      !(tab[2] = my_strdup("--level=")) || !(tab[3] = my_strdup("-kl")) ||
-      !(tab[4] = my_strdup("--key-left=")) || !(tab[5] = my_strdup("-kr")) ||
-      !(tab[6] = my_strdup("--key-right=")) || !(tab[7] = my_strdup("-kt")) ||
-      !(tab[8] = my_strdup("--key-turn=")) || !(tab[9] = my_strdup("-kd")) ||
-      !(tab[10] = my_strdup("--key-drop=")) || !(tab[11] = my_strdup("-kq")) ||
-      !(tab[12] = my_strdup("--key-quit=")) || !(tab[13] = my_strdup("-kp")) ||
-      !(tab[14] = my_strdup("--key-pause=")) ||
-      !(tab[15] = my_strdup("--map-size=")) || !(tab[16] = my_strdup("-w")) ||
-      !(tab[17] = my_strdup("--without-next")) ||
-      !(tab[18] = my_strdup("-d")) || !(tab[19] = my_strdup("--debug")))
+  if (!(arr = malloc(sizeof(char *) * (NB_ARGS + 1))) ||
+      !(arr[0] = my_strdup("--help")) || !(arr[1] = my_strdup("-l")) ||
+      !(arr[2] = my_strdup("--level=")) || !(arr[3] = my_strdup("-kl")) ||
+      !(arr[4] = my_strdup("--key-left=")) || !(arr[5] = my_strdup("-kr")) ||
+      !(arr[6] = my_strdup("--key-right=")) || !(arr[7] = my_strdup("-kt")) ||
+      !(arr[8] = my_strdup("--key-turn=")) || !(arr[9] = my_strdup("-kd")) ||
+      !(arr[10] = my_strdup("--key-drop=")) || !(arr[11] = my_strdup("-kq")) ||
+      !(arr[12] = my_strdup("--key-quit=")) || !(arr[13] = my_strdup("-kp")) ||
+      !(arr[14] = my_strdup("--key-pause=")) ||
+      !(arr[15] = my_strdup("--map-size=")) || !(arr[16] = my_strdup("-w")) ||
+      !(arr[17] = my_strdup("--without-next")) ||
+      !(arr[18] = my_strdup("-d")) || !(arr[19] = my_strdup("--debug")))
     return (NULL);
-  return (tab);
+  arr[20] = NULL;
+  return (arr);
 }
 
 int		parse_args(int ac, char **av, t_game *game)
@@ -87,10 +95,10 @@ int		parse_args(int ac, char **av, t_game *game)
 	    break;
 	  }
       if (array[i](game, av, mode))
-	return (1);
+	return (free(array), free2DArray(args), 1);
       av += ((i && i < 15 && mode == SHORT) ? 2 : 1);
     }
-  return (free(array), 0);
+  return (free(array), free2DArray(args), 0);
 }
 
 int		check_args(int ac, char **av, char **env)

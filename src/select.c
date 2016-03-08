@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 17:01:11 2016 Antoine Baché
-** Last update Tue Mar  8 01:03:00 2016 Antoine Baché
+** Last update Tue Mar  8 02:48:41 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -23,7 +23,6 @@ event		selectorEvent(void)
   array[TURN] = &keyTurnEvent;
   array[PAUSE] = &keyPauseEvent;
   array[QUIT] = &keyQuitEvent;
-  array[UNKNOWN] = &keyOtherEvent;
   return (array);
 }
 

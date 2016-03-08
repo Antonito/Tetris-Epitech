@@ -5,7 +5,7 @@
 ## Login   <bache_a@epitech.net>
 ##
 ## Started on  Tue Feb 23 14:08:31 2016 Antoine Baché
-## Last update Tue Mar  8 01:23:44 2016 Antoine Baché
+## Last update Tue Mar  8 03:27:33 2016 Antoine Baché
 ##
 
 DEBUG=			yes
@@ -31,6 +31,7 @@ SRC_FILES=		main.c		\
 			getTerm.c	\
 			select.c	\
 			errors.c	\
+			free.c		\
 			args/debug.c	\
 			args/help.c	\
 			args/keysLR.c	\
@@ -38,7 +39,9 @@ SRC_FILES=		main.c		\
 			args/keysTD.c	\
 			args/level.c	\
 			args/next.c	\
-			args/size.c
+			args/size.c	\
+			events/game.c	\
+			events/move.c
 
 SRC=			$(addprefix $(SRC_PREFIX),$(SRC_FILES))
 

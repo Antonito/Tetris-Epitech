@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Tue Mar  8 01:07:00 2016 Antoine Baché
+** Last update Tue Mar  8 03:26:57 2016 Antoine Baché
 */
 
 #ifndef	TETRIS_H_
@@ -16,9 +16,12 @@
 # define MAX_ROW		80
 # define MIN_COL		10
 # define MAX_COL		80
+# define BUFF_SIZE		4096
 # define BETWEEN(A, MIN, MAX)	(((A) >= (MIN)) ? (((A) <= (MAX)) ? 1 : 0) : 0)
 
 # include <ncurses.h>
+# include <curses.h>
+# include <term.h>
 # include <stdbool.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -52,7 +55,7 @@ typedef struct	s_window
 
 typedef struct	s_tetri
 {
-  char		**tab;
+  char		**arr;
   char		*name;
   int		height;
   int		width;
@@ -65,7 +68,7 @@ typedef struct	s_game
 {
   char		level;
   char		next;
-  int		lines;
+  int		line;
   int		score;
   int		highscore;
   int		time_sec;
@@ -74,7 +77,7 @@ typedef struct	s_game
   int		width;
   bool		showNext;
   bool		debug;
-  char		**tab;
+  char		**arr;
   char		**keys;
 }		t_game;
 
@@ -86,8 +89,22 @@ typedef		int (**event)(t_game *, t_tetri *);
 **                      TO ORDER
 ** ===================================================
 */
+void		free2DArray(char **);
 int		error(const char *);
 int		check_file(char *);
+
+/*
+** ===================================================
+**                       EVENTS
+** ===================================================
+*/
+event		selectorEvent(void);
+int		keyLeftEvent(t_game *, t_tetri *);
+int		keyRightEvent(t_game *, t_tetri *);
+int		keyTurnEvent(t_game *, t_tetri *);
+int		keyDropEvent(t_game *, t_tetri *);
+int		keyQuitEvent(t_game *, t_tetri *);
+int		keyPauseEvent(t_game *, t_tetri *);
 
 /*
 ** ===================================================

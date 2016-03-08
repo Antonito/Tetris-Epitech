@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 16:35:50 2016 Antoine Baché
-** Last update Mon Mar  7 09:28:05 2016 Arthur ARNAUD
+** Last update Tue Mar  8 02:51:48 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -26,7 +26,7 @@ void		init_game_default(t_game *game)
   set_keys_default(&game->keys);
   game->level = 1;
   game->next = 0;
-  game->lines = 0;
+  game->line = 0;
   game->highscore = 0;
   game->score = 0;
   game->time_sec = 0;

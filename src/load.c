@@ -1,11 +1,11 @@
 /*
-** load.c for load in /home/arnaud_e/rendu/psu/PSU_2015_tetris/src
+1;4204;0c** load.c for load in /home/arnaud_e/rendu/psu/PSU_2015_tetris/src
 **
 ** Made by Arthur ARNAUD
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Thu Feb 25 19:55:00 2016 Arthur ARNAUD
-** Last update Tue Mar  8 01:19:29 2016 Arthur ARNAUD
+** Last update Tue Mar  8 02:54:11 2016 Arthur ARNAUD
 */
 
 #include <sys/types.h>
@@ -29,7 +29,7 @@ t_tetri		*malloc_tetri_tab(t_tetri *tetri)
     i++;
   if (!(tetri = malloc(sizeof(t_tetri) * (i + 1))) || closedir(dir) == -1)
     return (NULL);
-  tetri[i] = NULL;
+  tetri[i].color = -1;
   return (tetri);
 }
 
@@ -65,23 +65,40 @@ int		get_tetri(int i, t_tetri *tetri, char *name, t_game *game)
        get_info(info, tetri, i, game) ||
        (tetri[i].name = name)))
     return (1);
-  if (!(tetri[i].tab =
+  if (!(tetri[i].arr =
 	malloc(sizeof(char *) * (tetri[i].height + 1))))
     return (1);
   j = -1;
   k = -1;
-  while (!(str = get_next_line(fd)) && ++j >= 0)
+  while (!(str = get_next_line(fd)) && ++j >= 0 && tetri[i].color >= 0)
     while (str[++k] != 0 && k < tetri[i].width)
       {
-	if (tetri[i].tab[j][k] == ' ')
-	  tetri[i].tab[j][k] = 0;
-	else if (tetri[i].tab[j][k] == '*')
-	  tetri[i].tab[j][k] = tetri[i].color;
+	if (tetri[i].arr[j][k] == ' ')
+	  tetri[i].arr[j][k] = 0;
+	else if (tetri[i].arr[j][k] == '*')
+	  tetri[i].arr[j][k] = tetri[i].color;
 	else
 	  return (1);
       }
   free(str);
   free(info);
+  return (0);
+}
+
+int	fill_tetri(char *str, int i, int j, t_tetri *tetri)
+{
+  int	k;
+
+  k = -1;
+  if (j > tetri[i].height)
+    return (1);
+  while (str[++k] != 0)
+    {
+      if (k > tetri[i].width || (tetri[i].arr[j][k] == ' ' &&
+				 tetri[i].arr[j][k] != '*'))
+	return (1);
+      tetri[i].arr[j][k] = ((tetri[i].arr[j][k] == ' ') ? 0 : tetri[i].color);
+    }
   return (0);
 }
 

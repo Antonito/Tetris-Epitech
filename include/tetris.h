@@ -1,11 +1,11 @@
 /*
-** tetris.h for Tetris in /PSU_2015_tetris/include
+1;4204;0c** tetris.h for Tetris in /PSU_2015_tetris/include
 **
 ** Made by Antoine Baché
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Tue Mar  8 01:24:28 2016 Antoine Baché
+** Last update Tue Mar  8 02:51:08 2016 Arthur ARNAUD
 */
 
 #ifndef	TETRIS_H_
@@ -38,7 +38,7 @@ typedef struct	s_window
 
 typedef struct	s_tetri
 {
-  char		**tab;
+  char		**arr;
   char		*name;
   int		height;
   int		width;
@@ -61,7 +61,7 @@ typedef struct	s_game
 {
   char		level;
   char		next;
-  int		lines;
+  int		line;
   int		score;
   int		highscore;
   int		time_sec;
@@ -70,7 +70,7 @@ typedef struct	s_game
   int		width;
   bool		showNext;
   bool		debug;
-  char		**tab;
+  char		**arr;
   t_key		keys;
 }		t_game;
 
@@ -127,12 +127,13 @@ t_tetri		*my_realloc_tab(t_tetri *);
 */
 int		tetris(t_game *);
 int		init_game(t_game *, t_tetri *);
+int		init_display(t_window *, t_game *);
 char		**malloc_tab(char **, int, int);
 void		my_memset(void *, char, int);
 void		init_pair_color();
 WINDOW		*create_new_win(int, int, int, int);
 WINDOW		*create_new_board(int, int, int, int);
-int		create_all_win(t_window *, t_tetri *, t_game *);
+int		create_all_win(t_window *, t_game *);
 
 /*
 ** ===================================================

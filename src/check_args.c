@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 16:35:50 2016 Antoine Baché
-** Last update Tue Mar  8 07:23:41 2016 Antoine Baché
+** Last update Tue Mar  8 10:56:43 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -35,7 +35,7 @@ char		**set_keys_default(char **keys)
 int		init_game_default(t_game *game)
 {
   if (!(game->keys = set_keys_default(game->keys)))
-    return (1);
+    return (error("Cannot malloc\n"));
   game->level = 1;
   game->next = 0;
   game->line = 0;
@@ -107,14 +107,14 @@ int		check_args(int ac, char **av, char **env)
   char		*term;
 
   if (init_game_default(&game))
-    return (1);
+    return (error("Cannot initialise game\n"));
   if (ac > 1)
     {
       if (parse_args(ac, av + 1, &game))
 	return (1);
     }
   if (initTerm((term = getTerm((const char **)env)), false))
-    return (initTerm(term, true), 1);
+    return (initTerm(term, true), error("Cannot find info about term\n"));
   if (tetris(&game))
     return (initTerm(term, true), endwin(), 1);
   return (initTerm(term, true), endwin(), 0);

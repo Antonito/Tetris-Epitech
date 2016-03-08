@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Tue Mar  8 03:48:53 2016 Antoine Baché
+** Last update Tue Mar  8 05:10:08 2016 Antoine Baché
 */
 
 #ifndef	TETRIS_H_
@@ -19,6 +19,7 @@
 # define BUFF_SIZE		4096
 # define BETWEEN(A, MIN, MAX)	(((A) >= (MIN)) ? (((A) <= (MAX)) ? 1 : 0) : 0)
 
+# include <time.h>
 # include <ncurses.h>
 # include <curses.h>
 # include <term.h>
@@ -77,6 +78,7 @@ typedef struct	s_game
   int		width;
   bool		showNext;
   bool		debug;
+  bool		running;
   char		**arr;
   char		**keys;
 }		t_game;

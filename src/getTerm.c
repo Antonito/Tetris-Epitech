@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Mar  8 00:25:42 2016 Antoine Baché
-** Last update Tue Mar  8 00:58:13 2016 Antoine Baché
+** Last update Tue Mar  8 05:48:15 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -24,8 +24,8 @@ int			initTerm(const char *term, bool mode)
 	return (1);
       new.c_lflag &= ~ECHO;
       new.c_lflag &= ~ICANON;
-      new.c_cc[VMIN] = 1;
-      new.c_cc[VTIME] = 0;
+      new.c_cc[VMIN] = 0;
+      new.c_cc[VTIME] = 1;
       if (ioctl(0, TCSETS, &new) == -1)
 	return (1);
     }

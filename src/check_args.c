@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 16:35:50 2016 Antoine Baché
-** Last update Tue Mar  8 03:39:47 2016 Antoine Baché
+** Last update Tue Mar  8 05:10:25 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -48,6 +48,7 @@ int		init_game_default(t_game *game, char *term)
   game->width = 10;
   game->debug = false;
   game->showNext = true;
+  game->running = true;
   return (0);
 }
 

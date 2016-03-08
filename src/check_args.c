@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 16:35:50 2016 Antoine Baché
-** Last update Tue Mar  8 01:15:44 2016 Antoine Baché
+** Last update Tue Mar  8 01:51:11 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -16,10 +16,10 @@ char		**set_keys_default(char **keys, char *term)
   if (!(keys = malloc(sizeof(char *) * (NB_KEYS + 1))))
     return (NULL);
   keys[NB_KEYS] = NULL;
-  if (!(keys[LEFT] = NULL) ||
-      !(keys[RIGHT] = NULL) ||
-      !(keys[TURN] = NULL) ||
-      !(keys[DROP] = NULL) ||
+  if (!(keys[LEFT] = tigetstr("kcub1")) ||
+      !(keys[RIGHT] = tigetstr("kcuf1")) ||
+      !(keys[TURN] = tigetstr("kcuu1")) ||
+      !(keys[DROP] = tigetstr("kcud1")) ||
       !(keys[QUIT] = my_strdup("q")) ||
       !(keys[PAUSE] = my_strdup(" ")))
     return (NULL);

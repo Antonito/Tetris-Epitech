@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Tue Feb 23 19:12:02 2016 Arthur ARNAUD
-** Last update Tue Mar  8 05:54:13 2016 Antoine Baché
+** Last update Tue Mar  8 05:59:39 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -35,7 +35,10 @@ int		initLoop(t_loop *loop, t_game *game)
 
 int		checkKeys(t_loop *loop, t_game *game)
 {
-  if (read(0, loop->buff, BUFF_SIZE - 1) == -1)
+  int		check;
+
+  check = read(0, loop->buff, BUFF_SIZE - 1);
+  if (check == -1)
     return (free(loop->events), free2DArray(game->arr), endwin(), 1);
   while (++loop->i < UNKNOWN)
     if (!my_strncmp(loop->buff, game->keys[loop->i],

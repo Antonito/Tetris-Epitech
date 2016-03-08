@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Tue Mar  8 05:10:08 2016 Antoine Baché
+** Last update Tue Mar  8 06:01:21 2016 Antoine Baché
 */
 
 #ifndef	TETRIS_H_
@@ -18,6 +18,10 @@
 # define MAX_COL		80
 # define BUFF_SIZE		4096
 # define BETWEEN(A, MIN, MAX)	(((A) >= (MIN)) ? (((A) <= (MAX)) ? 1 : 0) : 0)
+
+# define _BDS_SOURCE
+# define _POSIX_SOURCE
+# define _DEFAULT_SOURCE
 
 # include <time.h>
 # include <ncurses.h>

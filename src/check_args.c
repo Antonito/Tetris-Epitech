@@ -5,13 +5,13 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 16:35:50 2016 Antoine Baché
-** Last update Tue Mar  8 05:10:25 2016 Antoine Baché
+** Last update Tue Mar  8 06:02:29 2016 Antoine Baché
 */
 
 #include "tetris.h"
 #include "tools.h"
 
-char		**set_keys_default(char **keys, char *term)
+char		**set_keys_default(char **keys)
 {
   int		i;
   char		*smkx;
@@ -32,10 +32,9 @@ char		**set_keys_default(char **keys, char *term)
   return (keys);
 }
 
-int		init_game_default(t_game *game, char *term)
+int		init_game_default(t_game *game)
 {
-
-  if (!(game->keys = set_keys_default(game->keys, term)))
+  if (!(game->keys = set_keys_default(game->keys)))
     return (1);
   game->level = 1;
   game->next = 0;
@@ -108,7 +107,7 @@ int		check_args(int ac, char **av, char **env)
   char		*term;
 
   if (initTerm((term = getTerm((const char **)env)), false) ||
-      init_game_default(&game, term))
+      init_game_default(&game))
     return (initTerm(term, true), 1);
   if (ac > 1)
     {

@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Tue Feb 23 19:12:02 2016 Arthur ARNAUD
-** Last update Tue Mar  8 07:23:10 2016 Antoine Baché
+** Last update Tue Mar  8 09:26:10 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -61,6 +61,9 @@ int		tetris(t_game *game)
     while (my_memset(loop.buff, 0, BUFF_SIZE), (loop.i = -1))
       {
 	getTime(game, &start);
+	if (game->debug && !(game->debug = false) &&
+	    debugMode(game, loop.tetri))
+	  return (1);
 	if (display(&loop.win, &loop.tetri[loop.next], game))
 	  return (free(loop.events), free2DArray(loop.tetri->arr),
 		  free(loop.tetri), endwin(), 1);

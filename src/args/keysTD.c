@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 20:05:44 2016 Antoine Baché
-** Last update Tue Mar  8 06:00:16 2016 Antoine Baché
+** Last update Tue Mar  8 10:28:51 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -13,7 +13,6 @@
 
 int	keyTurnArg(t_game *game, char **av, bool mode)
 {
-  free(game->keys[TURN]);
   if (mode == SHORT)
     {
       if (!(game->keys[TURN] = my_strdup(av[1])))
@@ -29,7 +28,6 @@ int	keyTurnArg(t_game *game, char **av, bool mode)
 
 int	keyDropArg(t_game *game, char **av, bool mode)
 {
-  free(game->keys[DROP]);
   if (mode == SHORT)
     {
       if (!(game->keys[DROP] = my_strdup(av[1])))

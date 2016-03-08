@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Tue Feb 23 19:12:02 2016 Arthur ARNAUD
-** Last update Tue Mar  8 09:36:28 2016 Antoine Baché
+** Last update Tue Mar  8 09:51:34 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -27,8 +27,11 @@ int		initLoop(t_loop *loop, t_game *game)
 {
   if (!(loop->tetri = NULL) && !(loop->next = 0) &&
       (!(loop->events = selectorEvent()) ||
-       !(loop->tetri = load_tetri(loop->tetri, game)) ||
-       init_game(game, loop->tetri) || init_display(&loop->win, game)))
+       !(loop->tetri = load_tetri(loop->tetri, game))))
+    return (1);
+  if (game->debug && debugMode(game, loop->tetri))
+    return (1);
+  if (init_game(game, loop->tetri) || init_display(&loop->win, game))
     return (1);
   return (0);
 }
@@ -63,9 +66,6 @@ int		tetris(t_game *game)
 	if (isOver(game))
 	  return (free2DArray(loop.tetri->arr), free(loop.tetri), 0);
 	getTime(game, &start);
-	if (game->debug && !(game->debug = false) &&
-	    debugMode(game, loop.tetri))
-	  return (1);
 	if (display(&loop.win, &loop.tetri[loop.next], game))
 	  return (free(loop.events), free2DArray(loop.tetri->arr),
 		  free(loop.tetri), endwin(), 1);

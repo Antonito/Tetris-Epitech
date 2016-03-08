@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Mar  8 07:41:30 2016 Antoine Baché
-** Last update Tue Mar  8 09:26:12 2016 Antoine Baché
+** Last update Tue Mar  8 09:57:46 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -17,9 +17,11 @@ int	writeKey(char *str)
 
   i = 0;
   while (str && str[i])
-    if (str[i] != ' ' && write(1, &str[i++], 1) < 0)
+    if (str[i] != ' ' && str[i] != 27 && write(1, &str[i++], 1) < 0)
       return (1);
     else if (str[i] == ' ' && ++i && write(1, "(space)", 7) < 0)
+      return (1);
+    else if (str[i] == 27 && ++i && write(1, "^E", 2) < 0)
       return (1);
   if (write(1, "\n", 1) < 0)
     return (1);
@@ -47,7 +49,7 @@ void	showInfos(t_game *game)
 {
   if (write(1, "Next : ", 7) < 0 ||
       ((game->showNext) ? write(1, "Yes\n", 4) : write(1, "No\n", 3)) < 0 ||
-      write(1, "Level : ", 7) < 0 ||
+      write(1, "Level : ", 8) < 0 ||
       my_put_nbr((int)game->level) < 0 ||
       write(1, "\n", 1) < 0 ||
       write(1, "Size : ", 7) < 0 ||
@@ -64,6 +66,7 @@ void	showTetriminos(t_tetri *tetri)
 
 int	debugMode(t_game *game, t_tetri *tetri)
 {
+  char	buff[3];
   if (write(1, "*** DEBUG MODE ***\n", 19) < 0)
     return (1);
   showKeys(game);
@@ -71,5 +74,6 @@ int	debugMode(t_game *game, t_tetri *tetri)
   showTetriminos(tetri);
   if (write(1, "Press a key to start Tetris\n", 28) < 0)
     return (1);
+  while (!read(0, buff, 2));
   return (0);
 }

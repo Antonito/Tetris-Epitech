@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 17:01:11 2016 Antoine Baché
-** Last update Mon Mar  7 21:31:43 2016 Antoine Baché
+** Last update Tue Mar  8 01:03:00 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -17,13 +17,13 @@ event		selectorEvent(void)
 
   if ((array = malloc(sizeof(int *) * (6))) == NULL)
     return (NULL);
-  array[0] = &keyLeftEvent;
-  array[1] = &keyRightEvent;
-  array[2] = &keyDropEvent;
-  array[3] = &keyTurnEvent;
-  array[4] = &keyPauseEvent;
-  array[5] = &keyQuitEvent;
-  array[7] = &keyOtherEvent;
+  array[LEFT] = &keyLeftEvent;
+  array[RIGHT] = &keyRightEvent;
+  array[DROP] = &keyDropEvent;
+  array[TURN] = &keyTurnEvent;
+  array[PAUSE] = &keyPauseEvent;
+  array[QUIT] = &keyQuitEvent;
+  array[UNKNOWN] = &keyOtherEvent;
   return (array);
 }
 

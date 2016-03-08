@@ -5,25 +5,31 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 16:35:50 2016 Antoine Baché
-** Last update Tue Mar  8 00:48:20 2016 Antoine Baché
+** Last update Tue Mar  8 01:15:44 2016 Antoine Baché
 */
 
 #include "tetris.h"
 #include "tools.h"
 
-void		set_keys_default(t_key *keys)
+char		**set_keys_default(char **keys, char *term)
 {
-  keys->left = KEY_LEFT;
-  keys->right = KEY_RIGHT;
-  keys->turn = KEY_UP;
-  keys->drop = KEY_DOWN;
-  keys->quit = 'q';
-  keys->pause = ' ';
+  if (!(keys = malloc(sizeof(char *) * (NB_KEYS + 1))))
+    return (NULL);
+  keys[NB_KEYS] = NULL;
+  if (!(keys[LEFT] = NULL) ||
+      !(keys[RIGHT] = NULL) ||
+      !(keys[TURN] = NULL) ||
+      !(keys[DROP] = NULL) ||
+      !(keys[QUIT] = my_strdup("q")) ||
+      !(keys[PAUSE] = my_strdup(" ")))
+    return (NULL);
+  return (keys);
 }
 
-void		init_game_default(t_game *game)
+int		init_game_default(t_game *game, char *term)
 {
-  set_keys_default(&game->keys);
+  if (!(game->keys = set_keys_default(game->keys, term)))
+    return (1);
   game->level = 1;
   game->next = 0;
   game->lines = 0;
@@ -35,6 +41,7 @@ void		init_game_default(t_game *game)
   game->width = 10;
   game->debug = false;
   game->showNext = true;
+  return (0);
 }
 
 char		**args_list(void)
@@ -91,13 +98,15 @@ int		check_args(int ac, char **av, char **env)
   t_game	game;
   char		*term;
 
-  init_game_default(&game);
+  if (initTerm((term = getTerm((const char **)env)), false) ||
+      init_game_default(&game, term))
+    return (initTerm(term, true), 1);
   if (ac > 1)
     {
       if (parse_args(ac, av + 1, &game))
-	return (1);
+	return (initTerm(term, true), 1);
     }
-  if (initTerm((term = getTerm((const char **)env)), false) || tetris(&game))
+  if (tetris(&game))
     return (initTerm(term, true), 1);
   return (initTerm(term, true), 0);
 }

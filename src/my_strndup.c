@@ -1,11 +1,11 @@
 /*
-** my_strndup.c for Corewar in /CPE_2015_corewar/src/tools
+** my_strndup.c for Tetris in /home/bache_a/work/Prog_Elem/PSU_2015_tetris
 **
 ** Made by Antoine Baché
 ** Login   <bache_a@epitech.net>
 **
-** Started on  Tue Feb 23 16:10:17 2016 Antoine Baché
-** Last update Sun Mar  6 19:31:29 2016 Antoine Baché
+** Started on  Tue Mar  8 01:11:16 2016 Antoine Baché
+** Last update Tue Mar  8 01:11:17 2016 Antoine Baché
 */
 
 #include <stdlib.h>

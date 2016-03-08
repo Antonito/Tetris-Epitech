@@ -5,12 +5,13 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Tue Mar  8 00:47:57 2016 Antoine Baché
+** Last update Tue Mar  8 01:07:00 2016 Antoine Baché
 */
 
 #ifndef	TETRIS_H_
 # define TETRIS_H_
 # define NB_ARGS		20
+# define NB_KEYS		6
 # define MIN_ROW		20
 # define MAX_ROW		80
 # define MIN_COL		10
@@ -29,6 +30,17 @@ typedef	enum	e_mode
     SHORT,
     LONG
   }		t_mode;
+
+typedef	enum	e_keys
+  {
+    LEFT,
+    RIGHT,
+    DROP,
+    TURN,
+    PAUSE,
+    QUIT,
+    UNKNOWN
+  }		t_keys;
 
 typedef struct	s_window
 {
@@ -49,16 +61,6 @@ typedef struct	s_tetri
   int		y;
 }		t_tetri;
 
-typedef	struct	s_key
-{
-  int		left;
-  int		right;
-  int		turn;
-  int		drop;
-  int		quit;
-  int		pause;
-}		t_key;
-
 typedef struct	s_game
 {
   char		level;
@@ -73,7 +75,7 @@ typedef struct	s_game
   bool		showNext;
   bool		debug;
   char		**tab;
-  t_key		keys;
+  char		**keys;
 }		t_game;
 
 typedef		int (**ptrtab)(t_game *, char **, bool);

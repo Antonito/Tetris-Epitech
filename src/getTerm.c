@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Mar  8 00:25:42 2016 Antoine Baché
-** Last update Tue Mar  8 00:47:11 2016 Antoine Baché
+** Last update Tue Mar  8 00:58:13 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -42,7 +42,8 @@ char			*getTerm(const char **env)
   while (env[i])
     {
       if (!my_strncmp("TERM=", env[i], 5))
-	return ((char *)env[i]);
+	return ((char *)(env[i] + 5));
+      ++i;
     }
   return (NULL);
 }

@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Tue Mar  8 19:02:52 2016 Arthur ARNAUD
+** Last update Wed Mar  9 00:27:09 2016 Antoine Baché
 */
 
 #ifndef	TETRIS_H_
@@ -32,6 +32,7 @@
 # include <unistd.h>
 # include <termios.h>
 # include <sys/ioctl.h>
+# include <dirent.h>
 
 typedef	enum	e_mode
   {
@@ -162,6 +163,7 @@ int		errorArg(t_game *, char **, bool);
 **                       LOAD
 ** ===================================================
 */
+char		**getNames(DIR *);
 t_tetri		*load_tetri(t_tetri *, t_game *);
 char		*add_dir_name(char *);
 int		fill_tetri(char *, int, int, t_tetri *);

@@ -5,14 +5,13 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Thu Feb 25 19:55:00 2016 Arthur ARNAUD
-** Last update Tue Mar  8 23:42:30 2016 Antoine Baché
+** Last update Wed Mar  9 00:28:07 2016 Antoine Baché
 */
 
 #include "tetris.h"
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include <dirent.h>
 #include "tools.h"
 
 int		getShape(int fd, t_tetri *tetri)
@@ -91,20 +90,19 @@ t_tetri		*malloc_tetri_arr(t_tetri *tetri)
 t_tetri		*load_tetri(t_tetri *tetri, t_game *game)
 {
   DIR		*dir;
-  struct dirent	*file;
   int		i;
+  char		**names;
 
   if (!(tetri = malloc_tetri_arr(tetri)) ||
       !(dir = opendir("tetriminos")))
     return (free(tetri), NULL);
+  if (!(names = getNames(dir)))
+    return (closedir(dir), free(tetri), NULL);
   i = -1;
-  while ((file = readdir(dir)))
-    if (file->d_name[0] != '.' && check_file(file->d_name) && ++i > -1)
-      {
-	if (getTetrimino(file->d_name, &tetri[i], game))
-	  return (closedir(dir), free(tetri), NULL);
-      }
+  while (names[++i])
+    if (getTetrimino(names[i], &tetri[i], game))
+      return (closedir(dir), free(tetri), free2DArray(names), NULL);
   if (closedir(dir) == -1)
-    return (free(tetri), NULL);
-  return (tetri);
+    return (free(tetri), free2DArray(names), NULL);
+  return (free2DArray(names), tetri);
 }

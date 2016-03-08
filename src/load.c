@@ -5,15 +5,68 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Thu Feb 25 19:55:00 2016 Arthur ARNAUD
-** Last update Tue Mar  8 19:07:46 2016 Arthur ARNAUD
+** Last update Tue Mar  8 23:42:30 2016 Antoine Baché
 */
 
+#include "tetris.h"
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <dirent.h>
-#include "tetris.h"
 #include "tools.h"
+
+int		getShape(int fd, t_tetri *tetri)
+{
+  int		i;
+  char		*str;
+
+  if (!(tetri->arr = malloc(sizeof(char *) * (tetri->height + 1))))
+    return (1);
+  i = -1;
+  while ((str = get_next_line(fd)))
+    {
+      if (++i <= tetri->height && !(tetri->arr[i] = my_strdup(str)))
+	return (free(str), 1);
+      free(str);
+    }
+  if (i != tetri->height - 1)
+    return (error("Error while parsing tetrimino\n"));
+  tetri->arr[tetri->height] = NULL;
+  return (0);
+}
+
+int		getInfos(int fd, t_tetri *tetri, int width, int height)
+{
+  char		*str;
+  char		**infos;
+
+  if (!(str = get_next_line(fd)) ||
+      !(infos = my_str_to_wordtab(str, 3)))
+    return (error("Cannot malloc\n"));
+  free(str);
+  if ((tetri->width = my_getnbr(infos[0])) < 1 || tetri->width > width ||
+      (tetri->height = my_getnbr(infos[1])) < 1 || tetri->height > height ||
+      (tetri->color = my_getnbr(infos[2])) < 1 || tetri->color > 7)
+    tetri->error = true;
+  free2DArray(infos);
+  return (getShape(fd, tetri));
+}
+
+int		getTetrimino(char *name, t_tetri *tetri, t_game *game)
+{
+  int		fd;
+
+  tetri->name = my_strdup(name);
+  if (!(name = add_dir_name(name)))
+    return (error("Cannot malloc\n"));
+  if ((fd = open(name, O_RDONLY)) < 0)
+    return (error("Cannot open file\n"));
+  if (getInfos(fd, tetri, game->width, game->height))
+    return (close(fd), 1);
+  if (close(fd) < 0)
+    return (error("Cannot close file\n"));
+  return (0);
+}
 
 t_tetri		*malloc_tetri_arr(t_tetri *tetri)
 {
@@ -28,10 +81,11 @@ t_tetri		*malloc_tetri_arr(t_tetri *tetri)
   while ((dent = readdir(dir)))
     if (dent->d_name[0] != '.' && check_file(dent->d_name))
       i++;
-  if (!(tetri = malloc(sizeof(t_tetri) * (i + 1))) || closedir(dir) == -1)
-    return (NULL);
+  if (!(tetri = malloc(sizeof(t_tetri) * (i + 1))))
+    return (closedir(dir), NULL);
+  my_memset(tetri, 0, sizeof(t_tetri) * (i + 1));
   tetri[i].color = -1;
-  return (tetri);
+  return ((closedir(dir) == -1) ? NULL : tetri);
 }
 
 t_tetri		*load_tetri(t_tetri *tetri, t_game *game)
@@ -44,89 +98,13 @@ t_tetri		*load_tetri(t_tetri *tetri, t_game *game)
       !(dir = opendir("tetriminos")))
     return (free(tetri), NULL);
   i = -1;
-  while ((file = readdir(dir)) && ++i >= 0)
-    if (file->d_name[0] != '.' && check_file(file->d_name))
+  while ((file = readdir(dir)))
+    if (file->d_name[0] != '.' && check_file(file->d_name) && ++i > -1)
       {
-	if (get_tetri(i, tetri, file->d_name, game))
-	  return (free(tetri), NULL);
+	if (getTetrimino(file->d_name, &tetri[i], game))
+	  return (closedir(dir), free(tetri), NULL);
       }
-  printf("lil\n");
   if (closedir(dir) == -1)
     return (free(tetri), NULL);
   return (tetri);
-}
-
-int		get_tetri(int i, t_tetri *tetri, char *name, t_game *game)
-{
-  int		j;
-  int		k;
-  int		fd;
-  char		*str;
-  char		*info;
-
-  if (!(name = add_dir_name(name)) ||
-      (fd = open(name, O_RDONLY)) == -1 ||
-      (!(info = get_next_line(fd)) ||
-       get_info(info, tetri, i, game)))
-    return (1);
-  tetri[i].name = name;
-  printf("name = %s\n", tetri[i].name);
-  printf("height = %d\n", tetri[i].height);
-  printf("width = %d\n", tetri[i].width);
-  printf("color = %d\n", tetri[i].color);
-  if (!(tetri[i].arr =
-	malloc(sizeof(char *) * (tetri[i].height + 1))))
-    return (1);
-  j = -1;
-  k = -1;
-  while (!(str = get_next_line(fd)) && ++j >= 0 && tetri[i].color >= 0)
-    if (fill_tetri(str, i, j, tetri))
-      return (1);
-  free(str);
-  free(info);
-  return (0);
-}
-
-int	fill_tetri(char *str, int i, int j, t_tetri *tetri)
-{
-  int	k;
-
-  k = -1;
-  if (j > tetri[i].height)
-    {
-      tetri[i].error = true;
-      return (0);
-    }
-  while (str[++k] != 0)
-    {
-      if (k > tetri[i].width || (tetri[i].arr[j][k] == ' ' &&
-				 tetri[i].arr[j][k] != '*'))
-	{
-	  tetri[i].error = true;
-	  return (0);
-	}
-      tetri[i].arr[j][k] = ((tetri[i].arr[j][k] == ' ') ? 0 : tetri[i].color);
-    }
-  return (0);
-}
-
-int	get_info(char *str, t_tetri *tetri, int nb, t_game *game)
-{
-  int	i;
-  char	**stat;
-
-  i = -1;
-  if (!(stat = str_to_word_tab(str)) ||
-      (tetri[nb].width = my_getnbr(stat[0])) == -1 ||
-      (tetri[nb].height = my_getnbr(stat[1])) == -1 ||
-      (tetri[nb].color = my_getnbr(stat[2]))  == -1)
-    return (1);
-  else if (tetri[nb].width < 1 || tetri[nb].width > game->width ||
-	   tetri[nb].height < 1 || tetri[nb].height > game->height ||
-	   tetri[nb].color < 1 || tetri[nb].color > 7)
-    {
-      tetri[nb].error = true;
-      return (0);
-    }
-  return (0);
 }

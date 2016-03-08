@@ -5,10 +5,11 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Tue Mar  8 16:59:40 2016 Arthur ARNAUD
-** Last update Tue Mar  8 18:12:09 2016 Arthur ARNAUD
+** Last update Tue Mar  8 22:00:33 2016 Antoine Baché
 */
 
 #include "tetris.h"
+#include "tools.h"
 
 char	*add_dir_name(char *name)
 {
@@ -20,7 +21,7 @@ char	*add_dir_name(char *name)
   i = -1;
   j = -1;
   if (!(dir = my_strdup("tetriminos/")) ||
-	!(res = malloc(sizeof(char) * (my_strlen(name) + my_strlen(dir) + 1))))
+      !(res = malloc(sizeof(char) * (my_strlen(name) + my_strlen(dir) + 1))))
     return (NULL);
   while (dir[++i] != 0)
     res[i] = dir[i];

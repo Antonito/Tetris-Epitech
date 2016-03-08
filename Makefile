@@ -5,46 +5,47 @@
 ## Login   <bache_a@epitech.net>
 ##
 ## Started on  Tue Feb 23 14:08:31 2016 Antoine Baché
-## Last update Tue Mar  8 17:15:42 2016 Arthur ARNAUD
+## Last update Tue Mar  8 21:58:12 2016 Antoine Baché
 ##
 
 DEBUG=			yes
 
 SRC_PREFIX=		src/
 
-SRC_FILES=		main.c		\
-			get_next_line.c	\
-			load.c		\
-			add_tetri.c	\
-			score.c		\
-			board.c		\
-			my_memset.c	\
-			init_game.c	\
-			display.c	\
-			my_getnbr.c	\
-			my_strlen.c	\
-			my_strncmp.c	\
-			my_strndup.c	\
-			interface.c	\
-			check_file.c	\
-			check_args.c	\
-			add_dir_name.c	\
-			getTerm.c	\
-			select.c	\
-			errors.c	\
-			free.c		\
-			debug.c		\
-			my_put_nbr.c	\
-			isOver.c	\
-			args/debug.c	\
-			args/help.c	\
-			args/keysLR.c	\
-			args/keysQP.c	\
-			args/keysTD.c	\
-			args/level.c	\
-			args/next.c	\
-			args/size.c	\
-			events/game.c	\
+SRC_FILES=		main.c			\
+			get_next_line.c		\
+			load.c			\
+			add_tetri.c		\
+			score.c			\
+			board.c			\
+			my_memset.c		\
+			init_game.c		\
+			display.c		\
+			my_getnbr.c		\
+			my_strlen.c		\
+			my_strncmp.c		\
+			my_strndup.c		\
+			my_str_to_wordtab.c	\
+			interface.c		\
+			check_file.c		\
+			check_args.c		\
+			add_dir_name.c		\
+			getTerm.c		\
+			select.c		\
+			errors.c		\
+			free.c			\
+			debug.c			\
+			my_put_nbr.c		\
+			isOver.c		\
+			args/debug.c		\
+			args/help.c		\
+			args/keysLR.c		\
+			args/keysQP.c		\
+			args/keysTD.c		\
+			args/level.c		\
+			args/next.c		\
+			args/size.c		\
+			events/game.c		\
 			events/move.c
 
 SRC=			$(addprefix $(SRC_PREFIX),$(SRC_FILES))

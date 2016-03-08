@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Tue Feb 23 19:12:02 2016 Arthur ARNAUD
-** Last update Tue Mar  8 05:59:39 2016 Antoine Baché
+** Last update Tue Mar  8 07:23:10 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -45,9 +45,9 @@ int		checkKeys(t_loop *loop, t_game *game)
 		    my_strlen(loop->buff) + 1))
       {
 	if ((loop->check = (loop->events[loop->i](game, loop->tetri))) == 1)
-	  return (free(loop->events), free2DArray(game->arr), endwin(), 1);
+	  return (free(loop->events), free2DArray(game->arr), 1);
 	else if (loop->check == 2)
-	  return (free(loop->events), free2DArray(game->arr), endwin(), 2);
+	  return (free(loop->events), free2DArray(game->arr), 2);
       }
   return (0);
 }
@@ -57,8 +57,7 @@ int		tetris(t_game *game)
   t_loop	loop;
   time_t	start;
 
-
-  if (!initLoop(&loop, game) &&   (start = time(NULL)) != ((time_t) -1))
+  if (!initLoop(&loop, game) && (start = time(NULL)) != ((time_t) -1))
     while (my_memset(loop.buff, 0, BUFF_SIZE), (loop.i = -1))
       {
 	getTime(game, &start);
@@ -71,7 +70,7 @@ int		tetris(t_game *game)
 	  return (free2DArray(loop.tetri->arr), free(loop.tetri), 0);
 	usleep(100);
       }
-  return (endwin(), 1);
+  return (1);
 }
 
 int		main(int ac, char **av, char **env)

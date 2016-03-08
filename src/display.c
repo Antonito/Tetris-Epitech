@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Mon Feb 22 21:01:23 2016 Arthur ARNAUD
-** Last update Tue Mar  8 02:18:13 2016 Arthur ARNAUD
+** Last update Tue Mar  8 07:14:29 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -13,7 +13,6 @@
 int		init_display(t_window *win, t_game *game)
 {
   initscr();
-  noecho();
   curs_set(FALSE);
   start_color();
   init_pair_color();

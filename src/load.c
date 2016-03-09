@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Thu Feb 25 19:55:00 2016 Arthur ARNAUD
-** Last update Wed Mar  9 01:20:44 2016 Antoine Baché
+** Last update Wed Mar  9 01:27:06 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -21,16 +21,16 @@ int		getShape(int fd, t_tetri *tetri)
 
   if (!(tetri->arr = malloc(sizeof(char *) * (tetri->height + 1))))
     return (1);
+  tetri->arr[tetri->height] = NULL;
   i = -1;
   while ((str = get_next_line(fd)))
     {
-      if (++i <= tetri->height && !(tetri->arr[i] = my_strdup(str)))
+      if (++i < tetri->height && !(tetri->arr[i] = my_strdup(str)))
 	return (free(str), 1);
       free(str);
     }
   if (i != tetri->height - 1)
     return (error("Error while parsing tetrimino\n"));
-  tetri->arr[tetri->height] = NULL;
   return (0);
 }
 

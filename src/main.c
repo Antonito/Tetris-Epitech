@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Tue Feb 23 19:12:02 2016 Arthur ARNAUD
-** Last update Wed Mar  9 01:07:42 2016 Antoine Baché
+** Last update Wed Mar  9 01:29:32 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -71,7 +71,7 @@ int		tetris(t_game *game)
 		  freeTetri(loop.tetri), endwin(), 1);
 	if ((loop.check = checkKeys(&loop, game)) == 1)
 	  return (free2DArray(loop.tetri->arr), freeTetri(loop.tetri), 1);
-	else if(loop.check == 2)
+	else if (loop.check == 2)
 	  return (free2DArray(loop.tetri->arr), freeTetri(loop.tetri), 0);
 	usleep(100);
       }

@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Tue Feb 23 19:12:02 2016 Arthur ARNAUD
-** Last update Wed Mar  9 06:24:01 2016 Antoine Baché
+** Last update Wed Mar  9 10:28:16 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -80,9 +80,9 @@ int		tetris(t_game *game, char *term)
 	  return (free2DArray(loop.tetri->arr), freeTetri(loop.tetri), 1);
 	else if (loop.check == 2)
 	  return (free2DArray(loop.tetri->arr), freeTetri(loop.tetri), 0);
-	if (timer.check % 60 == 2)
+	if (checkPause(&game->running, game->keys, loop.win.score),
+	    timer.check % 60 == 2)
 	  timer.count = time(NULL);
-
 	usleep(100);
       }
   return (1);

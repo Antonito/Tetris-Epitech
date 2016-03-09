@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Thu Feb 25 19:55:00 2016 Arthur ARNAUD
-** Last update Wed Mar  9 01:27:06 2016 Antoine Baché
+** Last update Wed Mar  9 01:33:43 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -31,7 +31,7 @@ int		getShape(int fd, t_tetri *tetri)
     }
   if (i != tetri->height - 1)
     return (error("Error while parsing tetrimino\n"));
-  return (0);
+  return (setColor(tetri), 0);
 }
 
 int		getInfos(int fd, t_tetri *tetri, int width, int height)

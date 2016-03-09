@@ -5,11 +5,23 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Wed Mar  9 00:04:13 2016 Antoine Baché
-** Last update Wed Mar  9 01:10:40 2016 Antoine Baché
+** Last update Wed Mar  9 01:35:23 2016 Antoine Baché
 */
 
 #include "tetris.h"
 #include "tools.h"
+
+void		setColor(t_tetri *tetri)
+{
+  int		i;
+  int		j;
+
+  i = -1;
+  while (tetri->arr[++i] && (j = -1))
+    while (tetri->arr[i][++j])
+      if (tetri->arr[i][j] == '*')
+	tetri->arr[i][j] = (char)tetri->color;
+}
 
 int		countFiles(void)
 {

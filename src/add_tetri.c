@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Mon Feb 29 15:41:20 2016 Arthur ARNAUD
-** Last update Wed Mar  9 06:22:15 2016 Arthur ARNAUD
+** Last update Wed Mar  9 06:32:51 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -44,12 +44,16 @@ void	clean_tetri(t_tetri *tetri, t_game *game, int x, int y)
 
 int	add_tetri(t_tetri *tetri, t_game *game)
 {
+  static int	i = 0;
+
+  i++;
   tetri[game->cur].x = (game->width / 2) - (tetri[game->cur].width / 2) ;
   tetri[game->cur].y = 0;
   if (check_print_tetri(&tetri[game->cur], game,
 			tetri[game->cur].x, tetri[game->cur].y))
     return (1);
   print_tetri(&tetri[game->cur], game, tetri[game->cur].x, tetri[game->cur].y);
+  printf("%d\n",i);
   return (0);
 }
 

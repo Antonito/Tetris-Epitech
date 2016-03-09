@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Wed Mar  9 01:35:44 2016 Antoine Baché
+** Last update Wed Mar  9 02:37:38 2016 Antoine Baché
 */
 
 #ifndef	TETRIS_H_
@@ -179,9 +179,9 @@ t_tetri		*my_realloc_tab(t_tetri *);
 **                       INIT
 ** ===================================================
 */
-int		tetris(t_game *);
+int		tetris(t_game *, char *);
 int		init_game(t_game *, t_tetri *);
-int		init_display(t_window *, t_game *);
+int		init_display(t_window *, t_game *, char *);
 char		**malloc_tab(char **, int, int);
 void		my_memset(void *, char, int);
 void		init_pair_color();

@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Tue Feb 23 19:12:02 2016 Arthur ARNAUD
-** Last update Wed Mar  9 01:29:32 2016 Antoine Baché
+** Last update Wed Mar  9 02:47:02 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -23,7 +23,7 @@ void		getTime(t_game *game, time_t *start)
   game->time_sec = current % 60;
 }
 
-int		initLoop(t_loop *loop, t_game *game)
+int		initLoop(t_loop *loop, t_game *game, char *term)
 {
   if (!(loop->tetri = NULL) && !(loop->next = 0) &&
       (!(loop->events = selectorEvent()) ||
@@ -31,7 +31,9 @@ int		initLoop(t_loop *loop, t_game *game)
     return (1);
   if (game->debug && debugMode(game, loop->tetri))
     return (1);
-  if (init_game(game, loop->tetri) || init_display(&loop->win, game))
+  if (init_game(game, loop->tetri))
+    return (1);
+  if (init_display(&loop->win, game, term))
     return (1);
   return (0);
 }
@@ -55,12 +57,12 @@ int		checkKeys(t_loop *loop, t_game *game)
   return (0);
 }
 
-int		tetris(t_game *game)
+int		tetris(t_game *game, char *term)
 {
   t_loop	loop;
   time_t	start;
 
-  if (!initLoop(&loop, game) && (start = time(NULL)) != ((time_t) -1))
+  if (!initLoop(&loop, game, term) && (start = time(NULL)) != ((time_t) -1))
     while (my_memset(loop.buff, 0, BUFF_SIZE), (loop.i = -1))
       {
 	if (isOver(game))

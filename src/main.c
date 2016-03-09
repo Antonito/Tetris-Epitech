@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Tue Feb 23 19:12:02 2016 Arthur ARNAUD
-** Last update Wed Mar  9 10:28:16 2016 Antoine Baché
+** Last update Wed Mar  9 10:58:22 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -13,12 +13,9 @@
 
 void		getTime(t_game *game, time_t *start)
 {
-  static time_t	current = 0;
+  time_t	current;
 
-  if (game->running)
-    current = time(NULL) - *start;
-  else
-    *start = (int)time(NULL) - (int)*start;
+  current = time(NULL) - *start;
   game->time_min = current / 60;
   game->time_sec = current % 60;
 }
@@ -65,8 +62,8 @@ int		tetris(t_game *game, char *term)
 
   timer.count = time(NULL);
   if (!initLoop(&loop, game, term) && (start = time(NULL)) != ((time_t) -1))
-    while (my_memset(loop.buff, 0, BUFF_SIZE), (loop.i = -1) &&
-	   (timer.tick = time(NULL)) && (game->cur = 0) == 0 &&
+    while (my_memset(loop.buff, 0, BUFF_SIZE), (loop.i = -1),
+	   (timer.tick = time(NULL)), (game->cur = 0),
 	   !add_tetri(loop.tetri, game))
       {
 	timer.check = timer.tick - timer.count;
@@ -80,7 +77,7 @@ int		tetris(t_game *game, char *term)
 	  return (free2DArray(loop.tetri->arr), freeTetri(loop.tetri), 1);
 	else if (loop.check == 2)
 	  return (free2DArray(loop.tetri->arr), freeTetri(loop.tetri), 0);
-	if (checkPause(&game->running, game->keys, loop.win.score),
+	if (checkPause(&game->running, game->keys, loop.win.score, &start),
 	    timer.check % 60 == 2)
 	  timer.count = time(NULL);
 	usleep(100);

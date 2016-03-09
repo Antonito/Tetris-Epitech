@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Wed Mar  9 00:04:13 2016 Antoine Baché
-** Last update Wed Mar  9 00:30:26 2016 Antoine Baché
+** Last update Wed Mar  9 01:10:40 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -23,10 +23,12 @@ int		countFiles(void)
   while ((file = readdir(count)))
     if (file->d_name[0] != '.' && check_file(file->d_name))
       ++i;
+  if (closedir(count) < 0)
+    return (0);
   return (i);
 }
 
-char		**orderNames(char **name)
+char		**orderNames(char **name, int nb)
 {
   char		**ordered;
 
@@ -50,5 +52,6 @@ char		**getNames(DIR *dir)
     if (file->d_name[0] != '.' && check_file(file->d_name) &&
 	!(names[i++] = my_strdup(file->d_name)))
       return (error("Cannot malloc\n"), NULL);
-  return ((names = orderNames(names)));
+  names[nb] = NULL;
+  return ((names = orderNames(names, nb)));
 }

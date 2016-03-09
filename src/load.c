@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Thu Feb 25 19:55:00 2016 Arthur ARNAUD
-** Last update Wed Mar  9 00:28:07 2016 Antoine Baché
+** Last update Wed Mar  9 01:20:44 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -59,7 +59,8 @@ int		getTetrimino(char *name, t_tetri *tetri, t_game *game)
   if (!(name = add_dir_name(name)))
     return (error("Cannot malloc\n"));
   if ((fd = open(name, O_RDONLY)) < 0)
-    return (error("Cannot open file\n"));
+    return (free(name), error("Cannot open file\n"));
+  free(name);
   if (getInfos(fd, tetri, game->width, game->height))
     return (close(fd), 1);
   if (close(fd) < 0)

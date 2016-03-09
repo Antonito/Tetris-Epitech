@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Tue Mar  8 16:59:40 2016 Arthur ARNAUD
-** Last update Tue Mar  8 22:00:33 2016 Antoine Baché
+** Last update Wed Mar  9 01:22:56 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -28,5 +28,6 @@ char	*add_dir_name(char *name)
   while (name[++j] != 0)
     res[i++] = name[j];
   res[i] = 0;
+  free(dir);
   return (res);
 }

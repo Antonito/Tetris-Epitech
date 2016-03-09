@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Mar  8 07:41:30 2016 Antoine Baché
-** Last update Tue Mar  8 23:48:48 2016 Antoine Baché
+** Last update Wed Mar  9 01:41:07 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -48,6 +48,7 @@ void	showKeys(t_game *game)
 void	showMoreTetriminos(t_tetri *tetri, int nb)
 {
   int	i;
+  int	j;
 
   if (tetri[nb].error && write(1, "Error\n", 6 >= -1))
     return ;
@@ -57,10 +58,15 @@ void	showMoreTetriminos(t_tetri *tetri, int nb)
       write(1, " :\n", 3) < 0)
     return ;
   i = -1;
-  while (++i < tetri[nb].height)
-    if (write(1, tetri[nb].arr[i], my_strlen(tetri[nb].arr[i])) < 0 ||
-	write(1, "\n", 1) < 0)
-      return ;
+  while (++i < tetri[nb].height && (j = -1))
+    {
+      while (tetri[nb].arr[i][++j])
+	if (((tetri[nb].arr[i][j] != ' ') ? write(1, "*", 1) :
+	     write(1, &tetri[nb].arr[i][j], 1)) < 0)
+	  return ;
+      if (write(1, "\n", 1) < 0)
+	return ;
+    }
 }
 
 void	showTetriminos(t_tetri *tetri)

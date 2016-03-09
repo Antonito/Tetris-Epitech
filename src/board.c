@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Tue Feb 23 23:37:45 2016 Arthur ARNAUD
-** Last update Tue Mar  8 03:37:39 2016 Antoine Baché
+** Last update Wed Mar  9 10:05:58 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -34,7 +34,7 @@ void		display_tetriminos(WINDOW *win, char **arr, int width)
 	if (arr[i][j] > 0)
 	  {
 	    wattrset(win, COLOR_PAIR(arr[i][j]));
-	    mvwprintw(win, i, j, "*");
+	    mvwprintw(win, i + 1, j + 1, "*");
 	  }
     }
 }

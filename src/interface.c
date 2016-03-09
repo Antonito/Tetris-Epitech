@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Tue Feb 23 14:52:36 2016 Arthur ARNAUD
-** Last update Tue Mar  8 07:03:46 2016 Antoine Baché
+** Last update Wed Mar  9 10:42:16 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -79,6 +79,7 @@ void		display_title(WINDOW *win)
 void		display_interface(t_window *win, t_game *game)
 {
   display_score(win->score, game);
+  wborder(win->score, '|', '|', '-', '-', '/', '\\', '\\', '/');
   display_title(win->title);
   wrefresh(win->title);
   wrefresh(win->score);

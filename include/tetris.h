@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Wed Mar  9 05:18:13 2016 Antoine Baché
+** Last update Wed Mar  9 05:29:20 2016 Antoine Baché
 */
 
 #ifndef	TETRIS_H_
@@ -70,6 +70,13 @@ typedef struct	s_tetri
   int		x;
   int		y;
 }		t_tetri;
+
+typedef struct	s_time
+{
+  time_t	count;
+  time_t	tick;
+  time_t	check;
+}		t_time;
 
 typedef struct	s_game
 {

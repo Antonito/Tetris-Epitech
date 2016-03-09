@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Wed Feb 24 19:28:55 2016 Arthur ARNAUD
-** Last update Tue Mar  8 07:06:17 2016 Antoine Baché
+** Last update Wed Mar  9 09:10:27 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -34,6 +34,7 @@ char	**malloc_tab(char **arr, int height, int width)
       if (!(arr[i] = malloc(sizeof(char) * width)))
 	return (NULL);
       my_memset(arr[i], 0, width);
+      arr[i][4] = 4;
     }
   arr[i] = NULL;
   return (arr);

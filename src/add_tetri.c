@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Mon Feb 29 15:41:20 2016 Arthur ARNAUD
-** Last update Wed Mar  9 06:16:40 2016 Arthur ARNAUD
+** Last update Wed Mar  9 06:22:15 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -50,7 +50,6 @@ int	add_tetri(t_tetri *tetri, t_game *game)
 			tetri[game->cur].x, tetri[game->cur].y))
     return (1);
   print_tetri(&tetri[game->cur], game, tetri[game->cur].x, tetri[game->cur].y);
-  printf(game->char)
   return (0);
 }
 

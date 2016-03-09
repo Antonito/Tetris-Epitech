@@ -5,48 +5,60 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Mon Feb 29 15:41:20 2016 Arthur ARNAUD
-** Last update Wed Mar  9 02:51:28 2016 Arthur ARNAUD
+** Last update Wed Mar  9 04:32:50 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
 
-int	check_print_tetri(t_tetri *tetri, t_game *game)
+int	check_print_tetri(t_tetri *tetri, t_game *game, int x, int y)
 {
-  int	i;
-  int	j;
-
-  i = y;
-  while (i++ < tetri->y + tetri->height && i < game->height)
+  while (y++ < tetri->y + tetri->height && y < game->height)
     {
-      j = x;
-      while (j++ < tetri->x + tetri->width && j < game->width)
-	if (tetri->arr[i - tetri->y][j - tetri->x] > 0 &&
-	    game->arr[i][j] > 0)
+      while (x++ < tetri->x + tetri->width && x < game->width)
+	if (tetri->arr[y - tetri->y][x - tetri->x] > 0 &&
+	    game->arr[y][x] > 0)
 	  return (1);
     }
 }
 
-int	print_tetri(t_tetri *tetri, t_game *game)
+void	print_tetri(t_tetri *tetri, t_game *game, int x, int y)
 {
-  int	i;
-  int	j;
-
-  i = y;
-  while (i++ < tetri->y + tetri->height)
+  while (y++ < tetri->y + tetri->height && y < game->height)
     {
-      j = x;
-      while (j++ < tetri->x + tetri->width)
-	if (tetri->arr[i - tetri->y][j - tetri->x] > 0)
-
+      while (x++ < tetri->x + tetri->width && x < game->width)
+	if (tetri->arr[y - tetri->y][x - tetri->x] > 0)
+	  game->arr[y][x] = tetri[i]->color;
     }
 }
 
-int	add_tetri(t_tetri *tetri, t_game *game, int cur)
+void	clean_tetri(t_tetri *tetri, t_game *game, int x, int y)
 {
-  tetri[cur].x = (game->width / 2) - (tetri[cur].width / 2) ;
-  tetri[cur].y = 0;
-  if (check_print_tetri(tetri[cur], game) ||
-      print_tetri(tetri[cur], game))
+  while (y++ < tetri->y + tetri->height && y < game->height)
+    {
+      while (x++ < tetri->x + tetri->width && x < game->width)
+	if (tetri->arr[y - tetri->y][x - tetri->x] > 0)
+	  game->arr[y][x] = 0;
+    }
+}
+
+int	add_tetri(t_tetri *tetri, t_game *game)
+{
+  tetri[game->cur].x = (game->width / 2) - (tetri[game->cur].width / 2) ;
+  tetri[game->cur].y = 0;
+  if (check_print_tetri(tetri[game->cur], game,
+			tetri[game->cur].x, tetri[game->cur].y))
     return (1);
+  print_tetri(tetri[game->cur], game, tetri[game->cur].x, tetri[game->cur].y))
+  return (0);
+}
+
+int     fall_tetri(t_game *game, t_tetri *tetri)
+{
+  clean_tetri(tetri[game->cur], game, tetri[game->cur].x, tetri[game->cur].y);
+  if (check_print_tetri(tetri[game->cur], game,
+			tetri[game->cur].x, tetri[game->cur].y + 1))
+    return (1);
+  tetri[game->cur].y += 1;
+  print_tetri(tetri[game->cur], game, tetri[game->cur].x, tetri[game->cur].y);
   return (0);
 }

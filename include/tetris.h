@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Wed Mar  9 02:37:38 2016 Antoine Baché
+** Last update Wed Mar  9 04:33:59 2016 Arthur ARNAUD
 */
 
 #ifndef	TETRIS_H_
@@ -200,5 +200,10 @@ void		display_title(WINDOW *);
 void		display_interface(t_window *, t_game *);
 void		display_board(t_window *, t_tetri *, t_game *);
 void		display_tetriminos(WINDOW *, char **, int);
+int		check_print_tetri(t_tetri *, t_game *, int, int);
+int		print_tetri(t_tetri *, t_game *, int, int);
+int		clean_tetri(t_tetri *, t_game *, int, int);
+int		add_tetri(t_tetri *, t_game *);
+int		fall_tetri(t_tetri *, t_game *);
 
 #endif /* TETRIS_H_ */

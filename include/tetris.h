@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Wed Mar  9 10:51:52 2016 Antoine Baché
+** Last update Wed Mar  9 14:09:08 2016 Antoine Baché
 */
 
 #ifndef	TETRIS_H_
@@ -119,7 +119,7 @@ typedef		int (**event)(t_game *, t_tetri *);
 */
 void		checkPause(bool *, char **, WINDOW *, time_t *);
 bool		isOver(t_game *);
-int		debugMode(t_game *, t_tetri *);
+int		debugMode(t_game *, t_tetri *, char *);
 void		getTermSize(int *, int *);
 void		freeTetri(t_tetri *);
 void		freeKeys(char **);

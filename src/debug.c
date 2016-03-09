@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Mar  8 07:41:30 2016 Antoine Baché
-** Last update Wed Mar  9 01:41:07 2016 Antoine Baché
+** Last update Wed Mar  9 14:19:44 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -90,9 +90,9 @@ void	showTetriminos(t_tetri *tetri)
     }
 }
 
-int	debugMode(t_game *game, t_tetri *tetri)
+int	debugMode(t_game *game, t_tetri *tetri, char *term)
 {
-  char	buff[3];
+  char	buff[BUFF_SIZE];
 
   if (write(1, "*** DEBUG MODE ***\n", 19) < 0)
     return (1);
@@ -100,17 +100,20 @@ int	debugMode(t_game *game, t_tetri *tetri)
   if (write(1, "Next : ", 7) < 0 ||
       ((game->showNext) ? write(1, "Yes\n", 4) : write(1, "No\n", 3)) < 0 ||
       write(1, "Level : ", 8) < 0 ||
-      my_put_nbr((int)game->level) < 0 ||
-      write(1, "\n", 1) < 0 ||
-      write(1, "Size : ", 7) < 0 ||
-      my_put_nbr(game->height) < 0 ||
-      write(1, "*", 1) < 0 ||
-      my_put_nbr(game->width) < 0 ||
+      my_put_nbr((int)game->level) < 0 || write(1, "\n", 1) < 0 ||
+      write(1, "Size : ", 7) < 0 || my_put_nbr(game->height) < 0 ||
+      write(1, "*", 1) < 0 || my_put_nbr(game->width) < 0 ||
       write(1, "\n", 1) < 0)
     return (1);
   showTetriminos(tetri);
   if (write(1, "Press a key to start Tetris\n", 28) < 0)
     return (1);
-  while (!read(0, buff, 2));
+  if (initTerm(term, false))
+    return (error("Cannot init term\n"));
+  my_memset(buff, 0, BUFF_SIZE);
+  while (!buff[0])
+    read(0, buff, BUFF_SIZE - 1);
+  if (initTerm(term, false))
+    return (error("Cannot init term\n"));
   return (0);
 }

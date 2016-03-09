@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Tue Feb 23 19:12:02 2016 Arthur ARNAUD
-** Last update Wed Mar  9 10:58:22 2016 Antoine Baché
+** Last update Wed Mar  9 14:08:00 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -26,7 +26,7 @@ int		initLoop(t_loop *loop, t_game *game, char *term)
       (!(loop->events = selectorEvent()) ||
        !(loop->tetri = load_tetri(loop->tetri, game))))
     return (1);
-  if (game->debug && debugMode(game, loop->tetri))
+  if (game->debug && debugMode(game, loop->tetri, term))
     return (1);
   if (init_game(game, loop->tetri))
     return (1);

@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 16:35:50 2016 Antoine Baché
-** Last update Wed Mar  9 01:04:43 2016 Antoine Baché
+** Last update Wed Mar  9 02:36:48 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -113,10 +113,9 @@ int		check_args(int ac, char **av, char **env)
     }
   if (!(smkx = tigetstr("smkx")) || putp(smkx) == ERR)
     return (freeKeys(game.keys), 1);
-  if (initTerm((term = getTerm((const char **)env)), false))
-    return (initTerm(term, true), freeKeys(game.keys),
-	    error("Cannot find info about term\n"));
-  if (tetris(&game))
+  if (!(term = getTerm((const char **)env)))
+    return (freeKeys(game.keys), error("Cannot find info about term\n"));
+  if (tetris(&game, term))
     return (initTerm(term, true), freeKeys(game.keys), endwin(), 1);
   return (initTerm(term, true), freeKeys(game.keys), endwin(), 0);
 }

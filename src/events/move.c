@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Mar  8 02:06:28 2016 Antoine Baché
-** Last update Wed Mar  9 05:16:48 2016 Arthur ARNAUD
+** Last update Wed Mar  9 06:14:10 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -15,7 +15,7 @@ int	keyLeftEvent(t_game *game, t_tetri *tetri)
   clean_tetri(&tetri[game->cur], game, tetri[game->cur].x, tetri[game->cur].y);
   if (check_print_tetri(&tetri[game->cur], game,
 			tetri[game->cur].x - 1, tetri[game->cur].y))
-    return (1);
+    return (0);
   tetri[game->cur].x -= 1;
   print_tetri(&tetri[game->cur], game, tetri[game->cur].x, tetri[game->cur].y);
   return (0);
@@ -26,7 +26,7 @@ int	keyRightEvent(t_game *game, t_tetri *tetri)
   clean_tetri(&tetri[game->cur], game, tetri[game->cur].x, tetri[game->cur].y);
   if (check_print_tetri(&tetri[game->cur], game,
 			tetri[game->cur].x + 1, tetri[game->cur].y))
-    return (1);
+    return (0);
   tetri[game->cur].x += 1;
   print_tetri(&tetri[game->cur], game, tetri[game->cur].x, tetri[game->cur].y);
   return (0);

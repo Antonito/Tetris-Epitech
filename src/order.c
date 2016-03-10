@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Wed Mar  9 00:04:13 2016 Antoine Baché
-** Last update Thu Mar 10 03:09:46 2016 Antoine Baché
+** Last update Thu Mar 10 03:13:07 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -71,11 +71,11 @@ char		**orderNames(char **name, int nb)
 	  if (my_strcmp(name[i], name[j]) > 0)
 	    {
 	      if (!(tmp = my_strdup(name[i])))
-		return (NULL);
+		return (error("Cannot malloc\n"), NULL);
 	      if (free(name[i]), !(name[i] = my_strdup(name[j])))
-		return (NULL);
+		return (error("Cannot malloc\n"), NULL);
 	      if (free(name[j]), !(name[j] = my_strdup(tmp)))
-		return (NULL);
+		return (error("Cannot malloc\n"), NULL);
 	      free(tmp);
 	    }
 	}

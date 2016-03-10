@@ -5,7 +5,7 @@
 ## Login   <bache_a@epitech.net>
 ##
 ## Started on  Tue Feb 23 14:08:31 2016 Antoine Baché
-## Last update Wed Mar  9 10:31:33 2016 Antoine Baché
+## Last update Thu Mar 10 02:52:13 2016 Antoine Baché
 ##
 
 DEBUG=			yes
@@ -24,6 +24,7 @@ SRC_FILES=		main.c			\
 			my_getnbr.c		\
 			my_strlen.c		\
 			my_strncmp.c		\
+			my_strcmp.c		\
 			my_strndup.c		\
 			my_str_to_wordtab.c	\
 			interface.c		\

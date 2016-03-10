@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 16:15:27 2016 Antoine Baché
-** Last update Tue Mar  8 21:57:29 2016 Antoine Baché
+** Last update Thu Mar 10 02:53:02 2016 Antoine Baché
 */
 
 #ifndef	TOOLS_H_
@@ -20,6 +20,7 @@ char	*my_strdup(char *);
 char	*my_strndup(char *, int);
 char	**my_str_to_wordtab(const char *, const int);
 int	my_strlen(const char *);
+int	my_strcmp(const char *, const char *);
 int	my_strncmp(const char *, const char *, int);
 
 #endif	/* !TOOLS_H_ */

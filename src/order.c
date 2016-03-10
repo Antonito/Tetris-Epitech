@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Wed Mar  9 00:04:13 2016 Antoine Baché
-** Last update Wed Mar  9 01:35:23 2016 Antoine Baché
+** Last update Thu Mar 10 03:08:49 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -40,12 +40,50 @@ int		countFiles(void)
   return (i);
 }
 
+int		isOrdered(const char **name)
+{
+  int		i;
+  int		j;
+
+  i = -1;
+  while (name[++i] && (j = i) > -1)
+    {
+      while (name[++j])
+	{
+	  printf("S1: %s\n", name[i]);
+	  printf("S2: %s\n", name[j]);
+	  printf("Strcmp = %d\n", my_strcmp(name[i], name[j]));
+	  if (my_strcmp(name[i], name[j]) > 0)
+	    return (1);
+	}
+    }
+  return (0);
+}
+
 char		**orderNames(char **name, int nb)
 {
-  char		**ordered;
+  char		*tmp;
+  int		i;
+  int		j;
 
-  ordered = name;
-  return (ordered);
+  i = -1;
+  while (isOrdered((const char **)name) && name[++i] && (j = i) > -1)
+    {
+      while (name[++j])
+	{
+	  if (my_strcmp(name[i], name[j]) > 0)
+	    {
+	      if (!(tmp = my_strdup(name[i])))
+		return (NULL);
+	      if (free(name[i]), !(name[i] = my_strdup(name[j])))
+		return (NULL);
+	      if (free(name[j]), !(name[j] = my_strdup(tmp)))
+		return (NULL);
+	      free(tmp);
+	    }
+	}
+    }
+  return (name);
 }
 
 char		**getNames(DIR *dir)

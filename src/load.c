@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Thu Feb 25 19:55:00 2016 Arthur ARNAUD
-** Last update Wed Mar  9 01:33:43 2016 Antoine Baché
+** Last update Thu Mar 10 03:52:21 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -20,7 +20,7 @@ int		getShape(int fd, t_tetri *tetri)
   char		*str;
 
   if (!(tetri->arr = malloc(sizeof(char *) * (tetri->height + 1))))
-    return (1);
+    return (tetri->arr = NULL, 1);
   tetri->arr[tetri->height] = NULL;
   i = -1;
   while ((str = get_next_line(fd)))

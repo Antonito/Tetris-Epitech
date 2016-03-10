@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Mar  8 03:24:51 2016 Antoine Baché
-** Last update Wed Mar  9 01:28:06 2016 Antoine Baché
+** Last update Thu Mar 10 04:02:56 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -18,7 +18,8 @@ void	freeTetri(t_tetri *tetri)
   while (tetri[i].color != -1)
     {
       free(tetri[i].name);
-      /* free2DArray(tetri[i].arr); */
+      if (i)
+	free2DArray(tetri[i].arr);
       ++i;
     }
   free(tetri);

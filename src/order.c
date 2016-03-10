@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Wed Mar  9 00:04:13 2016 Antoine Baché
-** Last update Thu Mar 10 03:13:07 2016 Antoine Baché
+** Last update Thu Mar 10 04:03:49 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -57,7 +57,7 @@ int		isOrdered(const char **name)
   return (0);
 }
 
-char		**orderNames(char **name, int nb)
+char		**orderNames(char **name)
 {
   char		*tmp;
   int		i;
@@ -100,5 +100,5 @@ char		**getNames(DIR *dir)
 	!(names[i++] = my_strdup(file->d_name)))
       return (error("Cannot malloc\n"), NULL);
   names[nb] = NULL;
-  return ((names = orderNames(names, nb)));
+  return ((names = orderNames(names)));
 }

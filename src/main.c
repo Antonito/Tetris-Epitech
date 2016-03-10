@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Tue Feb 23 19:12:02 2016 Arthur ARNAUD
-** Last update Thu Mar 10 12:55:36 2016 Antoine Baché
+** Last update Thu Mar 10 13:23:37 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -66,14 +66,15 @@ int		tetris(t_game *game, char *term)
 	   (timer.tick = time(NULL)), (game->cur = 0), usleep(100),
 	   !add_tetri(loop.tetri, game))
       if ((timer.check = timer.tick - timer.count), isOver(game))
-	return (freeTetri(loop.tetri), 0);
+	return (freeWin(&loop.win), freeTetri(loop.tetri), 0);
       else if (getTime(game, &start),
 	       display(&loop.win, &loop.tetri[loop.next], game))
-	return (free(loop.events), freeTetri(loop.tetri), endwin(), 1);
+	return (freeWin(&loop.win), free(loop.events), freeTetri(loop.tetri),
+		endwin(), 1);
       else if ((loop.check = checkKeys(&loop, game)) == 1)
-	return (freeTetri(loop.tetri), 1);
+	return (freeWin(&loop.win), freeTetri(loop.tetri), 1);
       else if (loop.check == 2)
-	return (freeTetri(loop.tetri), 0);
+	return (freeWin(&loop.win), freeTetri(loop.tetri), 0);
       else if (checkPause(&game->running, game->keys, loop.win.score, &start),
 	       timer.check % 60 == 2)
 	timer.count = time(NULL);

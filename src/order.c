@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Wed Mar  9 00:04:13 2016 Antoine Baché
-** Last update Thu Mar 10 03:08:49 2016 Antoine Baché
+** Last update Thu Mar 10 03:09:46 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -50,9 +50,6 @@ int		isOrdered(const char **name)
     {
       while (name[++j])
 	{
-	  printf("S1: %s\n", name[i]);
-	  printf("S2: %s\n", name[j]);
-	  printf("Strcmp = %d\n", my_strcmp(name[i], name[j]));
 	  if (my_strcmp(name[i], name[j]) > 0)
 	    return (1);
 	}

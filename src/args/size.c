@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 20:02:32 2016 Antoine Baché
-** Last update Mon Mar  7 08:32:16 2016 Antoine Baché
+** Last update Fri Mar 11 03:41:58 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -39,7 +39,7 @@ int	parseSize(const char *str, t_game *game)
 int	sizeArg(t_game *game, char **av, bool mode)
 {
   (void)mode;
-  if (parseSize(av[0], game))
+  if (my_strlen(av[0]) <= 11 || parseSize(av[0], game))
     return (1);
   return (0);
 }

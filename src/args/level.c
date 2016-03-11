@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 20:02:32 2016 Antoine Baché
-** Last update Mon Mar  7 08:11:18 2016 Antoine Baché
+** Last update Fri Mar 11 03:40:53 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -21,10 +21,12 @@ int	levelArg(t_game *game, char **av, bool mode)
 {
   int	value;
 
-  if (mode == SHORT)
+  if (mode == SHORT && av[1])
     value = ((av[1]) ? my_getnbr(av[1]) : 0);
-  else if (mode == LONG)
+  else if (mode == LONG && my_strlen(av[0]) > 8)
     value = parseLevel(av[0]);
+  else
+    return (1);
   if (value)
     game->level = value;
   else

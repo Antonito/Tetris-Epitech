@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 20:05:44 2016 Antoine Baché
-** Last update Tue Mar  8 10:28:42 2016 Antoine Baché
+** Last update Fri Mar 11 03:39:32 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -15,12 +15,13 @@ int	keyQuitArg(t_game *game, char **av, bool mode)
 {
   if (mode == SHORT)
     {
-      if (!(game->keys[QUIT] = my_strdup(av[1])))
+      if (!av[1] || !(game->keys[QUIT] = my_strdup(av[1])))
 	return (1);
     }
   else if (mode == LONG)
     {
-      if (!(game->keys[QUIT] = my_strdup(av[0] + 11)))
+      if (my_strlen(av[0]) <= 11 ||
+	  !(game->keys[QUIT] = my_strdup(av[0] + 11)))
 	return (1);
     }
   return (0);
@@ -30,12 +31,13 @@ int	keyPauseArg(t_game *game, char **av, bool mode)
 {
   if (mode == SHORT)
     {
-      if (!(game->keys[PAUSE] = my_strdup(av[1])))
+      if (!av[1] || !(game->keys[PAUSE] = my_strdup(av[1])))
 	return (1);
     }
   else if (mode == LONG)
     {
-      if (!(game->keys[PAUSE] = my_strdup(av[0] + 12)))
+      if (my_strlen(av[0]) <= 12 ||
+	  !(game->keys[PAUSE] = my_strdup(av[0] + 12)))
 	return (1);
     }
   return (0);

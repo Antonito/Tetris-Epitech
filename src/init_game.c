@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Wed Feb 24 19:28:55 2016 Arthur ARNAUD
-** Last update Sat Mar 12 13:48:01 2016 Antoine Baché
+** Last update Sat Mar 12 13:57:04 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -16,6 +16,7 @@ int	init_game(t_game *game, t_tetri *tetri)
   tetri->width = 2;
   tetri->x = 0;
   tetri->y = 0;
+  game->tetri = NULL;
   if (!(tetri->arr = malloc_tab(tetri->arr, tetri->height, tetri->width))||
       !(game->arr = malloc_tab(game->arr, game->height, game->width)))
     return (1);

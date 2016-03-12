@@ -5,7 +5,7 @@
 ## Login   <bache_a@epitech.net>
 ##
 ## Started on  Tue Feb 23 14:08:31 2016 Antoine Baché
-## Last update Thu Mar 10 02:52:13 2016 Antoine Baché
+## Last update Sat Mar 12 13:48:34 2016 Antoine Baché
 ##
 
 DEBUG=			yes
@@ -40,6 +40,8 @@ SRC_FILES=		main.c			\
 			isOver.c		\
 			order.c			\
 			pause.c			\
+			check_end.c		\
+			check_line.c		\
 			args/debug.c		\
 			args/help.c		\
 			args/keysLR.c		\

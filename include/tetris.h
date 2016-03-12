@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Thu Mar 10 13:22:36 2016 Antoine Baché
+** Last update Sat Mar 12 13:55:49 2016 Antoine Baché
 */
 
 #ifndef	TETRIS_H_
@@ -93,6 +93,7 @@ typedef struct	s_game
   bool		debug;
   bool		running;
   int		cur;
+  char		**tetri;
   char		**arr;
   char		**keys;
 }		t_game;
@@ -210,10 +211,18 @@ void		display_title(WINDOW *);
 void		display_interface(t_window *, t_game *);
 void		display_board(t_window *, t_tetri *, t_game *);
 void		display_tetriminos(WINDOW *, char **, int);
+
+/*
+** ===================================================
+**                      DISPLAY
+** ===================================================
+*/
 int		check_print_tetri(t_tetri *, t_game *, int, int);
 void		print_tetri(t_tetri *, t_game *, int, int);
 void		clean_tetri(t_tetri *, t_game *, int, int);
 int		add_tetri(t_tetri *, t_game *);
 int		fall_tetri(t_game *, t_tetri *);
+int		check_line(t_game *, t_tetri *);
+int		check_end(t_game *);
 
 #endif /* TETRIS_H_ */

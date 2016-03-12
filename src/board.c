@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Tue Feb 23 23:37:45 2016 Arthur ARNAUD
-** Last update Fri Mar 11 18:14:26 2016 Arthur ARNAUD
+** Last update Sat Mar 12 14:20:10 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -23,8 +23,8 @@ WINDOW		*create_new_board(int height, int width, int start_y,
 
 void		display_tetriminos(WINDOW *win, char **arr, int width)
 {
-  int	i;
-  int	j;
+  int		i;
+  int		j;
 
   i = -1;
   while (arr[++i])

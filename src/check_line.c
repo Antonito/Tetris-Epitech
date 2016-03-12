@@ -1,25 +1,14 @@
 /*
-** check_line.c for check_line in /home/arnaud_e/rendu/psu/PSU_2015_tetris/src
+** check_line.c for Tetris in /home/bache_a/work/Prog_Elem/PSU_2015_tetris/src
 **
-** Made by Arthur ARNAUD
-** Login   <arnaud_e@epitech.net>
+** Made by Antoine Baché
+** Login   <bache_a@epitech.net>
 **
-** Started on  Fri Mar 11 12:13:43 2016 Arthur ARNAUD
-** Last update Sat Mar 12 02:09:32 2016 Arthur ARNAUD
+** Started on  Sat Mar 12 13:50:50 2016 Antoine Baché
+** Last update Sat Mar 12 14:17:15 2016 Antoine Baché
 */
 
 #include "tetris.h"
-
-int	check_line(t_game *game, t_tetri *tetri)
-{
-  int	i;
-
-  i = tetri[game->cur].y - 1;
-  while (++i < tetri[game->cur].y + tetri[game->cur].height)
-    if (line_full(game, i))
-      return (fall_all_tetri(game, i), 1);
-  return (1);
-}
 
 void	fall_all_tetri(t_game *game, int index)
 {
@@ -46,5 +35,16 @@ int	line_full(t_game *game, int index)
   i = -1;
   while (++i < game->width)
     game->arr[index][i] = -1;
+  return (1);
+}
+
+int	check_line(t_game *game, t_tetri *tetri)
+{
+  int	i;
+
+  i = tetri[game->cur].y - 1;
+  while (++i < tetri[game->cur].y + tetri[game->cur].height)
+    if (line_full(game, i))
+      return (fall_all_tetri(game, i), 1);
   return (1);
 }

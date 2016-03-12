@@ -1,11 +1,11 @@
 /*
-** check_end.c for check_end in /home/arnaud_e/rendu/psu/PSU_2015_tetris/src
+** check_end.c for Tetris in /PSU_2015_tetris/src
 **
-** Made by Arthur ARNAUD
-** Login   <arnaud_e@epitech.net>
+** Made by Antoine Baché
+** Login   <bache_a@epitech.net>
 **
-** Started on  Fri Mar 11 12:13:57 2016 Arthur ARNAUD
-** Last update Sat Mar 12 01:31:15 2016 Arthur ARNAUD
+** Started on  Sat Mar 12 13:49:18 2016 Antoine Baché
+** Last update Sat Mar 12 14:19:38 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -16,7 +16,9 @@ int	check_end(t_game *game)
 
   i = -1;
   while (++i < game->width)
-    if (game->arr[0][i] > -1)
-      return (1);
+    {
+      if (game->arr[0][i] > -1)
+	return (1);
+    }
   return (0);
 }

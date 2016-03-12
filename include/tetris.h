@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Sat Mar 12 01:45:07 2016 Arthur ARNAUD
+** Last update Sat Mar 12 14:23:41 2016 Antoine Baché
 */
 
 #ifndef	TETRIS_H_
@@ -214,6 +214,7 @@ int		check_print_tetri(t_tetri *, t_game *, int, int);
 int		check_end(t_game *);
 void		clean_tetri(t_tetri *, t_game *, int, int);
 void		print_tetri(t_tetri *, t_game *, int, int);
+
 /*
 ** ===================================================
 **                      DISPLAY

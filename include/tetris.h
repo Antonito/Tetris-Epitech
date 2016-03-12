@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Sat Mar 12 14:23:41 2016 Antoine Baché
+** Last update Sat Mar 12 18:24:12 2016 Antoine Baché
 */
 
 #ifndef	TETRIS_H_
@@ -39,6 +39,13 @@ typedef	enum	e_mode
     SHORT,
     LONG
   }		t_mode;
+
+typedef enum	e_move
+  {
+    RIGHT_M	= -1,
+    VERTICAL_M	= 0,
+    LEFT_M	= 1
+  }		t_move;
 
 typedef	enum	e_keys
   {

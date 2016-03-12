@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Mon Feb 29 15:41:20 2016 Arthur ARNAUD
-** Last update Sat Mar 12 17:40:16 2016 Arthur ARNAUD
+** Last update Sat Mar 12 18:25:59 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -35,7 +35,7 @@ int	check_print_tetri(t_tetri *tetri, t_game *game, int x, int y)
   return (0);
 }
 
-void	print_tetri(t_tetri *tetri, t_game *game, int x, int y)
+void	print_tetri(t_tetri *tetri, t_game *game, int x, int y, int move)
 {
   int	i;
   int	j;
@@ -50,7 +50,13 @@ void	print_tetri(t_tetri *tetri, t_game *game, int x, int y)
       while (++j < tetri->width)
 	{
 	  if (tetri->arr[i][j] == tetri->color)
-	    game->arr[y][x] = tetri->color;
+	    {
+	      if (move == VERTICAL_M)
+		game->arr[y - 1][x] = -1;
+	      else
+		game->arr[y][x + move] = -1;
+	      game->arr[y][x] = tetri->color;
+	    }
 	  x++;
 	}
       y++;

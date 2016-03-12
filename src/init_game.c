@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Wed Feb 24 19:28:55 2016 Arthur ARNAUD
-** Last update Thu Mar 10 03:31:56 2016 Antoine Baché
+** Last update Sat Mar 12 01:46:02 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -16,6 +16,7 @@ int	init_game(t_game *game, t_tetri *tetri)
   tetri->width = 2;
   tetri->x = 0;
   tetri->y = 0;
+  game->tetri = NULL;
   if (!(tetri->arr = malloc_tab(tetri->arr, tetri->height, tetri->width))||
       !(game->arr = malloc_tab(game->arr, game->height, game->width)))
     return (1);
@@ -33,7 +34,7 @@ char	**malloc_tab(char **arr, int height, int width)
     {
       if (!(arr[i] = malloc(sizeof(char) * width + 1)))
 	return (NULL);
-      my_memset(arr[i], 0, width + 1);
+      my_memset(arr[i], -1, width + 1);
     }
   arr[height] = NULL;
   return (arr);
@@ -41,6 +42,8 @@ char	**malloc_tab(char **arr, int height, int width)
 
 int            create_all_win(t_window *win, t_game *game)
 {
+  printf("lil\n");
+  win->next = NULL;
   if (!(win->title = newwin(6, 30, 0, 0)) ||
       !(win->score = create_new_win(10, 25, 8, 4)) ||
       !(win->board =

@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Tue Feb 23 19:12:02 2016 Arthur ARNAUD
-** Last update Thu Mar 10 13:23:37 2016 Antoine Baché
+** Last update Sat Mar 12 01:51:57 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -63,8 +63,7 @@ int		tetris(t_game *game, char *term)
   timer.count = time(NULL);
   if (!initLoop(&loop, game, term) && (start = time(NULL)) != ((time_t) -1))
     while (my_memset(loop.buff, 0, BUFF_SIZE), (loop.i = -1),
-	   (timer.tick = time(NULL)), (game->cur = 0), usleep(100),
-	   !add_tetri(loop.tetri, game))
+	   (timer.tick = time(NULL)), (game->cur = 0), usleep(100))
       if ((timer.check = timer.tick - timer.count), isOver(game))
 	return (freeWin(&loop.win), freeTetri(loop.tetri), 0);
       else if (getTime(game, &start),
@@ -77,7 +76,11 @@ int		tetris(t_game *game, char *term)
 	return (freeWin(&loop.win), freeTetri(loop.tetri), 0);
       else if (checkPause(&game->running, game->keys, loop.win.score, &start),
 	       timer.check % 60 == 2)
-	timer.count = time(NULL);
+	{
+	  timer.count = time(NULL);
+	  if (fall_tetri(game, loop.tetri))
+	    add_tetri(loop.tetri, game);
+	}
   return (1);
 }
 

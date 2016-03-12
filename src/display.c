@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Mon Feb 22 21:01:23 2016 Arthur ARNAUD
-** Last update Wed Mar  9 14:02:36 2016 Antoine Baché
+** Last update Sat Mar 12 02:13:12 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -16,16 +16,20 @@ int		init_display(t_window *win, t_game *game, char *term)
     return (error("Cannot start new term\n"));
   if (initTerm(term, false))
     return (error("Cannot init term\n"));
+  printf("display.c : init display before curs_set(FALSE)\n");
   curs_set(FALSE);
+  printf("display.c : init display after curs_set(FALSE)\n");
   start_color();
   init_pair_color();
   if (create_all_win(win, game))
-    return (1);
+    return (error("Cannot create windows\n"));
   return (0);
 }
 
 int		display(t_window *win, t_tetri *next, t_game *game)
 {
+  if (win->next)
+    delwin(win->next);
   if (!(win->next =
 	create_new_win(next->height + 2, next->width + 6, 1, game->width + 36)))
     return (1);

@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Thu Mar 10 13:22:36 2016 Antoine Baché
+** Last update Sat Mar 12 01:45:07 2016 Arthur ARNAUD
 */
 
 #ifndef	TETRIS_H_
@@ -93,6 +93,7 @@ typedef struct	s_game
   bool		debug;
   bool		running;
   int		cur;
+  char		**tetri;
   char		**arr;
   char		**keys;
 }		t_game;
@@ -201,6 +202,20 @@ int		create_all_win(t_window *, t_game *);
 
 /*
 ** ===================================================
+**                      GAME
+** ===================================================
+*/
+int		add_tetri(t_tetri *, t_game *);
+int		check_line(t_game *, t_tetri *);
+int		line_full(t_game *, int);
+void		fall_all_tetri(t_game *, int);
+int		fall_tetri(t_game *, t_tetri *);
+int		check_print_tetri(t_tetri *, t_game *, int, int);
+int		check_end(t_game *);
+void		clean_tetri(t_tetri *, t_game *, int, int);
+void		print_tetri(t_tetri *, t_game *, int, int);
+/*
+** ===================================================
 **                      DISPLAY
 ** ===================================================
 */
@@ -210,10 +225,5 @@ void		display_title(WINDOW *);
 void		display_interface(t_window *, t_game *);
 void		display_board(t_window *, t_tetri *, t_game *);
 void		display_tetriminos(WINDOW *, char **, int);
-int		check_print_tetri(t_tetri *, t_game *, int, int);
-void		print_tetri(t_tetri *, t_game *, int, int);
-void		clean_tetri(t_tetri *, t_game *, int, int);
-int		add_tetri(t_tetri *, t_game *);
-int		fall_tetri(t_game *, t_tetri *);
 
 #endif /* TETRIS_H_ */

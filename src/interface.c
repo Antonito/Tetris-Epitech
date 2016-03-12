@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Tue Feb 23 14:52:36 2016 Arthur ARNAUD
-** Last update Wed Mar  9 10:42:16 2016 Arthur ARNAUD
+** Last update Sat Mar 12 13:46:09 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -20,8 +20,9 @@ WINDOW		*create_new_win(int height, int width, int start_y, int start_x)
   return (win);
 }
 
-void		init_pair_color()
+void		init_pair_color(void)
 {
+  init_pair(0, COLOR_BLACK, COLOR_BLACK);
   init_pair(1, COLOR_RED, COLOR_BLACK);
   init_pair(2, COLOR_GREEN, COLOR_BLACK);
   init_pair(3, COLOR_YELLOW, COLOR_BLACK);

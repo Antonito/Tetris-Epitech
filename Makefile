@@ -5,7 +5,7 @@
 ## Login   <bache_a@epitech.net>
 ##
 ## Started on  Tue Feb 23 14:08:31 2016 Antoine Baché
-## Last update Sat Mar 12 14:25:11 2016 Antoine Baché
+## Last update Sun Mar 13 04:10:35 2016 Antoine Baché
 ##
 
 DEBUG=			yes
@@ -13,6 +13,7 @@ DEBUG=			yes
 SRC_PREFIX=		src/
 
 SRC_FILES=		main.c			\
+			clean_name.c		\
 			get_next_line.c		\
 			load.c			\
 			add_tetri.c		\

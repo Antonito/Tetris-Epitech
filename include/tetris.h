@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Sat Mar 12 18:24:12 2016 Antoine Baché
+** Last update Sun Mar 13 04:10:16 2016 Antoine Baché
 */
 
 #ifndef	TETRIS_H_
@@ -183,6 +183,7 @@ int		errorArg(t_game *, char **, bool);
 **                       LOAD
 ** ===================================================
 */
+char		*clean_name(char *);
 void		setColor(t_tetri *);
 char		**getNames(DIR *);
 t_tetri		*load_tetri(t_tetri *, t_game *);

@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Thu Feb 25 19:55:00 2016 Arthur ARNAUD
-** Last update Thu Mar 10 03:52:21 2016 Antoine Baché
+** Last update Sun Mar 13 04:12:00 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -55,7 +55,8 @@ int		getTetrimino(char *name, t_tetri *tetri, t_game *game)
 {
   int		fd;
 
-  tetri->name = my_strdup(name);
+  if (!(tetri->name = clean_name(my_strdup(name))))
+    return (1);
   if (!(name = add_dir_name(name)))
     return (error("Cannot malloc\n"));
   if ((fd = open(name, O_RDONLY)) < 0)

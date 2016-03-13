@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Mon Feb 29 15:41:20 2016 Arthur ARNAUD
-** Last update Sat Mar 12 18:25:59 2016 Antoine Baché
+** Last update Sun Mar 13 17:05:30 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -24,7 +24,7 @@ int	check_print_tetri(t_tetri *tetri, t_game *game, int x, int y)
       j = -1;
       while (++j < tetri->width && x < game->width)
 	{
-	  if (tetri->arr[i][j] == tetri->color && game->arr[y][x] > -1)
+	  if (tetri->arr[i][j] > -1  && game->arr[y][x] > -1)
 	    return (1);
 	  x++;
 	}
@@ -35,7 +35,7 @@ int	check_print_tetri(t_tetri *tetri, t_game *game, int x, int y)
   return (0);
 }
 
-void	print_tetri(t_tetri *tetri, t_game *game, int x, int y, int move)
+void	print_tetri(t_tetri *tetri, t_game *game, int x, int y)
 {
   int	i;
   int	j;
@@ -49,14 +49,10 @@ void	print_tetri(t_tetri *tetri, t_game *game, int x, int y, int move)
       j = -1;
       while (++j < tetri->width)
 	{
-	  if (tetri->arr[i][j] == tetri->color)
-	    {
-	      if (move == VERTICAL_M)
-		game->arr[y - 1][x] = -1;
-	      else
-		game->arr[y][x + move] = -1;
-	      game->arr[y][x] = tetri->color;
-	    }
+	  /* if (tetri->arr[i][j] == tetri->color) */
+	  /*   game->arr[y][x] = tetri->color; */
+	  if (tetri->arr[i][j] > -1)
+	    game->arr[y][x] = tetri->color;
 	  x++;
 	}
       y++;
@@ -77,7 +73,7 @@ void	clean_tetri(t_tetri *tetri, t_game *game, int x, int y)
       j = -1;
       while (++j < tetri->width)
 	{
-	  if (tetri->arr[i][j] == tetri->color)
+	  if (tetri->arr[i][j] > -1)
 	    game->arr[y][x] = -1;
 	  x++;
 	}
@@ -100,7 +96,7 @@ int     fall_tetri(t_game *game, t_tetri *tetri)
 {
   clean_tetri(&tetri[game->cur], game, tetri[game->cur].x, tetri[game->cur].y);
   if (check_print_tetri(&tetri[game->cur], game,
-			tetri[game->cur].x, tetri[game->cur].y + 1))
+  			tetri[game->cur].x, tetri[game->cur].y + 1))
     return (check_line(game, tetri));
   tetri[game->cur].y += 1;
   print_tetri(&tetri[game->cur], game, tetri[game->cur].x, tetri[game->cur].y);

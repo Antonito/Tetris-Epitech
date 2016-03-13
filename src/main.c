@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Tue Feb 23 19:12:02 2016 Arthur ARNAUD
-** Last update Sat Mar 12 17:41:39 2016 Arthur ARNAUD
+** Last update Sun Mar 13 17:00:55 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -70,7 +70,7 @@ int		tetris(t_game *game, char *term)
       if ((timer.check = timer.tick - timer.count), isOver(game))
 	return (freeWin(&loop.win), freeTetri(loop.tetri), 0);
       else if (getTime(game, &start),
-	       display(&loop.win, &loop.tetri[loop.next], game))
+	       display(&loop.win, &loop.tetri[1], game))
 	return (freeWin(&loop.win), free(loop.events), freeTetri(loop.tetri),
 		endwin(), 1);
       else if ((loop.check = checkKeys(&loop, game)) == 1)
@@ -81,8 +81,8 @@ int		tetris(t_game *game, char *term)
 	       timer.check % 60 == 2)
 	{
 	  timer.count = time(NULL);
-	  if (fall_tetri(game, loop.tetri))
-	    add_tetri(loop.tetri, game);
+	  /* if (fall_tetri(game, loop.tetri)) */
+	  /*   add_tetri(loop.tetri, game); */
 	}
   return (1);
 }

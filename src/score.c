@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Tue Feb 23 14:53:09 2016 Arthur ARNAUD
-** Last update Tue Mar  8 03:39:19 2016 Antoine Baché
+** Last update Mon Mar 14 15:44:17 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -21,5 +21,8 @@ void	display_score(WINDOW *score, t_game *game)
   mvwprintw(score, 6, 2, "Level");
   mvwprintw(score, 6, 22, "%d", game->level);
   mvwprintw(score, 8, 2, "Timer:");
-  mvwprintw(score, 8, 18, "%d : %d", game->time_min, game->time_sec);
+  if (game->time_sec > 9)
+    mvwprintw(score, 8, 18, "%d : %d", game->time_min, game->time_sec);
+  else
+    mvwprintw(score, 8, 18, "%d : 0%d", game->time_min, game->time_sec);
 }

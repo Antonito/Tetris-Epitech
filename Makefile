@@ -5,7 +5,7 @@
 ## Login   <bache_a@epitech.net>
 ##
 ## Started on  Tue Feb 23 14:08:31 2016 Antoine Baché
-## Last update Sun Mar 13 23:54:24 2016 Arthur ARNAUD
+## Last update Mon Mar 14 15:18:22 2016 Arthur ARNAUD
 ##
 
 DEBUG=			yes
@@ -24,6 +24,7 @@ SRC_FILES=		main.c			\
 			display.c		\
 			my_getnbr.c		\
 			my_strlen.c		\
+			copy_tetri.c		\
 			my_strncmp.c		\
 			my_strcmp.c		\
 			my_strndup.c		\

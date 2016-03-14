@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Tue Feb 23 19:12:02 2016 Arthur ARNAUD
-** Last update Mon Mar 14 01:02:03 2016 Arthur ARNAUD
+** Last update Mon Mar 14 16:13:29 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -28,7 +28,7 @@ int		initLoop(t_loop *loop, t_game *game, char *term)
     return (1);
   if (game->debug && debugMode(game, loop->tetri, term))
     return (1);
-  if (init_game(game, loop->tetri))
+  if (init_game(game))
     return (1);
   if (init_display(&loop->win, game, term))
     return (1);
@@ -80,7 +80,7 @@ int		tetris(t_game *game, char *term)
 	       timer.check % 60 == 2)
 	{
 	  timer.count = time(NULL);
-	  if (fall_tetri(game, loop.tetri))
+	  if (fall_tetri(game))
 	    add_tetri(loop.tetri, game);
 	}
   return (1);

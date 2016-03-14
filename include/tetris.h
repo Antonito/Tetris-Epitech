@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Mon Mar 14 01:02:34 2016 Arthur ARNAUD
+** Last update Mon Mar 14 16:14:36 2016 Arthur ARNAUD
 */
 
 #ifndef	TETRIS_H_
@@ -100,6 +100,7 @@ typedef struct	s_game
   bool		debug;
   bool		running;
   int		cur;
+  t_tetri	*tetri;
   char		**arr;
   char		**keys;
 }		t_game;
@@ -141,12 +142,12 @@ int		check_file(char *);
 ** ===================================================
 */
 event		selectorEvent(void);
-int		keyLeftEvent(t_game *, t_tetri *);
-int		keyRightEvent(t_game *, t_tetri *);
-int		keyTurnEvent(t_game *, t_tetri *);
-int		keyDropEvent(t_game *, t_tetri *);
-int		keyQuitEvent(t_game *, t_tetri *);
-int		keyPauseEvent(t_game *, t_tetri *);
+int		keyLeftEvent(t_game *);
+int		keyRightEvent(t_game *);
+int		keyTurnEvent(t_game *);
+int		keyDropEvent(t_game *);
+int		keyQuitEvent(t_game *);
+int		keyPauseEvent(t_game *);
 
 /*
 ** ===================================================
@@ -198,11 +199,11 @@ t_tetri		*my_realloc_tab(t_tetri *);
 ** ===================================================
 */
 int		tetris(t_game *, char *);
-int		init_game(t_game *, t_tetri *);
+int		init_game(t_game *);
 int		init_display(t_window *, t_game *, char *);
 char		**malloc_tab(char **, int, int);
 void		my_memset(void *, char, int);
-void		init_pair_color();
+void		init_pair_color(void);
 WINDOW		*create_new_win(int, int, int, int);
 WINDOW		*create_new_board(int, int, int, int);
 int		create_all_win(t_window *, t_game *);
@@ -213,15 +214,16 @@ int		create_all_win(t_window *, t_game *);
 ** ===================================================
 */
 int		add_tetri(t_tetri *, t_game *);
-int		check_line(t_game *, t_tetri *);
+int		check_line(t_game *);
 int		line_full(t_game *, int);
 void		fall_all_tetri(t_game *, int);
-int		fall_tetri(t_game *, t_tetri *);
+int		fall_tetri(t_game *);
 int		check_print_tetri(t_tetri *, t_game *, int, int);
 int		check_end(t_game *);
 void		clean_tetri(t_tetri *, t_game *, int, int);
 void		print_tetri(t_tetri *, t_game *, int, int);
 int		random_tetri(t_tetri *);
+int		copy_tetri(t_tetri *, t_game *);
 
 /*
 ** ===================================================

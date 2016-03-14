@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Mon Feb 29 15:41:20 2016 Arthur ARNAUD
-** Last update Mon Mar 14 01:01:04 2016 Arthur ARNAUD
+** Last update Mon Mar 14 16:16:22 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -82,22 +82,23 @@ void	clean_tetri(t_tetri *tetri, t_game *game, int x, int y)
 int	add_tetri(t_tetri *tetri, t_game *game)
 {
   game->cur = random_tetri(tetri);
-  tetri[game->cur].x = (game->width / 2) - (tetri[game->cur].width / 2) - 1 ;
-  tetri[game->cur].y = 1;
-  if (check_print_tetri(&tetri[game->cur], game,
-			tetri[game->cur].x, tetri[game->cur].y))
-    return (check_line(game, tetri));
-  print_tetri(&tetri[game->cur], game, tetri[game->cur].x, tetri[game->cur].y);
+  copy_tetri(&tetri[0], game);
+  game->tetri->x = (game->width / 2) - (game->tetri->width / 2) - 1 ;
+  game->tetri->y = 1;
+  if (check_print_tetri(game->tetri, game,
+			game->tetri->x, game->tetri->y))
+    return (check_line(game));
+  print_tetri(game->tetri, game, game->tetri->x, game->tetri->y);
   return (0);
 }
 
-int     fall_tetri(t_game *game, t_tetri *tetri)
+int     fall_tetri(t_game *game)
 {
-  clean_tetri(&tetri[game->cur], game, tetri[game->cur].x, tetri[game->cur].y);
-  if (check_print_tetri(&tetri[game->cur], game,
-  			tetri[game->cur].x, tetri[game->cur].y + 1))
-    return (check_line(game, tetri));
-  tetri[game->cur].y += 1;
-  print_tetri(&tetri[game->cur], game, tetri[game->cur].x, tetri[game->cur].y);
+  clean_tetri(game->tetri, game, game->tetri->x, game->tetri->y);
+  if (check_print_tetri(game->tetri, game,
+			game->tetri->x, game->tetri->y + 1))
+    return (check_line(game));
+  game->tetri->y += 1;
+  print_tetri(game->tetri, game, game->tetri->x, game->tetri->y);
   return (0);
 }

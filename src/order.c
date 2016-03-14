@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Wed Mar  9 00:04:13 2016 Antoine Baché
-** Last update Thu Mar 10 04:03:49 2016 Antoine Baché
+** Last update Sun Mar 13 17:22:47 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -21,6 +21,8 @@ void		setColor(t_tetri *tetri)
     while (tetri->arr[i][++j])
       if (tetri->arr[i][j] == '*')
 	tetri->arr[i][j] = (char)tetri->color;
+      else
+	tetri->arr[i][j] = -1;
 }
 
 int		countFiles(void)

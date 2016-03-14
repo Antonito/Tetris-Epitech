@@ -5,7 +5,7 @@
 ## Login   <bache_a@epitech.net>
 ##
 ## Started on  Tue Feb 23 14:08:31 2016 Antoine Baché
-## Last update Sun Mar 13 04:10:35 2016 Antoine Baché
+## Last update Sun Mar 13 23:54:24 2016 Arthur ARNAUD
 ##
 
 DEBUG=			yes
@@ -28,6 +28,7 @@ SRC_FILES=		main.c			\
 			my_strcmp.c		\
 			my_strndup.c		\
 			my_str_to_wordtab.c	\
+			random_tetri.c		\
 			interface.c		\
 			check_file.c		\
 			check_args.c		\

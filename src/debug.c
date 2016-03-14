@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Mar  8 07:41:30 2016 Antoine Baché
-** Last update Wed Mar  9 14:19:44 2016 Antoine Baché
+** Last update Sun Mar 13 17:33:29 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -61,8 +61,8 @@ void	showMoreTetriminos(t_tetri *tetri, int nb)
   while (++i < tetri[nb].height && (j = -1))
     {
       while (tetri[nb].arr[i][++j])
-	if (((tetri[nb].arr[i][j] != ' ') ? write(1, "*", 1) :
-	     write(1, &tetri[nb].arr[i][j], 1)) < 0)
+	if (((tetri[nb].arr[i][j] != -1) ? write(1, "*", 1) :
+	     write(1, " ", 1)) < 0)
 	  return ;
       if (write(1, "\n", 1) < 0)
 	return ;

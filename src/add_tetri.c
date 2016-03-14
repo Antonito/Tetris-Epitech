@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Mon Feb 29 15:41:20 2016 Arthur ARNAUD
-** Last update Sun Mar 13 17:05:30 2016 Arthur ARNAUD
+** Last update Mon Mar 14 01:01:04 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -24,7 +24,7 @@ int	check_print_tetri(t_tetri *tetri, t_game *game, int x, int y)
       j = -1;
       while (++j < tetri->width && x < game->width)
 	{
-	  if (tetri->arr[i][j] > -1  && game->arr[y][x] > -1)
+	  if (tetri->arr[i][j] == tetri->color  && game->arr[y][x] > -1)
 	    return (1);
 	  x++;
 	}
@@ -49,9 +49,7 @@ void	print_tetri(t_tetri *tetri, t_game *game, int x, int y)
       j = -1;
       while (++j < tetri->width)
 	{
-	  /* if (tetri->arr[i][j] == tetri->color) */
-	  /*   game->arr[y][x] = tetri->color; */
-	  if (tetri->arr[i][j] > -1)
+	  if (tetri->arr[i][j] == tetri->color)
 	    game->arr[y][x] = tetri->color;
 	  x++;
 	}
@@ -73,7 +71,7 @@ void	clean_tetri(t_tetri *tetri, t_game *game, int x, int y)
       j = -1;
       while (++j < tetri->width)
 	{
-	  if (tetri->arr[i][j] > -1)
+	  if (tetri->arr[i][j] == tetri->color)
 	    game->arr[y][x] = -1;
 	  x++;
 	}
@@ -83,6 +81,7 @@ void	clean_tetri(t_tetri *tetri, t_game *game, int x, int y)
 
 int	add_tetri(t_tetri *tetri, t_game *game)
 {
+  game->cur = random_tetri(tetri);
   tetri[game->cur].x = (game->width / 2) - (tetri[game->cur].width / 2) - 1 ;
   tetri[game->cur].y = 1;
   if (check_print_tetri(&tetri[game->cur], game,

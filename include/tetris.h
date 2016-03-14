@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Sun Mar 13 04:10:16 2016 Antoine Baché
+** Last update Mon Mar 14 01:02:34 2016 Arthur ARNAUD
 */
 
 #ifndef	TETRIS_H_
@@ -88,7 +88,7 @@ typedef struct	s_time
 typedef struct	s_game
 {
   char		level;
-  char		next;
+  int		next;
   int		line;
   int		score;
   int		highscore;
@@ -100,7 +100,6 @@ typedef struct	s_game
   bool		debug;
   bool		running;
   int		cur;
-  char		**tetri;
   char		**arr;
   char		**keys;
 }		t_game;
@@ -222,6 +221,7 @@ int		check_print_tetri(t_tetri *, t_game *, int, int);
 int		check_end(t_game *);
 void		clean_tetri(t_tetri *, t_game *, int, int);
 void		print_tetri(t_tetri *, t_game *, int, int);
+int		random_tetri(t_tetri *);
 
 /*
 ** ===================================================

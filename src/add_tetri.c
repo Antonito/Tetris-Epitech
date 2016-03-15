@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Mon Feb 29 15:41:20 2016 Arthur ARNAUD
-** Last update Tue Mar 15 22:21:51 2016 Antoine Baché
+** Last update Tue Mar 15 23:00:17 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -24,7 +24,7 @@ int	check_print_tetri(t_tetri *tetri, t_game *game, int x, int y)
       j = -1;
       while (++j < tetri->width && x < game->width)
 	{
-	  if (tetri->arr[i][j] == tetri->color  && game->arr[y][x] > -1)
+	  if (tetri->arr[i][j] == tetri->color && game->arr[y][x] > -1)
 	    return (1);
 	  x++;
 	}
@@ -105,7 +105,7 @@ int	add_tetri(t_tetri *tetri, t_game *game)
   game->next = random_tetri(tetri);
   copy_tetri(&tetri[game->cur], game);
   game->tetri->x = (game->width / 2) - (game->tetri->width / 2) - 1 ;
-  game->tetri->y = 1;
+  game->tetri->y = 0;
   if (check_print_tetri(game->tetri, game,
 			game->tetri->x, game->tetri->y))
     return (check_line(game));

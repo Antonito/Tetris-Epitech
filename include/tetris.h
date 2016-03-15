@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Tue Mar 15 14:52:33 2016 Arthur ARNAUD
+** Last update Tue Mar 15 21:07:04 2016 Arthur ARNAUD
 */
 
 #ifndef	TETRIS_H_
@@ -98,6 +98,7 @@ typedef struct	s_game
   int		width;
   bool		showNext;
   bool		debug;
+  bool		end;
   bool		running;
   int		cur;
   t_tetri	*tetri;

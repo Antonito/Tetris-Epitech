@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Mon Feb 29 15:41:20 2016 Arthur ARNAUD
-** Last update Tue Mar 15 23:00:17 2016 Antoine Baché
+** Last update Tue Mar 15 23:04:21 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -67,29 +67,12 @@ void	clean_tetri(t_tetri *tetri, t_game *game, int x, int y)
 
   i = 0;
   tmp = x;
-  int	k;
-  int	z;
   while (i < tetri->height)
     {
       x = tmp;
       j = 0;
       while (j < tetri->width)
 	{
-	  k = 0;
-	  dprintf(2, "Board:\n");
-	  while (k < game->height)
-	    {
-	      z = 0;
-	      while (z < game->width)
-		{
-		  dprintf(2, "%d\t", game->arr[k][z]);
-		  ++z;
-		}
-	      dprintf(2, "\n");
-	      ++k;
-	    }
-	  dprintf(2, "j = %d tetri->width = %d\n", j, tetri->width);
-	  dprintf(2, "arr[%d][%d] = %d\n", y, x, game->arr[y][x]);
 	  game->arr[y][x] = -1;
 	  ++x;
 	  ++j;
@@ -104,7 +87,7 @@ int	add_tetri(t_tetri *tetri, t_game *game)
   game->cur = game->next;
   game->next = random_tetri(tetri);
   copy_tetri(&tetri[game->cur], game);
-  game->tetri->x = (game->width / 2) - (game->tetri->width / 2) - 1 ;
+  game->tetri->x = (game->width / 2) - (game->tetri->width / 2) - 1;
   game->tetri->y = 0;
   if (check_print_tetri(game->tetri, game,
 			game->tetri->x, game->tetri->y))

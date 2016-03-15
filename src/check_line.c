@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sat Mar 12 13:50:50 2016 Antoine Baché
-** Last update Mon Mar 14 14:35:59 2016 Arthur ARNAUD
+** Last update Tue Mar 15 13:50:38 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -45,6 +45,8 @@ int	check_line(t_game *game)
   i = game->tetri->y - 1;
   while (++i < game->tetri->y + game->tetri->height)
     if (line_full(game, i))
-      return (fall_all_tetri(game, i), 1);
+      {
+	return (fall_all_tetri(game, i), 1);
+      }
   return (1);
 }

@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Tue Feb 23 19:12:02 2016 Arthur ARNAUD
-** Last update Mon Mar 14 16:13:29 2016 Arthur ARNAUD
+** Last update Tue Mar 15 14:52:57 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -46,7 +46,7 @@ int		checkKeys(t_loop *loop, t_game *game)
     if (!my_strncmp(loop->buff, game->keys[loop->i],
 		    my_strlen(loop->buff) + 1))
       {
-	if ((loop->check = (loop->events[loop->i](game, loop->tetri))) == 1)
+	if ((loop->check = (loop->events[loop->i](game))) == 1)
 	  return (free(loop->events), free2DArray(game->arr), 1);
 	else if (loop->check == 2)
 	  return (free(loop->events), free2DArray(game->arr), 2);
@@ -69,7 +69,7 @@ int		tetris(t_game *game, char *term)
       if ((timer.check = timer.tick - timer.count), isOver(game))
 	return (freeWin(&loop.win), freeTetri(loop.tetri), 0);
       else if (getTime(game, &start),
-	       display(&loop.win, &loop.tetri[1], game))
+	       display(&loop.win, &loop.tetri[game->next], game))
 	return (freeWin(&loop.win), free(loop.events), freeTetri(loop.tetri),
 		endwin(), 1);
       else if ((loop.check = checkKeys(&loop, game)) == 1)
@@ -77,7 +77,7 @@ int		tetris(t_game *game, char *term)
       else if (loop.check == 2)
 	return (freeWin(&loop.win), freeTetri(loop.tetri), 0);
       else if (checkPause(&game->running, game->keys, loop.win.score, &start),
-	       timer.check % 60 == 2)
+	       timer.check % 60 == 1)
 	{
 	  timer.count = time(NULL);
 	  if (fall_tetri(game))

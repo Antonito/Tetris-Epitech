@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Mon Mar 14 16:14:36 2016 Arthur ARNAUD
+** Last update Tue Mar 15 14:52:33 2016 Arthur ARNAUD
 */
 
 #ifndef	TETRIS_H_
@@ -109,7 +109,7 @@ typedef struct	s_loop
 {
   t_tetri	*tetri;
   t_window	win;
-  int		(**events)(t_game *, t_tetri *);
+  int		(**events)(t_game *);
   char		buff[BUFF_SIZE];
   int		i;
   int		next;
@@ -118,7 +118,7 @@ typedef struct	s_loop
 }		t_loop;
 
 typedef		int (**ptrtab)(t_game *, char **, bool);
-typedef		int (**event)(t_game *, t_tetri *);
+typedef		int (**event)(t_game *);
 
 /*
 ** ===================================================
@@ -224,6 +224,8 @@ void		clean_tetri(t_tetri *, t_game *, int, int);
 void		print_tetri(t_tetri *, t_game *, int, int);
 int		random_tetri(t_tetri *);
 int		copy_tetri(t_tetri *, t_game *);
+int		check_rotate(t_tetri *, t_game *, int, int);
+char		**rotate(t_tetri *);
 
 /*
 ** ===================================================
@@ -236,5 +238,6 @@ void		display_title(WINDOW *);
 void		display_interface(t_window *, t_game *);
 void		display_board(t_window *, t_tetri *, t_game *);
 void		display_tetriminos(WINDOW *, char **, int);
+void		display_next(WINDOW *, char **, int, int);
 
 #endif /* TETRIS_H_ */

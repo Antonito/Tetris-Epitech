@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Tue Feb 23 23:37:45 2016 Arthur ARNAUD
-** Last update Sun Mar 13 16:52:34 2016 Arthur ARNAUD
+** Last update Mon Mar 14 19:22:53 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -30,8 +30,26 @@ void		display_tetriminos(WINDOW *win, char **arr, int width)
   while (arr[++i])
     {
       j = -1;
-      while (++j < width )
+      while (++j < width)
 	if (arr[i][j] > -1)
+	  {
+	    wattrset(win, COLOR_PAIR(arr[i][j]));
+	    mvwprintw(win, i + 1, j + 1, "*");
+	  }
+    }
+}
+
+void		display_next(WINDOW *win, char **arr, int width, int color)
+{
+  int		i;
+  int		j;
+
+  i = -1;
+  while (arr[++i])
+    {
+      j = -1;
+      while (++j < width)
+	if (arr[i][j] == color)
 	  {
 	    wattrset(win, COLOR_PAIR(arr[i][j]));
 	    mvwprintw(win, i + 1, j + 1, "*");
@@ -43,8 +61,8 @@ void		display_board(t_window *win, t_tetri *tetri, t_game *game)
 {
   display_tetriminos(win->board, game->arr, game->width);
   mvwprintw(win->next, 0, 1, "Next");
-  if (!game->next)
-    display_tetriminos(win->next, tetri->arr, tetri->width);
+  if (game->showNext)
+    display_next(win->next, tetri->arr, tetri->width, tetri->color);
   wrefresh(win->board);
   wrefresh(win->next);
 }

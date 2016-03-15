@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Mon Feb 22 21:01:23 2016 Arthur ARNAUD
-** Last update Sun Mar 13 16:56:32 2016 Arthur ARNAUD
+** Last update Tue Mar 15 14:54:20 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -27,7 +27,10 @@ int		init_display(t_window *win, t_game *game, char *term)
 int		display(t_window *win, t_tetri *next, t_game *game)
 {
   if (win->next)
-    delwin(win->next);
+    {
+      wclear(win->next);
+      delwin(win->next);
+    }
   if (!(win->next =
 	create_new_win(next->height + 2, next->width + 4, 1, game->width + 36)))
     return (error("Cannot create window\n"));

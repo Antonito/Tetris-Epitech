@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Mon Feb 29 15:41:20 2016 Arthur ARNAUD
-** Last update Mon Mar 14 16:16:22 2016 Arthur ARNAUD
+** Last update Tue Mar 15 14:55:43 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -81,8 +81,9 @@ void	clean_tetri(t_tetri *tetri, t_game *game, int x, int y)
 
 int	add_tetri(t_tetri *tetri, t_game *game)
 {
-  game->cur = random_tetri(tetri);
-  copy_tetri(&tetri[0], game);
+  game->cur = game->next;
+  game->next = random_tetri(tetri);
+  copy_tetri(&tetri[game->cur], game);
   game->tetri->x = (game->width / 2) - (game->tetri->width / 2) - 1 ;
   game->tetri->y = 1;
   if (check_print_tetri(game->tetri, game,

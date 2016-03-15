@@ -5,7 +5,7 @@
 ## Login   <bache_a@epitech.net>
 ##
 ## Started on  Tue Feb 23 14:08:31 2016 Antoine Baché
-## Last update Tue Mar 15 13:34:00 2016 Arthur ARNAUD
+## Last update Tue Mar 15 21:41:04 2016 Arthur ARNAUD
 ##
 
 DEBUG=			yes
@@ -41,7 +41,6 @@ SRC_FILES=		main.c			\
 			free.c			\
 			debug.c			\
 			my_put_nbr.c		\
-			isOver.c		\
 			check_end.c		\
 			check_line.c		\
 			order.c			\

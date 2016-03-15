@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Mon Feb 29 15:41:20 2016 Arthur ARNAUD
-** Last update Tue Mar 15 14:55:43 2016 Arthur ARNAUD
+** Last update Tue Mar 15 22:21:51 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -41,19 +41,21 @@ void	print_tetri(t_tetri *tetri, t_game *game, int x, int y)
   int	j;
   int	tmp;
 
-  i = -1;
+  i = 0;
   tmp = x;
-  while (++i < tetri->height)
+  while (i < tetri->height)
     {
       x = tmp;
-      j = -1;
-      while (++j < tetri->width)
+      j = 0;
+      while (j < tetri->width)
 	{
 	  if (tetri->arr[i][j] == tetri->color)
 	    game->arr[y][x] = tetri->color;
-	  x++;
+	  ++x;
+	  ++j;
 	}
-      y++;
+      ++i;
+      ++y;
     }
 }
 
@@ -63,19 +65,37 @@ void	clean_tetri(t_tetri *tetri, t_game *game, int x, int y)
   int	j;
   int	tmp;
 
-  i = -1;
+  i = 0;
   tmp = x;
-  while (++i < tetri->height)
+  int	k;
+  int	z;
+  while (i < tetri->height)
     {
       x = tmp;
-      j = -1;
-      while (++j < tetri->width)
+      j = 0;
+      while (j < tetri->width)
 	{
-	  if (tetri->arr[i][j] == tetri->color)
-	    game->arr[y][x] = -1;
-	  x++;
+	  k = 0;
+	  dprintf(2, "Board:\n");
+	  while (k < game->height)
+	    {
+	      z = 0;
+	      while (z < game->width)
+		{
+		  dprintf(2, "%d\t", game->arr[k][z]);
+		  ++z;
+		}
+	      dprintf(2, "\n");
+	      ++k;
+	    }
+	  dprintf(2, "j = %d tetri->width = %d\n", j, tetri->width);
+	  dprintf(2, "arr[%d][%d] = %d\n", y, x, game->arr[y][x]);
+	  game->arr[y][x] = -1;
+	  ++x;
+	  ++j;
 	}
-      y++;
+      ++i;
+      ++y;
     }
 }
 
@@ -98,7 +118,8 @@ int     fall_tetri(t_game *game)
   clean_tetri(game->tetri, game, game->tetri->x, game->tetri->y);
   if (check_print_tetri(game->tetri, game,
 			game->tetri->x, game->tetri->y + 1))
-    return (check_line(game));
+    return (print_tetri(game->tetri, game, game->tetri->x, game->tetri->y),
+	    check_line(game));
   game->tetri->y += 1;
   print_tetri(game->tetri, game, game->tetri->x, game->tetri->y);
   return (0);

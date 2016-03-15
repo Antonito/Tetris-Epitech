@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Mon Feb 22 21:01:23 2016 Arthur ARNAUD
-** Last update Tue Mar 15 14:54:20 2016 Arthur ARNAUD
+** Last update Tue Mar 15 15:07:47 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -29,6 +29,8 @@ int		display(t_window *win, t_tetri *next, t_game *game)
   if (win->next)
     {
       wclear(win->next);
+      werase(win->next);
+      wrefresh(win->next);
       delwin(win->next);
     }
   if (!(win->next =

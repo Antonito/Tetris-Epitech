@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Wed Feb 24 19:28:55 2016 Arthur ARNAUD
-** Last update Mon Mar 14 16:13:15 2016 Arthur ARNAUD
+** Last update Tue Mar 15 23:04:46 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -37,7 +37,6 @@ char	**malloc_tab(char **arr, int height, int width)
 
 int            create_all_win(t_window *win, t_game *game)
 {
-  printf("lil\n");
   win->next = NULL;
   if (!(win->title = newwin(6, 30, 0, 0)) ||
       !(win->score = create_new_win(10, 25, 8, 4)) ||

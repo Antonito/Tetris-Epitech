@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Mon Feb 29 15:41:20 2016 Arthur ARNAUD
-** Last update Wed Mar 16 00:46:36 2016 Arthur ARNAUD
+** Last update Wed Mar 16 12:46:12 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -88,7 +88,7 @@ int	add_tetri(t_tetri *tetri, t_game *game)
   game->cur = game->next;
   game->next = random_tetri(tetri);
   copy_tetri(&tetri[game->cur], game);
-  game->tetri->x = (game->width / 2) - (game->tetri->width / 2) - 1 ;
+  game->tetri->x = (game->width / 2) - (game->tetri->width / 2) - 1;
   game->tetri->y = 0;
   if (check_print_tetri(game->tetri, game,
 			game->tetri->x, game->tetri->y))

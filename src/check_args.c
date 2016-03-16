@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 16:35:50 2016 Antoine Baché
-** Last update Wed Mar  9 13:49:49 2016 Antoine Baché
+** Last update Wed Mar 16 12:19:16 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -83,10 +83,10 @@ int		parse_args(int ac, char **av, t_game *game)
       while (++i < NB_ARGS)
 	if ((i && !(i & 1) && i < 16) || i == 15)
 	  {
-	    if (!my_strncmp(args[i], av[0], my_strlen(args[i])))
+	    if (!my_strncmp(args[i], av[0], my_strlen(args[i]) - 1))
 	      break;
 	  }
-	else if (my_strncmp(args[i], av[0], my_strlen(args[i]) + 1) == 0)
+	else if (my_strncmp(args[i], av[0], my_strlen(args[i])) == 0)
 	  {
 	    mode = SHORT;
 	    break;

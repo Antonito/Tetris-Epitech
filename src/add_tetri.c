@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Mon Feb 29 15:41:20 2016 Arthur ARNAUD
-** Last update Tue Mar 15 23:04:21 2016 Antoine Baché
+** Last update Wed Mar 16 12:36:37 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -73,7 +73,8 @@ void	clean_tetri(t_tetri *tetri, t_game *game, int x, int y)
       j = 0;
       while (j < tetri->width)
 	{
-	  game->arr[y][x] = -1;
+	  if (tetri->arr[i][j] == tetri->color)
+	    game->arr[y][x] = -1;
 	  ++x;
 	  ++j;
 	}

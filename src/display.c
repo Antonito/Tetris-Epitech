@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Mon Feb 22 21:01:23 2016 Arthur ARNAUD
-** Last update Tue Mar 15 15:07:47 2016 Arthur ARNAUD
+** Last update Wed Mar 16 00:43:54 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -37,6 +37,8 @@ int		display(t_window *win, t_tetri *next, t_game *game)
 	create_new_win(next->height + 2, next->width + 4, 1, game->width + 36)))
     return (error("Cannot create window\n"));
   display_interface(win, game);
+  werase(win->board);
+  wborder(win->board, '|', '|', '-', '-', '-', '-', '-', '-');
   display_board(win, next, game);
   return (0);
 }

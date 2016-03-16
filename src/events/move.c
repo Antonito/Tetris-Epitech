@@ -5,17 +5,19 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Mar  8 02:06:28 2016 Antoine Baché
-** Last update Tue Mar 15 23:00:06 2016 Antoine Baché
+** Last update Wed Mar 16 02:34:51 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
 
 int	keyLeftEvent(t_game *game)
 {
-  clean_tetri(game->tetri, game, game->tetri->x, game->tetri->x);
-  if (check_print_tetri(game->tetri, game,
-			game->tetri->x - 1, game->tetri->y))
-    return (0);
+  clean_tetri(game->tetri, game, game->tetri->x, game->tetri->y);
+  if (check_print_tetri(game->tetri, game, game->tetri->x - 1, game->tetri->y))
+    {
+      print_tetri(game->tetri, game, game->tetri->x, game->tetri->y);
+      return (0);
+    }
   game->tetri->x -= 1;
   print_tetri(game->tetri, game, game->tetri->x, game->tetri->y);
   return (0);
@@ -25,7 +27,10 @@ int	keyRightEvent(t_game *game)
 {
   clean_tetri(game->tetri, game, game->tetri->x, game->tetri->y);
   if (check_print_tetri(game->tetri, game, game->tetri->x + 1, game->tetri->y))
-    return (0);
+    {
+      print_tetri(game->tetri, game, game->tetri->x, game->tetri->y);
+      return (0);
+    }
   game->tetri->x += 1;
   print_tetri(game->tetri, game, game->tetri->x, game->tetri->y);
   return (0);
@@ -47,10 +52,10 @@ int	keyDropEvent(t_game *game)
 
   i = 0;
   clean_tetri(game->tetri, game, game->tetri->x, game->tetri->y);
-  while (check_print_tetri(game->tetri, game,
+  while (!check_print_tetri(game->tetri, game,
 			   game->tetri->x, game->tetri->y + i))
     i++;
-  game->tetri->y += i;
+  game->tetri->y += (i - 1);
   print_tetri(game->tetri, game, game->tetri->x, game->tetri->y);
   return (0);
 }

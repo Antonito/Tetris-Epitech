@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Mar  8 02:06:28 2016 Antoine Baché
-** Last update Wed Mar 16 02:34:51 2016 Arthur ARNAUD
+** Last update Wed Mar 16 02:39:39 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -39,7 +39,7 @@ int	keyRightEvent(t_game *game)
 int	keyTurnEvent(t_game *game)
 {
   clean_tetri(game->tetri, game, game->tetri->x, game->tetri->y);
-  if (!check_rotate(game->tetri, game, game->tetri->x, game->tetri->y))
+  if (check_rotate(game->tetri, game, game->tetri->x, game->tetri->y))
     if (!(game->tetri->arr = rotate(game->tetri)))
       return (1);
   print_tetri(game->tetri, game, game->tetri->x, game->tetri->y);

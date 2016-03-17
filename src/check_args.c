@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sun Mar  6 16:35:50 2016 Antoine Baché
-** Last update Wed Mar 16 12:19:16 2016 Antoine Baché
+** Last update Thu Mar 17 13:27:54 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -105,7 +105,7 @@ int		check_args(int ac, char **av, char **env)
   char		*smkx;
 
   if (init_game_default(&game))
-    return (error("Cannot initialise game\n"));
+    return (error("Cannot initialize game\n"));
   if (!(term = getTerm((const char **)env)))
     return (freeKeys(game.keys), error("Cannot find info about term\n"));
   if (ac > 1)

@@ -5,10 +5,10 @@
 ## Login   <bache_a@epitech.net>
 ##
 ## Started on  Tue Feb 23 14:08:31 2016 Antoine Baché
-## Last update Thu Mar 17 21:55:18 2016 Antoine Baché
+## Last update Thu Mar 17 22:16:09 2016 Antoine Baché
 ##
 
-DEBUG=			no
+DEBUG=			yes
 
 SRC_PREFIX=		src/
 

@@ -1,0 +1,57 @@
+==24149== Memcheck, a memory error detector
+==24149== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==24149== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==24149== Command: ./tetris
+==24149== 
+==24149== Invalid read of size 1
+==24149==    at 0x402836: display_next (board.c:52)
+==24149==    by 0x402926: display_board (board.c:65)
+==24149==    by 0x402D66: display (display.c:43)
+==24149==    by 0x401328: tetris (main.c:71)
+==24149==    by 0x404487: check_args (check_args.c:118)
+==24149==    by 0x401548: main (main.c:87)
+==24149==  Address 0x54644b2 is 0 bytes after a block of size 2 alloc'd
+==24149==    at 0x4C2ABD0: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==24149==    by 0x40323C: my_strdup (my_strndup.c:39)
+==24149==    by 0x401B13: getShape (load.c:28)
+==24149==    by 0x401CA0: getInfos (load.c:51)
+==24149==    by 0x401D71: getTetrimino (load.c:65)
+==24149==    by 0x401F9B: load_tetri (load.c:105)
+==24149==    by 0x400FF8: initLoop (main.c:27)
+==24149==    by 0x401256: tetris (main.c:64)
+==24149==    by 0x404487: check_args (check_args.c:118)
+==24149==    by 0x401548: main (main.c:87)
+==24149== 
+==24149== Invalid read of size 1
+==24149==    at 0x403025: copy_tetri (copy_tetri.c:35)
+==24149==    by 0x40231F: add_tetri (add_tetri.c:92)
+==24149==    by 0x4014BC: tetris (main.c:81)
+==24149==    by 0x404487: check_args (check_args.c:118)
+==24149==    by 0x401548: main (main.c:87)
+==24149==  Address 0x54644b2 is 0 bytes after a block of size 2 alloc'd
+==24149==    at 0x4C2ABD0: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==24149==    by 0x40323C: my_strdup (my_strndup.c:39)
+==24149==    by 0x401B13: getShape (load.c:28)
+==24149==    by 0x401CA0: getInfos (load.c:51)
+==24149==    by 0x401D71: getTetrimino (load.c:65)
+==24149==    by 0x401F9B: load_tetri (load.c:105)
+==24149==    by 0x400FF8: initLoop (main.c:27)
+==24149==    by 0x401256: tetris (main.c:64)
+==24149==    by 0x404487: check_args (check_args.c:118)
+==24149==    by 0x401548: main (main.c:87)
+==24149== 
+==24149== 
+==24149== HEAP SUMMARY:
+==24149==     in use at exit: 539,334 bytes in 341 blocks
+==24149==   total heap usage: 2,131 allocs, 1,790 frees, 984,396 bytes allocated
+==24149== 
+==24149== LEAK SUMMARY:
+==24149==    definitely lost: 493 bytes in 24 blocks
+==24149==    indirectly lost: 5,312 bytes in 30 blocks
+==24149==      possibly lost: 1,514 bytes in 1 blocks
+==24149==    still reachable: 532,015 bytes in 286 blocks
+==24149==         suppressed: 0 bytes in 0 blocks
+==24149== Rerun with --leak-check=full to see details of leaked memory
+==24149== 
+==24149== For counts of detected and suppressed errors, rerun with: -v
+==24149== ERROR SUMMARY: 286 errors from 2 contexts (suppressed: 0 from 0)

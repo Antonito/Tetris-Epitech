@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Wed Mar  9 00:04:13 2016 Antoine Baché
-** Last update Sun Mar 13 17:22:47 2016 Arthur ARNAUD
+** Last update Thu Mar 17 22:53:00 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -35,7 +35,8 @@ int		countFiles(void)
   if (!(count = opendir("tetriminos")))
     return (0);
   while ((file = readdir(count)))
-    if (file->d_name[0] != '.' && check_file(file->d_name))
+    if (my_strcmp(file->d_name, ".\0") &&
+	my_strcmp(file->d_name, "..\0") && check_file(file->d_name))
       ++i;
   if (closedir(count) < 0)
     return (0);
@@ -98,7 +99,8 @@ char		**getNames(DIR *dir)
     return (error("Cannot malloc\n"), NULL);
   i = 0;
   while ((file = readdir(dir)))
-    if (file->d_name[0] != '.' && check_file(file->d_name) &&
+    if (my_strcmp(file->d_name, ".\0") &&
+	my_strcmp(file->d_name, "..\0") && check_file(file->d_name) &&
 	!(names[i++] = my_strdup(file->d_name)))
       return (error("Cannot malloc\n"), NULL);
   names[nb] = NULL;

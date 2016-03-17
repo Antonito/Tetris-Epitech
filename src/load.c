@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Thu Feb 25 19:55:00 2016 Arthur ARNAUD
-** Last update Sun Mar 13 04:12:00 2016 Antoine Baché
+** Last update Thu Mar 17 22:47:40 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -80,7 +80,8 @@ t_tetri		*malloc_tetri_arr(t_tetri *tetri)
   if (!(dir = opendir("tetriminos")))
     return (NULL);
   while ((dent = readdir(dir)))
-    if (dent->d_name[0] != '.' && check_file(dent->d_name))
+    if (my_strcmp(dent->d_name, ".\0") &&
+	my_strcmp(dent->d_name, "..\0") && check_file(dent->d_name))
       i++;
   if (!(tetri = malloc(sizeof(t_tetri) * (i + 1))))
     return (closedir(dir), NULL);

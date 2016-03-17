@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Tue Mar 15 12:46:25 2016 Arthur ARNAUD
-** Last update Tue Mar 15 13:41:04 2016 Arthur ARNAUD
+** Last update Wed Mar 16 23:45:26 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -16,13 +16,13 @@ int	check_rotate(t_tetri *tetri, t_game *game, int x, int y)
   int	j;
 
   i = -1;
-  while (++i < tetri->width && y < tetri->height)
+  while (++i < tetri->width && y < game->height)
     {
       j = -1;
-      while (++j < tetri->height && y < tetri->width)
+      while (++j < tetri->height && x < game->width)
 	{
-	  if (game->arr[i][j] > -1 &&
-	      tetri->arr[tetri->height - j][i] == tetri->color)
+	  if (game->arr[y][x] > -1 &&
+	      tetri->arr[tetri->height - (j + 1)][i] == tetri->color)
 	    return (1);
 	  x++;
 	}
@@ -50,7 +50,7 @@ char	**rotate(t_tetri *tetri)
       if (!(new_arr[i] = malloc(sizeof(char) * (tetri->height))))
 	return (NULL);
       while (++j < tetri->height)
-	new_arr[i][j] = tetri->arr[tetri->height - j][i];
+	new_arr[i][j] = tetri->arr[tetri->height - (j + 1)][i];
     }
   tmp = tetri->height;
   tetri->height = tetri->width;

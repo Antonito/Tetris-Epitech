@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Mon Feb 29 15:41:20 2016 Arthur ARNAUD
-** Last update Wed Mar 16 12:36:37 2016 Antoine Baché
+** Last update Thu Mar 17 21:49:59 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -18,6 +18,8 @@ int	check_print_tetri(t_tetri *tetri, t_game *game, int x, int y)
 
   i = -1;
   tmp = x;
+  if ((y + tetri->height - 1) > game->height)
+    return (1);
   while (++i < tetri->height && y < game->height)
     {
       x = tmp;

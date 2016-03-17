@@ -5,13 +5,15 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Mar  8 02:06:28 2016 Antoine Baché
-** Last update Wed Mar 16 02:39:39 2016 Arthur ARNAUD
+** Last update Thu Mar 17 01:45:55 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
 
 int	keyLeftEvent(t_game *game)
 {
+  if (game->tetri->x == 0)
+    return (0);
   clean_tetri(game->tetri, game, game->tetri->x, game->tetri->y);
   if (check_print_tetri(game->tetri, game, game->tetri->x - 1, game->tetri->y))
     {
@@ -39,9 +41,13 @@ int	keyRightEvent(t_game *game)
 int	keyTurnEvent(t_game *game)
 {
   clean_tetri(game->tetri, game, game->tetri->x, game->tetri->y);
-  if (check_rotate(game->tetri, game, game->tetri->x, game->tetri->y))
-    if (!(game->tetri->arr = rotate(game->tetri)))
-      return (1);
+  if (!check_rotate(game->tetri, game, game->tetri->x, game->tetri->y))
+    {
+      if (!(game->tetri->arr = rotate(game->tetri)))
+	return (1);
+      print_tetri(game->tetri, game, game->tetri->x, game->tetri->y);
+      return (0);
+    }
   print_tetri(game->tetri, game, game->tetri->x, game->tetri->y);
   return (0);
 }

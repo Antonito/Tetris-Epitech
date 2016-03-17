@@ -5,13 +5,22 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Wed Feb 24 19:28:55 2016 Arthur ARNAUD
-** Last update Tue Mar 15 23:04:46 2016 Antoine Baché
+** Last update Fri Mar 18 00:05:37 2016 Antoine Baché
 */
 
 #include "tetris.h"
+#include <signal.h>
+
+void	resize(int signal)
+{
+  (void)signal;
+  return ;
+}
 
 int	init_game(t_game *game)
 {
+  if (signal(SIGWINCH, resize) == SIG_ERR)
+    return (1);
   if (!(game->arr = malloc_tab(game->arr, game->height, game->width)) ||
       !(game->tetri = malloc(sizeof(t_tetri))))
     return (1);

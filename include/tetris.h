@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Tue Feb 23 14:11:45 2016 Antoine Baché
-** Last update Wed Mar 16 13:51:09 2016 Arthur ARNAUD
+** Last update Thu Mar 17 23:41:35 2016 Antoine Baché
 */
 
 #ifndef	TETRIS_H_
@@ -17,7 +17,9 @@
 # define MIN_COL		10
 # define MAX_COL		80
 # define BUFF_SIZE		4096
-# define BETWEEN(A, MIN, MAX)	(((A) >= (MIN)) ? (((A) <= (MAX)) ? 1 : 0) : 0)
+# define BETWEEN(A, MIN, MAX)	(((A) >= (MIN)) ? (((A) <= (MAX)) ? 2 : 0) : 0)
+# define TIME(X)		(((X) <= 0) ?  1 : (X))
+# define CHECK_TIME		TIME(20 - game->level)
 
 # define _BDS_SOURCE
 # define _POSIX_SOURCE

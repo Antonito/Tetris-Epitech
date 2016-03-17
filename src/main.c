@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Tue Feb 23 19:12:02 2016 Arthur ARNAUD
-** Last update Thu Mar 17 22:03:09 2016 Antoine Baché
+** Last update Thu Mar 17 23:41:57 2016 Antoine Baché
 */
 
 #include "tetris.h"
@@ -57,17 +57,15 @@ int		checkKeys(t_loop *loop, t_game *game)
 int		tetris(t_game *game, char *term)
 {
   t_loop	loop;
+  int		timer;
   time_t	start;
-  t_time	timer;
 
-  timer.count = time(NULL);
+  timer = -1;
   if (!initLoop(&loop, game, term) && (start = time(NULL)) != ((time_t) -1) &&
       !add_tetri(loop.tetri, game) && !(game->end = false))
-    while (my_memset(loop.buff, 0, BUFF_SIZE), (loop.i = -1),
-	   (timer.tick = time(NULL)), usleep(100),
-	   !check_end(game))
-      if ((timer.check = timer.tick - timer.count),
-	  getTime(game, &start),
+    while (my_memset(loop.buff, 0, BUFF_SIZE), (loop.i = -1), timer += 2,
+	   usleep(100), !check_end(game))
+      if (getTime(game, &start),
 	  display(&loop.win, &loop.tetri[game->next], game))
 	return (freeWin(&loop.win), free(loop.events), freeTetri(loop.tetri),
 		endwin(), 1);
@@ -76,8 +74,8 @@ int		tetris(t_game *game, char *term)
       else if (loop.check == 2)
 	return (freeWin(&loop.win), freeTetri(loop.tetri), 0);
       else if (checkPause(&game->running, game->keys, loop.win.score, &start),
-	       timer.check % 60 == 1 && (timer.count = time(NULL), 1))
-	if (fall_tetri(game))
+	       timer >= CHECK_TIME)
+	if (timer = -1, fall_tetri(game))
 	  add_tetri(loop.tetri, game);
   return (1);
 }

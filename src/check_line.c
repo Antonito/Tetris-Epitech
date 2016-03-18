@@ -5,7 +5,7 @@
 ** Login   <bache_a@epitech.net>
 **
 ** Started on  Sat Mar 12 13:50:50 2016 Antoine Baché
-** Last update Wed Mar 16 03:08:55 2016 Arthur ARNAUD
+** Last update Thu Mar 17 23:25:26 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -51,7 +51,7 @@ int	check_line(t_game *game)
 	game->score += 100;
 	game->line += 1;
 	game->level = (game->line / 10) + 1;
-	return (fall_all_tetri(game, i), 1);
+	fall_all_tetri(game, i);
       }
   return (1);
 }

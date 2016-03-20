@@ -5,7 +5,7 @@
 ** Login   <arnaud_e@epitech.net>
 **
 ** Started on  Mon Feb 22 21:01:23 2016 Arthur ARNAUD
-** Last update Wed Mar 16 02:50:26 2016 Arthur ARNAUD
+** Last update Sun Mar 20 16:06:17 2016 Arthur ARNAUD
 */
 
 #include "tetris.h"
@@ -26,6 +26,11 @@ int		init_display(t_window *win, t_game *game, char *term)
 
 int		display(t_window *win, t_tetri *next, t_game *game)
 {
+  int		cols;
+  int		line;
+
+  cols = 0;
+  line = 0;
   if (win->next)
     {
       wclear(win->next);
@@ -33,6 +38,9 @@ int		display(t_window *win, t_tetri *next, t_game *game)
       wrefresh(win->next);
       delwin(win->next);
     }
+  getmaxyx(stdscr, line, cols);
+  if ((game->width + next->width + 40) > cols || game->height > line)
+    return (error("Window too small"));
   if (!(win->next =
 	create_new_win(next->height + 2, next->width + 4, 1, game->width + 36)))
     return (error("Cannot create window\n"));

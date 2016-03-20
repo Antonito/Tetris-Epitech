@@ -5,7 +5,7 @@
 ## Login   <bache_a@epitech.net>
 ##
 ## Started on  Tue Feb 23 14:08:31 2016 Antoine Baché
-## Last update Thu Mar 17 22:16:09 2016 Antoine Baché
+## Last update Sun Mar 20 15:41:46 2016 Arthur ARNAUD
 ##
 
 DEBUG=			yes
@@ -32,7 +32,6 @@ SRC_FILES=		main.c			\
 			random_tetri.c		\
 			interface.c		\
 			check_file.c		\
-			rotate.c		\
 			check_args.c		\
 			add_dir_name.c		\
 			getTerm.c		\
